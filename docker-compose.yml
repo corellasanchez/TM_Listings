@@ -1,0 +1,37 @@
+version: '3'
+services:
+  tm.mysql:
+    container_name: tm_mysql
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/config/etc:/etc/mysql/conf.d
+      - ./mysql/backups:/opt/data
+    ports:
+      - '3307:3306'
+
+  tm.node:
+    container_name: tm_node
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    volumes:
+      - ./node:/usr/src/app
+    ports:
+      - '4000:4000'
+    environment:
+      MYSQL_USER: 'root' 
+      MYSQL_PASSWORD: 'password' 
+      MYSQL_DATABASE: 'tm_listing' 
+      MYSQL_HOST: 'tm.mysql' 
+    links:
+      - tm.mysql:db
+    depends_on: 
+      - tm.mysql
+
+networks:
+  default:
+    external:
+      name: tm-network
