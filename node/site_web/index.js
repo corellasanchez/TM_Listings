@@ -3,7 +3,6 @@
  */
 
 const app = require('express')();
-const mysql = require('mysql');
 
 const bodyParser = require('body-parser');
 
@@ -12,31 +11,8 @@ app.use(bodyParser.json({
 })); // support json encoded bodies
 
 // environment variables
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4002;
 const HOST = process.env.HOST || '0.0.0.0';
-
-// mysql credentials
-const connection = mysql.createConnection({
-	host: process.env.MYSQL_HOST || '172.17.0.2',
-	user: process.env.MYSQL_USER || 'root',
-	password: process.env.MYSQL_PASSWORD || 'password',
-	database: process.env.MYSQL_DATABASE || 'test'
-});
-
-connection.connect((err) => {
-	if (err) {
-		console.error('error connecting mysql: ', err);
-	} else {
-		console.log('mysql connection successful');
-		app.listen(PORT, HOST, (err) => {
-			if (err) {
-				console.error('Error starting  server', err);
-			} else {
-				console.log('server listening at port ' + PORT);
-			}
-		});
-	}
-});
 
 // home page
 app.get('/', (req, res) => {
@@ -86,3 +62,10 @@ app.post('/get-students', (req, res) => {
     });
 });
 
+app.listen(PORT, HOST, (err) => {
+	if (err) {
+		console.error('Error starting  server', err);
+	} else {
+		console.log('server listening at port ' + PORT);
+	}
+});

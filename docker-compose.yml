@@ -12,13 +12,13 @@ services:
     ports:
       - '3307:3306'
 
-  tm.node:
-    container_name: tm_node
+  tm.admin.api:
+    container_name: tm_admin_api
     build:
-      context: ./node
+      context: ./node/admin_api
       dockerfile: Dockerfile
     volumes:
-      - ./node:/usr/src/app
+      - ./node/admin_api:/usr/src/app
     ports:
       - '4000:4000'
     environment:
@@ -30,6 +30,30 @@ services:
       - tm.mysql:db
     depends_on: 
       - tm.mysql
+
+  tm.admin.web:
+    container_name: tm_admin_web
+    build:
+      context: ./node/admin_web
+      dockerfile: Dockerfile
+    volumes:
+      - ./node/admin_web:/usr/src/app
+    ports:
+      - '4001:4001'
+    links:
+      - tm.admin.api:api
+    depends_on: 
+      - tm.admin.api
+
+  tm.site.web:
+    container_name: tm_site_web
+    build:
+      context: ./node/site_web
+      dockerfile: Dockerfile
+    volumes:
+      - ./node/site_web:/usr/src/app
+    ports:
+      - '4002:4002'
 
 networks:
   default:
