@@ -1,6 +1,4 @@
-'use strict'
-
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt-nodejs')
 const jwt = require('jsonwebtoken')
 const { secretKey } = require('../config')
 

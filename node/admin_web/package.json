@@ -1,30 +1,36 @@
 {
-  "name": "nodejs-microservice",
-  "version": "1.0.0",
-  "description": "Running a nodejs application with mysql database as microservices using docker",
-  "main": "index.js",
+  "name": "admin-web",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "^9.5.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node server.js",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "postinstall": "npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/varunon9/getting-started-docker-mysql-nodejs.git"
-  },
-  "keywords": [
-    "docker",
-    "mysql-docker",
-    "nodejs-docker",
-    "microservice"
-  ],
-  "author": "Varun Kumar <varunon9@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/varunon9/getting-started-docker-mysql-nodejs/issues"
-  },
-  "homepage": "https://github.com/varunon9/getting-started-docker-mysql-nodejs#readme",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3"
-  }
+    "express": "^4.17.1",
+    "http": "0.0.0",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.3",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "^3.11.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.1.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
 }

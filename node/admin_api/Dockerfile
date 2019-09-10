@@ -1,6 +1,8 @@
 # Use Node v8 as the base image.
 FROM node:8
 
+ENV NODE_ENV=docker
+
 # create and set app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

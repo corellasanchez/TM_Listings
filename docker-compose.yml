@@ -11,12 +11,13 @@ services:
       - ./mysql/backups:/opt/data
     ports:
       - '3307:3306'
-
   tm.admin.api:
     container_name: tm_admin_api
     build:
       context: ./node/admin_api
       dockerfile: Dockerfile
+    env_file:
+      - config/admin_api/.env
     volumes:
       - ./node/admin_api:/usr/src/app
     ports:
@@ -30,7 +31,6 @@ services:
       - tm.mysql:db
     depends_on: 
       - tm.mysql
-
   tm.admin.web:
     container_name: tm_admin_web
     build:
@@ -44,7 +44,6 @@ services:
       - tm.admin.api:api
     depends_on: 
       - tm.admin.api
-
   tm.site.web:
     container_name: tm_site_web
     build:
@@ -54,7 +53,6 @@ services:
       - ./node/site_web:/usr/src/app
     ports:
       - '4002:4002'
-
 networks:
   default:
     external:
