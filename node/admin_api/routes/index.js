@@ -2,12 +2,14 @@ var express = require('express');
 var router = express.Router();
 const path = require('path');
 
-const auth = require('./auth');
+const authRoutes = require('./auth');
+const userRoutes = require('./user');
 
-router.get('/', function(req, res, next) {
-  res.sendFile(path.join(__dirname+'/home/index.html'));
+router.get('/', function (req, res, next) {
+  res.sendFile(path.join(__dirname + '/home/index.html'));
 });
 
-router.use('/auth', auth);
+router.use('/auth', authRoutes);
+router.use('/user', userRoutes);
 
 module.exports = router;
