@@ -5,8 +5,8 @@ FROM mysql:5.7
 MAINTAINER Roy Corella <corellasanchez@gmail.com>
 
 # database = test and password for root = password
-ENV MYSQL_DATABASE=tm_listing \
+ENV MYSQL_DATABASE=tm \
     MYSQL_ROOT_PASSWORD=password
 
 # when container will be started, we'll have `test` database created with this schema
-COPY ./config/test-dump.sql /docker-entrypoint-initdb.d/
+COPY ./config/tm.sql /docker-entrypoint-initdb.d/

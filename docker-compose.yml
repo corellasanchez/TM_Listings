@@ -25,7 +25,7 @@ services:
     environment:
       MYSQL_USER: 'root' 
       MYSQL_PASSWORD: 'password' 
-      MYSQL_DATABASE: 'tm_listing' 
+      MYSQL_DATABASE: 'tm' 
       MYSQL_HOST: 'tm.mysql' 
     links:
       - tm.mysql:db
