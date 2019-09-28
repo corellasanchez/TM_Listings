@@ -1,9 +1,8 @@
-const { runQuery } = require('../helpers/mysql');
+const { find } = require('../helpers/mysql');
 
-async function getUserByUsername(username) {
-  let sql = `SELECT * FROM usuario WHERE nombre = '${username}' LIMIT 1;`;
-  let userDetails = await runQuery(sql);
-  return userDetails;
+function getUserByUsername(args) {
+  let result = find(args, "usuario");
+  return result;
 }
 
 module.exports = {

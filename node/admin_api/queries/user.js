@@ -1,11 +1,10 @@
-const { runQuery } = require('../helpers/mysql');
+const { create } = require('../helpers/mysql');
+const table = "usuario";
 
-async function createUser(data) {
-  let sql = 'INSERT INTO usuario (nombre, contrasena, email, acceso) VALUES (?,?,?,?);';
-  let result = await runQuery(sql, data);
+function createUser(data) {
+  let result = create(data, table);
   return result;
 }
-
 
 module.exports = {
   createUser

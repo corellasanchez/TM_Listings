@@ -2,13 +2,11 @@ const authQueries = require('../queries/auth');
 const { createToken, comparePassword } = require('../helpers/security');
 
 async function login(req, res, next) {
-    let { username, password } = req.body;
     try {
-        if (!username || !password) return res.send('MISSING BODY PARAMETERS');
-        let userInfo = await authQueries.getUserByUsername(username);
-        if (userInfo !== null) {
+        let userInfo = await authQueries.getUserByUsername({ nombre: req.body.nombre });
+        if (userInfo.length) {
             let dbPassword = userInfo[0].contrasena;
-            let validComparison = await comparePassword(password, dbPassword);
+            let validComparison = await comparePassword(req.body.contrasena, dbPassword);
             if (validComparison) {
                 const token = createToken(userInfo[0]);
                 res.send({
@@ -16,14 +14,14 @@ async function login(req, res, next) {
                 });
             } else {
                 //INVALID PASSWORD
-                res.send("INVALID CREDENTIALS");
+                res.status(401).json({ error: 'Credenciales invalidas'});
             }
         } else {
             //INVALID USERNAME
-            res.send("INVALID CREDENTIALS");
+            res.status(401).json({ error: 'Credenciales invalidas'});
         }
     } catch (error) {
-        next();
+        next(error);
     }
 };
 

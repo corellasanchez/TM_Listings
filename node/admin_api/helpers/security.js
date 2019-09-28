@@ -22,21 +22,21 @@ async function comparePassword(given, inDatabase) {
 
 function createToken(userInfo) {
   let data = {
-    user_id: userInfo.id,
-    user_nick: userInfo.nombre_usuario
-  }
+    user_nick: userInfo.nombre,
+    user_access: userInfo.acceso
+  };
   return jwt.sign(data, secretKey, { expiresIn: '1d' });
 }
 
 async function verifyToken(req, res, next) {
   //NO AUTH HEADER
-  if (!req.headers.authorization) return res.send('UNAUTHORIZED ACCESS');
+  if (!req.headers.authorization) return res.status(401).json({ error: 'Ingreso no autorizado' });
   let token = req.headers.authorization;
   await jwt.verify(token, secretKey, (err, decoded) => {
     //INVALID AUTH HEADER
-    if (err) res.send('UNAUTHORIZED ACCESS');
-    req.headers.logued_user_id = decoded.user_id;
+    if (err) res.status(401).json({ error: 'Sesion invalida' });
     req.headers.logued_user_nick = decoded.user_nick;
+    req.headers.logued_user_access = decoded.user_access;
     next();
   })
 }
