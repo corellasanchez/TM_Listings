@@ -12,7 +12,14 @@ app.use(bodyParser.json({
 const PORT = process.env.PORT || 4000;
 const HOST = process.env.HOST || '0.0.0.0';
 
+
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError) 
+  return res.status(400).json({ error: 'Su solicitud tiene un formato JSON invalido!' })
+});
+
 app.use('/', routes);
+
 
 app.listen(PORT, HOST, (err) => {
 	if (err) {

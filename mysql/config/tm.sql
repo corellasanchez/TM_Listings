@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 27/09/2019 09:32:21
+ Date: 27/09/2019 16:43:10
 */
 
 SET NAMES utf8mb4;
@@ -23,7 +23,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `barriada`;
 CREATE TABLE `barriada` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
   `corregimiento_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_barriada_corregimiento1_idx` (`corregimiento_id`),
@@ -36,7 +36,7 @@ CREATE TABLE `barriada` (
 DROP TABLE IF EXISTS `corregimiento`;
 CREATE TABLE `corregimiento` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `nombre` varchar(45) DEFAULT NULL,
   `distrito_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_corregimiento_distrito1_idx` (`distrito_id`),
@@ -49,7 +49,7 @@ CREATE TABLE `corregimiento` (
 DROP TABLE IF EXISTS `departamento_origen`;
 CREATE TABLE `departamento_origen` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -59,7 +59,7 @@ CREATE TABLE `departamento_origen` (
 DROP TABLE IF EXISTS `direccion`;
 CREATE TABLE `direccion` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `detalle` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `detalle` varchar(255) DEFAULT NULL,
   `fecha_creacion` date DEFAULT NULL,
   `pais_id` int(11) NOT NULL,
   `region_id` int(11) NOT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE `direccion` (
 DROP TABLE IF EXISTS `distrito`;
 CREATE TABLE `distrito` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
   `provincia_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_distrito_provincia1_idx` (`provincia_id`),
@@ -118,8 +118,8 @@ CREATE TABLE `oferta` (
 DROP TABLE IF EXISTS `pais`;
 CREATE TABLE `pais` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
-  `extension` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
+  `nombre` varchar(50) DEFAULT NULL,
+  `extension` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -129,10 +129,10 @@ CREATE TABLE `pais` (
 DROP TABLE IF EXISTS `persona`;
 CREATE TABLE `persona` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cedula` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
-  `nombre` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
-  `apellido1` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
-  `apellido2` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
+  `cedula` varchar(50) DEFAULT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
+  `apellido1` varchar(100) DEFAULT NULL,
+  `apellido2` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -143,9 +143,9 @@ DROP TABLE IF EXISTS `propiedad`;
 CREATE TABLE `propiedad` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sociedad_id` int(11) NOT NULL,
-  `folio` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
-  `plano` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
-  `unidad` varchar(100) CHARACTER SET latin1 DEFAULT NULL COMMENT 'Numero de apartamento, Casa o Local',
+  `folio` varchar(100) DEFAULT NULL,
+  `plano` varchar(100) DEFAULT NULL,
+  `unidad` varchar(100) DEFAULT NULL COMMENT 'Numero de apartamento, Casa o Local',
   `area` int(11) DEFAULT NULL COMMENT 'Metraje de la propiedad',
   `area_construida` int(11) DEFAULT NULL COMMENT 'Espacio del lote construido',
   `mostrar` tinyint(4) DEFAULT NULL,
@@ -163,20 +163,20 @@ CREATE TABLE `propiedad` (
   `fecha_inscripcion_registro_publico` date DEFAULT NULL,
   `fecha_llaves_entregadas` date DEFAULT NULL,
   `fecha_entregados_cobro` date DEFAULT NULL,
-  `id_interno` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
+  `id_interno` varchar(100) DEFAULT NULL,
   `propiedad_tipo_id` int(11) NOT NULL,
   `cliente_id` int(11) DEFAULT NULL COMMENT 'Falta definir tabla cliente',
   `comprador_id` int(11) DEFAULT NULL COMMENT 'Falta definir tabla comprador',
   `propiedad_estado_id` int(11) NOT NULL,
   `provision_regulatoria` decimal(13,2) DEFAULT NULL,
-  `dato_adjudicacion` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `dato_adjudicacion` varchar(255) DEFAULT NULL,
   `departamento_origen_id` int(11) NOT NULL,
   `porcentaje_reserva` decimal(13,2) DEFAULT NULL,
   `llaves_tenemos` tinyint(4) DEFAULT NULL,
   `llaves_entregadas` tinyint(4) DEFAULT NULL,
   `expediente_entregados_cobro` tinyint(4) DEFAULT NULL,
-  `comentarios` text CHARACTER SET latin1,
-  `anotaciones_especiales` text CHARACTER SET latin1,
+  `comentarios` text,
+  `anotaciones_especiales` text,
   `direccion_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_propiedad_sociedad1_idx` (`sociedad_id`),
@@ -197,7 +197,7 @@ CREATE TABLE `propiedad` (
 DROP TABLE IF EXISTS `propiedad_estado`;
 CREATE TABLE `propiedad_estado` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -207,7 +207,7 @@ CREATE TABLE `propiedad_estado` (
 DROP TABLE IF EXISTS `propiedad_tipo`;
 CREATE TABLE `propiedad_tipo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) CHARACTER SET latin1 NOT NULL,
+  `nombre` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -217,7 +217,7 @@ CREATE TABLE `propiedad_tipo` (
 DROP TABLE IF EXISTS `provincia`;
 CREATE TABLE `provincia` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
   `region_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_provincia_region1_idx` (`region_id`),
@@ -230,7 +230,7 @@ CREATE TABLE `provincia` (
 DROP TABLE IF EXISTS `region`;
 CREATE TABLE `region` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `nombre` varchar(45) DEFAULT NULL,
   `pais_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_region_pais_idx` (`pais_id`),
@@ -243,11 +243,11 @@ CREATE TABLE `region` (
 DROP TABLE IF EXISTS `sociedad`;
 CREATE TABLE `sociedad` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cedula` varchar(75) CHARACTER SET latin1 DEFAULT NULL,
-  `nombre` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `cedula` varchar(75) DEFAULT NULL,
+  `nombre` varchar(255) NOT NULL,
   `fecha_creacion` date DEFAULT NULL,
   `estado` tinyint(4) DEFAULT NULL,
-  `banco` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
+  `banco` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -257,8 +257,8 @@ CREATE TABLE `sociedad` (
 DROP TABLE IF EXISTS `telefono`;
 CREATE TABLE `telefono` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `numero` varchar(20) CHARACTER SET latin1 NOT NULL,
-  `detalle` varchar(75) CHARACTER SET latin1 DEFAULT NULL,
+  `numero` varchar(20) NOT NULL,
+  `detalle` varchar(75) DEFAULT NULL,
   `fecha_creacion` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -283,11 +283,13 @@ CREATE TABLE `telefonos_persona` (
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `contrasena` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `contrasena` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `acceso` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email_UNIQUE` (`email`),
+  UNIQUE KEY `nombre_UNIQUE` (`nombre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;

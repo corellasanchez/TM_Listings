@@ -18,4 +18,4 @@ COPY package*.json ./
 
 # Run app
 CMD ["npm", "install"]
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
