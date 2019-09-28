@@ -9,23 +9,42 @@ function runQuery(sql, args) {
   });
 };
 
-function create(args, tabla) {
+function create(args, table) {
   let fields = Object.keys(args);
   let values = Object.values(args);
   let valueMarks = fields.map(() => "?");
-  let sql = `INSERT INTO ${tabla} (${fields}) VALUES (${valueMarks});`;
+  let sql = `INSERT INTO ${table} (${fields}) VALUES (${valueMarks});`;
   return runQuery(sql, values);
 }
 
-function find(args, tabla) {
+function find(args, table) {
   let fields = Object.keys(args);
   let values = Object.values(args);
   let valueMarks = fields.map(field => `${field} = ?`);
-  let sql = `SELECT * FROM ${tabla} WHERE ${valueMarks}`;
+  let sql = `SELECT * FROM ${table} WHERE ${valueMarks}`;
+  return runQuery(sql, values);
+}
+
+function remove(args, table) {
+  let fields = Object.keys(args);
+  let values = Object.values(args);
+  let valueMarks = fields.map(field => `${field} = ?`);
+  let sql = `DELETE FROM ${table} WHERE ${valueMarks}`;
+  return runQuery(sql, values);
+}
+
+function update(args, id, table) {
+  let fields = Object.keys(args);
+  let values = Object.values(args);
+  values.push(id);
+  let valueMarks = fields.map(field => `${field} = ?`);
+  let sql = `UPDATE ${table} SET ${valueMarks} WHERE id=?`;
   return runQuery(sql, values);
 }
 
 module.exports = {
   create,
-  find
+  find,
+  remove,
+  update
 };

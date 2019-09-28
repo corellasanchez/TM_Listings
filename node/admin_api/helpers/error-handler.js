@@ -27,6 +27,13 @@ function errorHandler(err, req, res, next) {
 
     case 'ER_TRUNCATED_WRONG_VALUE_FOR_FIELD':
       return res.status(500).json({ error: 'Un campo lleva un valor incorrecto', message: err.sqlMessage });
+
+    case 'ER_NO_SUCH_TABLE':
+      return res.status(500).json({ error: 'No existe la tabla', message: err.sqlMessage });
+
+    case 'ER_NO_DEFAULT_FOR_FIELD':
+      return res.status(500).json({ error: 'Algunos campos son requeridos', message: err.sqlMessage });
+
   }
 
   // default to 500 server error

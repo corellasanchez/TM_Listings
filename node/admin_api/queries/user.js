@@ -1,4 +1,4 @@
-const { create } = require('../helpers/mysql');
+const { create, find, remove, update } = require('../helpers/mysql');
 const table = "usuario";
 
 function createUser(data) {
@@ -6,6 +6,24 @@ function createUser(data) {
   return result;
 }
 
+function deleteUser(data, table) {
+  let result = remove(data, table);
+  return result;
+}
+
+function findUser(data, table) {
+  let result = find(data, table);
+  return result;
+}
+
+function updateUser(data, id, table) {
+  let result = update(data, id, table);
+  return result;
+}
+
 module.exports = {
-  createUser
+  createUser,
+  deleteUser,
+  findUser,
+  updateUser
 };
