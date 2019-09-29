@@ -53,7 +53,7 @@ async function baseUpdate(req, res, next, table) {
   }
 };
 
-async function baselist(req, res, next, table) {
+async function baseList(req, res, next, table) {
   try {
     let data = req.query;
     let result = await list(data, table);
@@ -68,5 +68,5 @@ module.exports = {
   baseRemove,
   baseFind,
   baseUpdate,
-  baselist
+  baseList
 };
