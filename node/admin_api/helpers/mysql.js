@@ -1,6 +1,6 @@
 const db = require('../config/db');
 
-// function createDummyData(args, tabla, quantity) { //TESTING
+// function createDummyData(args, table, quantity) { //TESTING
 //   // ------------------------- HOW TO CALL IT
 //   // let data = {
 //   //   nombre: {
@@ -31,7 +31,7 @@ const db = require('../config/db');
 //         case 'integer': tempEntry[key] = Math.floor((Math.random() * 10) + 1); break;
 //       }
 //     })
-//     create(tempEntry, tabla);
+//     create(tempEntry, table);
 //   }
 // }
 
@@ -77,7 +77,7 @@ function update(args, id, table) {
   return runQuery(sql, values);
 }
 
-async function list(params, tabla) {
+async function list(params, table) {
   let { args, pageSize, currentPage, orderBy, sortOrder } = params;
   let startingRow = (currentPage > 1) ? pageSize * (currentPage - 1) : 0;
   let whereStatement = '', values = null;
@@ -94,9 +94,9 @@ async function list(params, tabla) {
       (whereStatement === '') ? whereStatement += `WHERE ${field} LIKE ?` : whereStatement += ` OR ${field} LIKE ?`;
     });
   }
-  let resultCount = (await runQuery(`SELECT COUNT(*) count FROM ${tabla} ${whereStatement};`, values))[0].count;
+  let resultCount = (await runQuery(`SELECT COUNT(*) count FROM ${table} ${whereStatement};`, values))[0].count;
   let pageCount = Math.ceil(resultCount / pageSize);
-  let sql = `SELECT * FROM ${tabla} ${whereStatement} ${orderByStatement} LIMIT ${startingRow}, ${pageSize};`;
+  let sql = `SELECT * FROM ${table} ${whereStatement} ${orderByStatement} LIMIT ${startingRow}, ${pageSize};`;
   let result = await runQuery(sql, values);
   return {
     data: result,

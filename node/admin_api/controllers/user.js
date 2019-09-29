@@ -1,12 +1,14 @@
-const userQueries = require('../queries/user');
-const { encryptPassword } = require('../helpers/security');
 const table = 'usuario';
+const { encryptPassword } = require('../helpers/security');
+const { create } = require('../helpers/mysql');
+const { baseRemove, baseFind, baseUpdate, Baselist } = require('../controllers/base-controller');
+
 
 async function createUser(req, res, next) {
   try {
     let data = req.body;
-    data.contrasena = await encryptPassword(data.contrasena);
-    let result = await userQueries.createUser(data);
+    data.contrasena = await encryptPassword(data.contrasena)
+    let result = await create(data, table);
     if (result.affectedRows) {
       res.json({ success: true, uid: result.insertId });
     }
@@ -15,56 +17,21 @@ async function createUser(req, res, next) {
   }
 };
 
-async function deleteUser(req, res, next) {
-  try {
-    let result = await userQueries.deleteUser(req.query, table);
-    if (result.affectedRows > 0) {
-      res.json({ success: true, registros_eliminados: result.affectedRows });
-    } else {
-      res.json({ error: "No se borro ningun registro" });
-    }
-  } catch (error) {
-    next(error);
-  }
-};
+function deleteUser(req, res, next) {
+  baseRemove(req, res, next, table);
+}
 
-async function findUser(req, res, next) {
-  try {
-    let result = await userQueries.findUser(req.body, table);
-    if (result && result.length > 0) {
-      res.json(result);
-    } else {
-      res.json({ error: "No se encontro ningun resultado" });
-    }
-  } catch (error) {
-    next(error);
-  }
-};
+function findUser(req, res, next) {
+  baseFind(req, res, next, table);
+}
 
-async function updateUser(req, res, next) {
-  const id = req.query.id;
-  const data = req.body;
-  try {
-    let result = await userQueries.updateUser(data, id, table);
-    if (result.affectedRows > 0) {
-      res.json({ success: true, registros_actulizados: result.affectedRows });
-    } else {
-      res.json({ error: "No se actualizo ningun registro" });
-    }
-  } catch (error) {
-    next(error);
-  }
-};
+function updateUser(req, res, next) {
+  baseUpdate(req, res, next, table);
+}
 
-async function listUsers(req, res, next) {
-  try {
-    let data = req.query;
-    let result = await userQueries.listUsers(data);
-    res.send(result);
-  } catch (error) {
-    next(error);
-  }
-};
+function listUsers(req, res, next) {
+  baselist(req, res, next, table);
+}
 
 module.exports = {
   createUser,
