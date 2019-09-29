@@ -1,5 +1,40 @@
 const db = require('../config/db');
 
+// function createDummyData(args, tabla, quantity) { //TESTING
+//   // ------------------------- HOW TO CALL IT
+//   // let data = {
+//   //   nombre: {
+//   //     type: "string",
+//   //     size: 10
+//   //   },
+//   //   contrasena: {
+//   //     type: "string",
+//   //     size: 10
+//   //   },
+//   //   email: {
+//   //     type: "string",
+//   //     size: 10
+//   //   },
+//   //   acceso: {
+//   //     type: "integer",
+//   //     size: 1
+//   //   }
+//   // };
+//   // createDummyData(data, table, 100);
+//   // -------------------------
+//   for (let i = 0; i < quantity; i++) {
+//     let tempEntry = {};
+//     let keys = Object.keys(args);
+//     keys.forEach(key => {
+//       switch (args[key].type) {
+//         case 'string': tempEntry[key] = Math.random().toString(36).substring(7); break;
+//         case 'integer': tempEntry[key] = Math.floor((Math.random() * 10) + 1); break;
+//       }
+//     })
+//     create(tempEntry, tabla);
+//   }
+// }
+
 function runQuery(sql, args) {
   return new Promise((resolve, reject) => {
     db.query(sql, args, (err, rows) => {
@@ -42,9 +77,44 @@ function update(args, id, table) {
   return runQuery(sql, values);
 }
 
+async function list(params, tabla) {
+  let { args, pageSize, currentPage, orderBy, sortOrder } = params;
+  let startingRow = (currentPage > 1) ? pageSize * (currentPage - 1) : 0;
+  let whereStatement = '', values = null;
+  let parsedArgs = {};
+  let orderByStatement = (orderBy) ? (sortOrder) ? `ORDER BY ${orderBy} ${sortOrder}` : `ORDER BY ${orderBy} ASC` : '';
+  if (args) {
+    args.split(';').forEach(arg => {
+      let tempArg = arg.split(':');
+      parsedArgs[tempArg[0]] = tempArg[1];
+    });
+    let fields = Object.keys(parsedArgs);
+    values = Object.values(parsedArgs).map(value => "%" + value + "%");
+    fields.map(field => {
+      (whereStatement === '') ? whereStatement += `WHERE ${field} LIKE ?` : whereStatement += ` OR ${field} LIKE ?`;
+    });
+  }
+  let resultCount = (await runQuery(`SELECT COUNT(*) count FROM ${tabla} ${whereStatement};`, values))[0].count;
+  let pageCount = Math.ceil(resultCount / pageSize);
+  let sql = `SELECT * FROM ${tabla} ${whereStatement} ${orderByStatement} LIMIT ${startingRow}, ${pageSize};`;
+  let result = await runQuery(sql, values);
+  return {
+    data: result,
+    meta: {
+      pagination: {
+        total: resultCount,
+        per_page: parseInt(pageSize),
+        current_page: parseInt(currentPage),
+        total_pages: pageCount
+      }
+    }
+  };
+}
+
 module.exports = {
   create,
   find,
   remove,
-  update
+  update,
+  list
 };

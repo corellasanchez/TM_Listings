@@ -5,7 +5,7 @@ const table = 'usuario';
 async function createUser(req, res, next) {
   try {
     let data = req.body;
-    data.contrasena = await encryptPassword(data.contrasena)
+    data.contrasena = await encryptPassword(data.contrasena);
     let result = await userQueries.createUser(data);
     if (result.affectedRows) {
       res.json({ success: true, uid: result.insertId });
@@ -56,9 +56,20 @@ async function updateUser(req, res, next) {
   }
 };
 
+async function listUsers(req, res, next) {
+  try {
+    let data = req.query;
+    let result = await userQueries.listUsers(data);
+    res.send(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createUser,
   deleteUser,
   findUser,
-  updateUser
+  updateUser,
+  listUsers
 };
