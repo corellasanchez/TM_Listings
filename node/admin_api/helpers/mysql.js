@@ -35,6 +35,14 @@ const db = require('../config/db');
 //   }
 // }
 
+function tablePicker(req, res, next) {
+  let path = req.baseUrl.substr(1);
+  path = (path.split('?'))[0];
+  path = (path.split('/'))[0];
+  req.headers.table = path;
+  next();
+}
+
 function runQuery(sql, args) {
   return new Promise((resolve, reject) => {
     db.query(sql, args, (err, rows) => {
@@ -112,6 +120,7 @@ async function list(params, table) {
 }
 
 module.exports = {
+  tablePicker,
   create,
   find,
   remove,

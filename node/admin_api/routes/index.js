@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const path = require('path');
+
 const errorHandler = require('../helpers/error-handler');
 
 const authRoutes = require('./auth');
@@ -11,9 +12,8 @@ router.get('/', function (req, res, next) {
 });
 
 router.use('/auth', authRoutes);
-router.use('/user', userRoutes);
+router.use('/usuario', userRoutes);
 
-// global error handler
 router.use(errorHandler);
 
 module.exports = router;

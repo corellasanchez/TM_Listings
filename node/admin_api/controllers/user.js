@@ -1,7 +1,7 @@
 const table = 'usuario';
 const { encryptPassword } = require('../helpers/security');
 const { create } = require('../helpers/mysql');
-const { baseRemove, baseFind, baseUpdate, baseList } = require('../controllers/base-controller');
+const baseController = require('../controllers');
 
 
 async function createUser(req, res, next) {
@@ -17,26 +17,7 @@ async function createUser(req, res, next) {
   }
 };
 
-function deleteUser(req, res, next) {
-  baseRemove(req, res, next, table);
-}
-
-function findUser(req, res, next) {
-  baseFind(req, res, next, table);
-}
-
-function updateUser(req, res, next) {
-  baseUpdate(req, res, next, table);
-}
-
-function listUsers(req, res, next) {
-  baseList(req, res, next, table);
-}
-
 module.exports = {
-  createUser,
-  deleteUser,
-  findUser,
-  updateUser,
-  listUsers
+  ...baseController,
+  createUser
 };
