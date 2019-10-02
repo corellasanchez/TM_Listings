@@ -22,8 +22,11 @@ Running a nodejs application with mysql database using docker and microservice a
 
 ### Actualizar base de datos 
 - Baje los contenedores: docker-compose down
-- Borre todo el contenido de la carpeta mysql/data
 - Corra docker-compose up -d --force-recreate --build
+- docker exec -it tm_mysql bash -x /opt/data/mysql_refresh.sh tm tm.sql
+Donde tm es la base de datos y tm.sql es el archivo sql a ejecutar en esa base de datos.
+(todos los archivos estaran en mysql/backups/)
+
 
 
 

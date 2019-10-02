@@ -9,4 +9,4 @@ ENV MYSQL_DATABASE=tm \
     MYSQL_ROOT_PASSWORD=password
 
 # when container will be started, we'll have `test` database created with this schema
-COPY ./config/tm.sql /docker-entrypoint-initdb.d/
+COPY ./backups/tm.sql /docker-entrypoint-initdb.d/
