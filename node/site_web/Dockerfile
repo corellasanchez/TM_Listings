@@ -1,5 +1,5 @@
-# Use Node v8 as the base image.
-FROM node:8
+# Use Node 10.15.0 as the base image.
+FROM node:10.15.0
 
 # create and set app directory
 RUN mkdir -p /usr/src/app
@@ -10,10 +10,11 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
-
 # Bundle app source
-# COPY . .
+COPY . .
+
+# Install dependencies 
+RUN cd /usr/src/app && CI=true npm install
 
 # Run app
-CMD ["npm", "install"]
-CMD ["npm", "start"]
+CMD ["npm", "run", "serve"]

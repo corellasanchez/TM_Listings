@@ -38,12 +38,15 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./node/admin_web:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
-      - '4001:4001'
+      - '4001:8080'
     links:
       - tm.admin.api:api
     depends_on: 
       - tm.admin.api
+    environment:
+      - npm_config_unsafe_perm=true
   tm.site.web:
     container_name: tm_site_web
     build:
@@ -51,8 +54,11 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./node/site_web:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
-      - '4002:4002'
+      - '4002:8080'
+    environment:
+      - npm_config_unsafe_perm=true
 networks:
   default:
     external:
