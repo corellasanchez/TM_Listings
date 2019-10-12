@@ -294,3 +294,8 @@ CREATE TABLE `usuario` (
 
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+-- ----------------------------
+-- USUARIO POR DEFECTO admin 123
+-- ----------------------------
+INSERT INTO `usuario` VALUES (1, 'admin', '$2a$10$cFo0IkrmuMZpJ6Mccuf1ce6tqbYBLntnCMyCxMl7OyKPRgvKMehHW', 'deleteme@please.com', 1);
