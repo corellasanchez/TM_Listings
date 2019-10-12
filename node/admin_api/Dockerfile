@@ -14,8 +14,10 @@ COPY package*.json ./
 
 
 # Bundle app source
-# COPY . .
+COPY . .
+
+# Install dependencies 
+RUN cd /usr/src/app && CI=true npm install
 
 # Run app
-CMD ["npm", "install"]
 CMD ["npm", "run", "dev"]
