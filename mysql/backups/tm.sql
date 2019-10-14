@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 27/09/2019 16:43:10
+ Date: 13/10/2019 18:29:54
 */
 
 SET NAMES utf8mb4;
@@ -96,20 +96,13 @@ CREATE TABLE `distrito` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for oferta
+-- Table structure for estado
 -- ----------------------------
-DROP TABLE IF EXISTS `oferta`;
-CREATE TABLE `oferta` (
+DROP TABLE IF EXISTS `estado`;
+CREATE TABLE `estado` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `monto` decimal(13,2) DEFAULT NULL,
-  `estado` int(11) DEFAULT NULL,
-  `persona_id` int(11) NOT NULL,
-  `propiedad_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_oferta_persona1_idx` (`persona_id`),
-  KEY `fk_oferta_propiedad1_idx` (`propiedad_id`),
-  CONSTRAINT `fk_oferta_persona1` FOREIGN KEY (`persona_id`) REFERENCES `persona` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_oferta_propiedad1` FOREIGN KEY (`propiedad_id`) REFERENCES `propiedad` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `nombre` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -119,9 +112,10 @@ DROP TABLE IF EXISTS `pais`;
 CREATE TABLE `pais` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) DEFAULT NULL,
-  `extension` varchar(10) DEFAULT NULL,
+  `extension` varchar(20) DEFAULT NULL,
+  `iso3` varchar(3) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=248 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for persona
@@ -133,6 +127,7 @@ CREATE TABLE `persona` (
   `nombre` varchar(100) DEFAULT NULL,
   `apellido1` varchar(100) DEFAULT NULL,
   `apellido2` varchar(100) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -143,12 +138,12 @@ DROP TABLE IF EXISTS `propiedad`;
 CREATE TABLE `propiedad` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sociedad_id` int(11) NOT NULL,
-  `folio` varchar(100) DEFAULT NULL,
-  `plano` varchar(100) DEFAULT NULL,
-  `unidad` varchar(100) DEFAULT NULL COMMENT 'Numero de apartamento, Casa o Local',
-  `area` int(11) DEFAULT NULL COMMENT 'Metraje de la propiedad',
-  `area_construida` int(11) DEFAULT NULL COMMENT 'Espacio del lote construido',
-  `mostrar` tinyint(4) DEFAULT NULL,
+  `folio` varchar(100) NOT NULL,
+  `plano` varchar(100) NOT NULL,
+  `unidad` varchar(100) NOT NULL COMMENT 'Numero de apartamento, Casa o Local',
+  `area` int(11) NOT NULL COMMENT 'Metraje de la propiedad',
+  `area_construida` int(11) NOT NULL COMMENT 'Espacio del lote construido',
+  `mostrar` tinyint(4) NOT NULL,
   `valor_libros` decimal(13,2) DEFAULT NULL,
   `valor_avaluo` decimal(13,2) DEFAULT NULL,
   `precio_prestamo` decimal(13,2) DEFAULT NULL,
@@ -178,6 +173,7 @@ CREATE TABLE `propiedad` (
   `comentarios` text,
   `anotaciones_especiales` text,
   `direccion_id` int(11) NOT NULL,
+  `se_financia` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_propiedad_sociedad1_idx` (`sociedad_id`),
   KEY `fk_propiedad_propiedad_tipo1_idx` (`propiedad_tipo_id`),
@@ -186,19 +182,26 @@ CREATE TABLE `propiedad` (
   KEY `fk_propiedad_direccion1_idx` (`direccion_id`),
   CONSTRAINT `fk_propiedad_departamento_origen1` FOREIGN KEY (`departamento_origen_id`) REFERENCES `departamento_origen` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_propiedad_direccion1` FOREIGN KEY (`direccion_id`) REFERENCES `direccion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_propiedad_propiedad_estado1` FOREIGN KEY (`propiedad_estado_id`) REFERENCES `propiedad_estado` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_propiedad_propiedad_estado1` FOREIGN KEY (`propiedad_estado_id`) REFERENCES `estado` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_propiedad_propiedad_tipo1` FOREIGN KEY (`propiedad_tipo_id`) REFERENCES `propiedad_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_propiedad_sociedad1` FOREIGN KEY (`sociedad_id`) REFERENCES `sociedad` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for propiedad_estado
+-- Table structure for propiedad_oferta
 -- ----------------------------
-DROP TABLE IF EXISTS `propiedad_estado`;
-CREATE TABLE `propiedad_estado` (
+DROP TABLE IF EXISTS `propiedad_oferta`;
+CREATE TABLE `propiedad_oferta` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `monto` decimal(13,2) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  `persona_id` int(11) NOT NULL,
+  `propiedad_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_oferta_persona1_idx` (`persona_id`),
+  KEY `fk_oferta_propiedad1_idx` (`propiedad_id`),
+  CONSTRAINT `fk_oferta_persona1` FOREIGN KEY (`persona_id`) REFERENCES `persona` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_oferta_propiedad1` FOREIGN KEY (`propiedad_id`) REFERENCES `propiedad` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -222,7 +225,7 @@ CREATE TABLE `provincia` (
   PRIMARY KEY (`id`),
   KEY `fk_provincia_region1_idx` (`region_id`),
   CONSTRAINT `fk_provincia_region1` FOREIGN KEY (`region_id`) REFERENCES `region` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=80554 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for region
@@ -235,7 +238,7 @@ CREATE TABLE `region` (
   PRIMARY KEY (`id`),
   KEY `fk_region_pais_idx` (`pais_id`),
   CONSTRAINT `fk_region_pais` FOREIGN KEY (`pais_id`) REFERENCES `pais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1398 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for sociedad
@@ -290,8 +293,132 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for vehiculo
+-- ----------------------------
+DROP TABLE IF EXISTS `vehiculo`;
+CREATE TABLE `vehiculo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sociedad_id` int(11) NOT NULL,
+  `cliente_id` int(11) DEFAULT NULL,
+  `dueno_id_interno` varchar(100) NOT NULL,
+  `vehiculo_id_interno` varchar(100) NOT NULL,
+  `placa` varchar(50) NOT NULL,
+  `comprador_id` int(11) DEFAULT NULL,
+  `vehiculo_marca_id` int(11) NOT NULL,
+  `vehiculo_estilo_id` int(11) NOT NULL,
+  `serie` varchar(100) DEFAULT NULL,
+  `numero_chasis` varchar(100) NOT NULL,
+  `numero_vin` varchar(100) NOT NULL,
+  `ano` int(11) NOT NULL,
+  `peso` decimal(10,0) NOT NULL,
+  `color` varchar(75) NOT NULL,
+  `capacidad` varchar(100) NOT NULL,
+  `valor_libros` decimal(10,0) NOT NULL,
+  `precio_prestamo` decimal(10,0) NOT NULL,
+  `precio_captura` decimal(10,0) NOT NULL,
+  `precio_venta` decimal(10,0) NOT NULL,
+  `fecha_prestamo` date NOT NULL,
+  `fecha_captura` date NOT NULL,
+  `estado_id` int(11) NOT NULL,
+  `numero_cilindros` int(11) NOT NULL,
+  `numero_cc` int(11) NOT NULL,
+  `vehiculo_combustible_id` int(11) NOT NULL,
+  `mostrar` tinyint(4) DEFAULT NULL,
+  `numero_puertas` int(11) NOT NULL,
+  `se_financia` tinyint(4) DEFAULT NULL,
+  `llaves_tenemos` tinyint(4) DEFAULT NULL,
+  `llaves_entregadas` tinyint(4) DEFAULT NULL,
+  `fecha_llaves_entregadas` date DEFAULT NULL,
+  `detalle` varchar(255) DEFAULT NULL,
+  `comentarios` varchar(255) DEFAULT NULL,
+  `vehiculo_transmision_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_carro_sociedad_idx` (`sociedad_id`),
+  KEY `fk_vehiculo_vehiculo_marca1_idx` (`vehiculo_marca_id`),
+  KEY `fk_vehiculo_vehiculo_estilo1_idx` (`vehiculo_estilo_id`),
+  KEY `fk_vehiculo_estado1_idx` (`estado_id`),
+  KEY `fk_vehiculo_vehiculo_combustible1_idx` (`vehiculo_combustible_id`),
+  KEY `fk_vehiculo_vehiculo_transmision1_idx` (`vehiculo_transmision_id`),
+  CONSTRAINT `fk_carro_sociedad` FOREIGN KEY (`sociedad_id`) REFERENCES `sociedad` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_vehiculo_estado1` FOREIGN KEY (`estado_id`) REFERENCES `estado` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_vehiculo_vehiculo_combustible1` FOREIGN KEY (`vehiculo_combustible_id`) REFERENCES `vehiculo_combustible` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_vehiculo_vehiculo_estilo1` FOREIGN KEY (`vehiculo_estilo_id`) REFERENCES `vehiculo_estilo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_vehiculo_vehiculo_marca1` FOREIGN KEY (`vehiculo_marca_id`) REFERENCES `vehiculo_marca` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_vehiculo_vehiculo_transmision1` FOREIGN KEY (`vehiculo_transmision_id`) REFERENCES `vehiculo_transmision` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Table structure for vehiculo_combustible
+-- ----------------------------
+DROP TABLE IF EXISTS `vehiculo_combustible`;
+CREATE TABLE `vehiculo_combustible` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for vehiculo_estilo
+-- ----------------------------
+DROP TABLE IF EXISTS `vehiculo_estilo`;
+CREATE TABLE `vehiculo_estilo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) DEFAULT NULL,
+  `vehiculo_tipo_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_vehiculo_estilo_vehiculo_tipo1_idx` (`vehiculo_tipo_id`),
+  CONSTRAINT `fk_vehiculo_estilo_vehiculo_tipo1` FOREIGN KEY (`vehiculo_tipo_id`) REFERENCES `vehiculo_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for vehiculo_marca
+-- ----------------------------
+DROP TABLE IF EXISTS `vehiculo_marca`;
+CREATE TABLE `vehiculo_marca` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for vehiculo_oferta
+-- ----------------------------
+DROP TABLE IF EXISTS `vehiculo_oferta`;
+CREATE TABLE `vehiculo_oferta` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `monto` decimal(13,2) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  `vehiculo_id` int(11) NOT NULL,
+  `persona_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_vehiculo_oferta_vehiculo1_idx` (`vehiculo_id`),
+  KEY `fk_vehiculo_oferta_persona1_idx` (`persona_id`),
+  CONSTRAINT `fk_vehiculo_oferta_persona1` FOREIGN KEY (`persona_id`) REFERENCES `persona` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_vehiculo_oferta_vehiculo1` FOREIGN KEY (`vehiculo_id`) REFERENCES `vehiculo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for vehiculo_tipo
+-- ----------------------------
+DROP TABLE IF EXISTS `vehiculo_tipo`;
+CREATE TABLE `vehiculo_tipo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for vehiculo_transmision
+-- ----------------------------
+DROP TABLE IF EXISTS `vehiculo_transmision`;
+CREATE TABLE `vehiculo_transmision` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -299,3 +426,4 @@ SET FOREIGN_KEY_CHECKS = 1;
 -- USUARIO POR DEFECTO admin 123
 -- ----------------------------
 INSERT INTO `usuario` VALUES (1, 'admin', '$2a$10$cFo0IkrmuMZpJ6Mccuf1ce6tqbYBLntnCMyCxMl7OyKPRgvKMehHW', 'deleteme@please.com', 1);
+

@@ -24,6 +24,11 @@ Donde tm es la base de datos y tm.sql es el archivo sql a ejecutar en esa base d
 
 ### Instalar datos de prueba
 docker exec -it tm_mysql bash /opt/data/mysql_refresh.sh tm test_data.sql
+### Ingresar a el contenedor
+docker exec -it tm_site_web bash
+
+### Correr npm install unicamente dentro del contenedor
+
 
 
 
