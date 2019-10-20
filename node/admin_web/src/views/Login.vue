@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper login">
     <div class="section page-header header-filter" :style="headerStyle">
       <div class="container">
         <div class="md-layout">
@@ -155,7 +155,6 @@ export default {
 
 @media (min-width: 400px) {
   .md-card {
-    // height: 350px !important;
     width: 320px !important;
   }
 }
@@ -199,7 +198,6 @@ export default {
 .md-card .md-card-header-green,
 .md-card .md-tabs.md-success .md-tabs-navigation {
   background: linear-gradient(60deg, #66bb6a, #388e3c);
-  // -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(76, 175, 80, 0.6);
   box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2),
     0 13px 24px -11px rgba(76, 175, 80, 0.6);
 }
@@ -208,5 +206,13 @@ export default {
   color: white;
   font-weight: 700;
   font-family: "Roboto Slab", "Times New Roman", serif;
+}
+
+.login{
+  text-align: center;
+
+  .md-card{
+    width: 75% !important;
+  }
 }
 </style>

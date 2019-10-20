@@ -6,13 +6,30 @@
         <md-icon>dashboard</md-icon>
         <p>Dashboard</p>
       </sidebar-link>
-      <!-- <sidebar-link to="/user">
-        <md-icon>person</md-icon>
-        <p>User Profile</p>
-      </sidebar-link>-->
+
+      <sidebar-link to="companias">
+        <md-icon>apartment</md-icon>
+        <p>Compañias</p>
+      </sidebar-link>
+
+      <sidebar-link to="/properties">
+        <md-icon>house</md-icon>
+        <p>Propiedades</p>
+      </sidebar-link>
+      <sidebar-link to="/vehicles">
+        <md-icon>directions_car</md-icon>
+        <p>Vehiculos</p>
+      </sidebar-link>
+
+      <sidebar-link to="reports">
+        <md-icon>library_books</md-icon>
+        <p>Reportes</p>
+      </sidebar-link>
+
     </side-bar>
     <div class="main-panel">
       <top-navbar></top-navbar>
+      <router-view />
     </div>
   </div>
 </template>

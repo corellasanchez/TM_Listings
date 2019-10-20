@@ -1,0 +1,55 @@
+<template>
+  <div class="content">
+    <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">
+      <md-card>
+        <md-card-header data-background-color="red">
+          <h4 class="title">Lista de propiedades</h4>
+          <p class="category">New employees on 15th September, 2016</p>
+        </md-card-header>
+        <md-card-content v-if="properties">
+          <md-table v-model="properties" :table-header-color="tableHeaderColor">
+            <md-table-row slot="md-table-row" slot-scope="{ item }">
+              <md-table-cell md-label="ID">{{ item.id }}</md-table-cell>
+              <md-table-cell md-label="Compañia">{{ item.sociedad_id }}</md-table-cell>
+              <md-table-cell md-label="Provincia">{{ item.provincia }}</md-table-cell>
+              <md-table-cell md-label="Cantón">{{ item.canton }}</md-table-cell>
+              <md-table-cell md-label="Tipo">{{ item.propiedad_tipo_id }}</md-table-cell>
+              <md-table-cell md-label="Área de Construcción">{{ item.area_construida }} m²</md-table-cell>
+              <md-table-cell md-label="Estado">{{ item.propiedad_estado_id }}</md-table-cell>
+              <md-table-cell md-label="Precio de Venta">₡{{ item.precio_venta }}</md-table-cell>
+            </md-table-row>
+          </md-table>
+        </md-card-content>
+      </md-card>
+    </div>
+  </div>
+</template>
+<script>
+import propertyService from "@/services/Property";
+
+export default {
+  props: {
+    tableHeaderColor: {
+      type: String,
+      default: "red"
+    }
+  },
+  async mounted() {
+    let params = {
+      args: "test",
+      pageSize: 5,
+      currentPage: 1,
+      orderBy: "id",
+      sortOrder: "desc"
+    };
+    let properties = await propertyService.list(params);
+    this.properties = properties.data.data;
+  },
+  data() {
+    return {
+      selected: [],
+      properties: null
+    };
+  }
+};
+</script>

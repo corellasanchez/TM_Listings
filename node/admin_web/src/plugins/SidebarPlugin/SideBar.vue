@@ -38,7 +38,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: "Vue MD"
+      default: "Tm Listing"
     },
     backgroundImage: {
       type: String,
@@ -46,7 +46,7 @@ export default {
     },
     imgLogo: {
       type: String,
-      default: require("@/assets/img/vue-logo.png")
+      default: require("@/assets/img/temp_logo.png")
     },
     activeColor: {
       type: String,
@@ -79,7 +79,16 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="scss">
+
+.logo-img{
+  background: none !important;
+  border-radius: 0 !important;
+  img{
+    width: 100% !important;
+  }
+}
+
 @media screen and (min-width: 991px) {
   .nav-mobile-menu {
     display: none;

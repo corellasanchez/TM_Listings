@@ -2,6 +2,11 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Login from './views/Login.vue';
 import Dashboard from './views/Dashboard.vue';
+import Properties from './views/Properties.vue';
+import Vehicles from './views/Vehicles.vue';
+import Companias from './views/Companias.vue';
+import Reports from './views/Reports.vue';
+
 import DashboardLayout from "./components/Layout/DashboardLayout.vue";
 import authService from "@/services/Auth";
 
@@ -24,10 +29,35 @@ let router = new Router({
           name: "Dashboard",
           component: Dashboard,
           meta: { logued: true },
+        },
+        {
+          path: "companias",
+          name: "Compañias",
+          component: Companias,
+          meta: { logued: true },
+        },
+        {
+          path: "properties",
+          name: "Propiedades",
+          component: Properties,
+          meta: { logued: true },
+        },
+        {
+          path: "vehicles",
+          name: "Vehiculos",
+          component: Vehicles,
+          meta: { logued: true },
+        },
+        {
+          path: "reports",
+          name: "Reportes",
+          component: Reports,
+          meta: { logued: true },
         }
       ]
     }
-  ]
+  ],
+  mode:'history'
 })
 
 router.beforeEach(async (to, from, next) => {
