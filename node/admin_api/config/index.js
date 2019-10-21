@@ -7,7 +7,9 @@ module.exports = {
     password: process.env.MYSQL_PASSWORD || 'password',
     database: process.env.MYSQL_DATABASE || 'tm',
     port: process.env.MYSQL_PORT || 8889,
-    multipleStatements: true
+    multipleStatements: true,
+    connectionLimit : 1000, //important
+    debug    :  false
   },
   secretKey: 'Tm115tInG'
 };

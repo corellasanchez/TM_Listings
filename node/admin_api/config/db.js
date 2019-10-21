@@ -1,23 +1,9 @@
 const mysql = require('mysql');
 const { dbConfig } = require('../config');
-let db;
 
-function dbConnect() {
-  db = mysql.createConnection(dbConfig);
-  db.connect(err => {
-    if (err) {
-      console.log('error when connecting to db:', err);
-      setTimeout(dbConnect, 2000);
-    } else {
-      console.log("conected to db");
-    }
-  });
-  db.on('error', err => {
-    dbConnect();
-  });
-}
-if (!db) {
-  dbConnect();
-};
+// Prueba al parecer si se crea un pool no es necesario hacer release o end de la coneccion
+// al terminar la consulta se cierra sola https://codeforgeek.com/nodejs-mysql-tutorial/
+
+let db  =  mysql.createPool(dbConfig);
 
 module.exports = db;

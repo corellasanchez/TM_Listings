@@ -204,3 +204,7 @@
   width: 15%;
   left: -11px;
 }
+
+.md-list-item {
+  margin-right: 5px;
+}

@@ -3,9 +3,36 @@
     <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">
       <md-card>
         <md-card-header data-background-color="red">
+          <md-card-header-text>
+            <div class="md-title">Lista de propiedades</div>
+            <div class="md-subhead">Sin filtros</div>
+          </md-card-header-text>
+          
+          <md-menu>
+          <md-button class="md-icon-button md-fab md-mini md-seccondary" md-menu-trigger>
+            <md-icon>more_vert</md-icon>
+          </md-button>
+
+          <md-menu-content>
+            <md-menu-item @click="addProperty">
+              Crear nueva propiedad
+            </md-menu-item>
+
+            <md-menu-item @click="exportProperties">
+            Exportar propiedades
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+
+          <!-- <md-button class="md-icon-button md-fab md-mini md-success">
+            <md-icon>add</md-icon>
+          </md-button>
+
           <h4 class="title">Lista de propiedades</h4>
-          <p class="category">New employees on 15th September, 2016</p>
+
+          <p class="category">New employees on 15th September, 2016</p> -->
         </md-card-header>
+
         <md-card-content v-if="properties">
           <md-table v-model="properties" :table-header-color="tableHeaderColor">
             <md-table-row slot="md-table-row" slot-scope="{ item }">

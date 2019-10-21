@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 19/10/2019 19:22:23
+ Date: 21/10/2019 09:20:00
 */
 
 SET NAMES utf8mb4;
@@ -1121,7 +1121,7 @@ COMMIT;
 DROP TABLE IF EXISTS `departamento_origen`;
 CREATE TABLE `departamento_origen` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
