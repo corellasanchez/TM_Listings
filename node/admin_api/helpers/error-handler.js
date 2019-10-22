@@ -33,7 +33,9 @@ function errorHandler(err, req, res, next) {
 
     case 'ER_NO_DEFAULT_FOR_FIELD':
       return res.status(500).json({ error: 'Algunos campos son requeridos', message: err.sqlMessage });
-
+    
+    case 'ER_SP_UNDECLARED_VAR':
+        return res.status(500).json({ error: 'Algunos parametros son requeridos', message: err.sqlMessage });
   }
 
   // default to 500 server error

@@ -7,30 +7,13 @@
             <div class="md-title">Lista de propiedades</div>
             <div class="md-subhead">Sin filtros</div>
           </md-card-header-text>
-          
+
           <md-menu>
-          <md-button class="md-icon-button md-fab md-mini md-seccondary" md-menu-trigger>
-            <md-icon>more_vert</md-icon>
-          </md-button>
-
-          <md-menu-content>
-            <md-menu-item @click="addProperty">
-              Crear nueva propiedad
-            </md-menu-item>
-
-            <md-menu-item @click="exportProperties">
-            Exportar propiedades
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
-
-          <!-- <md-button class="md-icon-button md-fab md-mini md-success">
-            <md-icon>add</md-icon>
-          </md-button>
-
-          <h4 class="title">Lista de propiedades</h4>
-
-          <p class="category">New employees on 15th September, 2016</p> -->
+            <md-button class="md-icon-button md-fab md-mini md-seccondary" @click="$router.push('add-property')">
+              <md-icon>add</md-icon>
+            </md-button>
+            
+          </md-menu>
         </md-card-header>
 
         <md-card-content v-if="properties">

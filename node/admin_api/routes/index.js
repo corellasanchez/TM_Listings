@@ -8,6 +8,8 @@ const authRoutes = require('./auth');
 const userRoutes = require('./user');
 const vehicleRoutes = require('./vehicle');
 const propertyRoutes = require('./property');
+const sociedadRoutes = require('./sociedad');
+
 
 router.get('/', function (req, res, next) {
   res.sendFile(path.join(__dirname + '/home/index.html'));
@@ -17,6 +19,8 @@ router.use('/auth', authRoutes);
 router.use('/usuario', userRoutes);
 router.use('/vehiculo', vehicleRoutes);
 router.use('/propiedad', propertyRoutes);
+router.use('/sociedad', sociedadRoutes);
+
 
 router.use(errorHandler);
 

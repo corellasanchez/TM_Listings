@@ -3,6 +3,9 @@ import Router from 'vue-router';
 import Login from './views/Login.vue';
 import Dashboard from './views/Dashboard.vue';
 import Properties from './views/Properties.vue';
+import AddProperty from './views/AddProperty.vue';
+
+
 import Vehicles from './views/Vehicles.vue';
 import Companias from './views/Companias.vue';
 import Reports from './views/Reports.vue';
@@ -40,6 +43,12 @@ let router = new Router({
           path: "properties",
           name: "Propiedades",
           component: Properties,
+          meta: { logued: true },
+        },
+        {
+          path: "add-property",
+          name: "Agregar una propiedad",
+          component: AddProperty,
           meta: { logued: true },
         },
         {
