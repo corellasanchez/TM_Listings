@@ -85,11 +85,14 @@ function update(args, id, table) {
   return runQuery(sql, values);
 }
 
-async function list(params, table) {
+async function list(params, table, select = '', joins = '') {
   let { args, pageSize, currentPage, orderBy, sortOrder } = params;
   let startingRow = (currentPage > 1) ? pageSize * (currentPage - 1) : 0;
   let whereStatement = '', values = null;
   let parsedArgs = {};
+  let resultCount = 0;
+  let sql = '';
+
   let orderByStatement = (orderBy) ? (sortOrder) ? `ORDER BY ${orderBy} ${sortOrder}` : `ORDER BY ${orderBy} ASC` : '';
   if (args) {
     args.split(';').forEach(arg => {
@@ -102,9 +105,21 @@ async function list(params, table) {
       (whereStatement === '') ? whereStatement += `WHERE ${field} LIKE ?` : whereStatement += ` OR ${field} LIKE ?`;
     });
   }
-  let resultCount = (await runQuery(`SELECT COUNT(*) count FROM ${table} ${whereStatement};`, values))[0].count;
+ 
+  if (joins) { // the table has foreing keys
+    resultCount = (await runQuery(`SELECT COUNT(*) count FROM ${table} ${joins} ${whereStatement};`, values))[0].count;
+  } else {
+    resultCount = (await runQuery(`SELECT COUNT(*) count FROM ${table} ${whereStatement};`, values))[0].count;
+  }
+
   let pageCount = Math.ceil(resultCount / pageSize);
-  let sql = `SELECT * FROM ${table} ${whereStatement} ${orderByStatement} LIMIT ${startingRow}, ${pageSize};`;
+
+  if (select) { // Table has foreing keys and specific fields
+    sql = `${select} ${joins} ${whereStatement} ${orderByStatement} LIMIT ${startingRow}, ${pageSize};`;
+  } else {
+    sql = `SELECT * FROM ${table} ${whereStatement} ${orderByStatement} LIMIT ${startingRow}, ${pageSize};`;
+  }
+
   let result = await runQuery(sql, values);
   return {
     data: result,

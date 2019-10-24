@@ -10,7 +10,7 @@ function list(params) {
     (currentPage) ? (query === "?") ? query += `currentPage=${currentPage}` : query += `&currentPage=${currentPage}` : null;
     (orderBy) ? (query === "?") ? query += `orderBy=${orderBy}` : query += `&orderBy=${orderBy}` : null;
     (sortOrder) ? (query === "?") ? query += `sortOrder=${sortOrder}` : query += `&sortOrder=${sortOrder}` : null;
-    return api.get(`${path}/list${query}`).then(res => res).catch(err => err.response);
+    return api.get(`${path}/full-list${query}`).then(res => res).catch(err => err.response);
 }
 
 export default {

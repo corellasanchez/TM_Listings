@@ -20,12 +20,12 @@
           <md-table v-model="properties" :table-header-color="tableHeaderColor">
             <md-table-row slot="md-table-row" slot-scope="{ item }">
               <md-table-cell md-label="ID">{{ item.id }}</md-table-cell>
-              <md-table-cell md-label="Compañia">{{ item.sociedad_id }}</md-table-cell>
+              <md-table-cell md-label="Compañia">{{ item.sociedad }}</md-table-cell>
               <md-table-cell md-label="Provincia">{{ item.provincia }}</md-table-cell>
-              <md-table-cell md-label="Cantón">{{ item.canton }}</md-table-cell>
-              <md-table-cell md-label="Tipo">{{ item.propiedad_tipo_id }}</md-table-cell>
+              <md-table-cell md-label="Distrito">{{ item.distrito }}</md-table-cell>
+              <md-table-cell md-label="Tipo">{{ item.tipo_propiedad }}</md-table-cell>
               <md-table-cell md-label="Área de Construcción">{{ item.area_construida }} m²</md-table-cell>
-              <md-table-cell md-label="Estado">{{ item.propiedad_estado_id }}</md-table-cell>
+              <md-table-cell md-label="Estado">{{ item.estado }}</md-table-cell>
               <md-table-cell md-label="Precio de Venta">₡{{ item.precio_venta }}</md-table-cell>
             </md-table-row>
           </md-table>
