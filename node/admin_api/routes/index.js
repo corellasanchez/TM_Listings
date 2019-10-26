@@ -9,6 +9,11 @@ const userRoutes = require('./user');
 const vehicleRoutes = require('./vehicle');
 const propertyRoutes = require('./property');
 const sociedadRoutes = require('./sociedad');
+const paisRoutes = require('./pais');
+const provinciaRoutes = require('./provincia');
+const distritoRoutes = require('./distrito');
+const corregimientoRoutes = require('./corregimiento');
+
 
 
 router.get('/', function (req, res, next) {
@@ -20,6 +25,10 @@ router.use('/usuario', userRoutes);
 router.use('/vehiculo', vehicleRoutes);
 router.use('/propiedad', propertyRoutes);
 router.use('/sociedad', sociedadRoutes);
+router.use('/pais', paisRoutes);
+router.use('/provincia', provinciaRoutes);
+router.use('/distrito', distritoRoutes);
+router.use('/corregimiento', corregimientoRoutes);
 
 
 router.use(errorHandler);

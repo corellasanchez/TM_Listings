@@ -6,69 +6,28 @@
       </md-card-header>
 
       <md-card-content>
-        <div class="md-layout">
+        <div class="md-layout md-gutter">
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
-              <label>Sociedad</label>
-              <md-input v-model="disabled" disabled></md-input>
+              <label for="sociedad_id">Sociedad</label>
+              <md-select v-model="propiedad.sociedad_id" name="sociedad_id" id="sociedad_id">
+                <md-option v-for="i in sociedades" :value="i.id" :key="i.id">{{ i.nombre }}</md-option>
+              </md-select>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
               <label>Folio</label>
-              <md-input v-model="username" type="text"></md-input>
+              <md-input v-model="propiedad.folio" required></md-input>
+              <span class="md-error">There is an error</span>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
-              <label>Plano</label>
-              <md-input v-model="emailadress" type="email"></md-input>
+              <label># Plano</label>
+              <md-input v-model="propiedad.plano" required></md-input>
+              <span class="md-error">There is an error</span>
             </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-field>
-              <label>Unidad</label>
-              <md-input v-model="firstname" type="text"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-field>
-              <label>Metraje</label>
-              <md-input v-model="lastname" type="text"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-100">
-            <md-field>
-              <label>Area construida</label>
-              <md-input v-model="address" type="text"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field>
-              <label>Provincia</label>
-              <md-input v-model="city" type="text"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field>
-              <label>Distrito</label>
-              <md-input v-model="country" type="text"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field>
-              <label>Corregimiento</label>
-              <md-input v-model="code" type="number"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-size-100">
-            <md-field maxlength="5">
-              <label>Comentarios</label>
-              <md-textarea v-model="aboutme"></md-textarea>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-success">Agregar Propiedad</md-button>
           </div>
         </div>
       </md-card-content>
@@ -76,28 +35,41 @@
   </form>
 </template>
 <script>
+import BaseApiService from "@/services/Base";
+
 export default {
   name: "property-details",
   props: {
     dataBackgroundColor: {
       type: String,
       default: ""
-    }
+    },
+    propiedad: {}
   },
   data() {
     return {
-      username: null,
-      disabled: null,
-      emailadress: null,
-      lastname: null,
-      firstname: null,
-      address: null,
-      city: null,
-      country: null,
-      code: null,
-      aboutme:
-        "Comentarios sobre la propiedad."
+      sociedades: null,
+      sociedadService: new BaseApiService('sociedad')
     };
+  },
+  async mounted() {
+    this.getSociedades();
+  },
+  methods: {
+    async getSociedades() {
+      let params = {
+        args: "",
+        pageSize: 100,
+        currentPage: 1,
+        orderBy: "nombre",
+        sortOrder: "desc"
+      };
+      let sociedades = await this.sociedadService.list(params);
+      this.sociedades = sociedades.data.data;
+      if (this.sociedades) {
+        this.propiedad.sociedad_id = this.sociedades[0].id;
+      }
+    }
   }
 };
 </script>

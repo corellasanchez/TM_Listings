@@ -36,7 +36,7 @@
   </div>
 </template>
 <script>
-import propertyService from "@/services/Property";
+import BaseApiService from "@/services/Base";
 import matPaginator from "@/components/Tables/MatPaginator.vue";
 
 export default {
@@ -54,6 +54,7 @@ export default {
   },
   data() {
     return {
+      propertyService: new BaseApiService('propiedad'),
       selected: [],
       properties: null,
       params: {
@@ -67,7 +68,7 @@ export default {
   },
   methods: {
     async loadData(){
-      let properties = await propertyService.list(this.params);
+      let properties = await this.propertyService.list(this.params, true);
       this.properties = properties.data.data;
       this.params.totalPages = properties.data.meta.pagination.total_pages;
     }

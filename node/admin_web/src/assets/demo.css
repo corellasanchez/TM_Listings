@@ -205,6 +205,14 @@
   left: -11px;
 }
 
+/* fixes de Roy */
+
 .md-list-item {
   margin-right: 5px;
+}
+
+.md-list-item .md-list-item-container .md-ripple > span{
+  padding-left: 15px;
+  padding-top: 17px;
+  font-size: 0.9rem;
 }
