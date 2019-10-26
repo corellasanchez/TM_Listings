@@ -11,6 +11,7 @@ export default class BaseApiService {
     let { args, pageSize, currentPage, orderBy, sortOrder } = params;
     let query = "";
     (args || pageSize || currentPage || orderBy || sortOrder) ? query += "?" : null;
+    (args) ? (query === "?") ? query += `args=${args}` : query += `&args=${args}` : null;
     (pageSize) ? (query === "?") ? query += `pageSize=${pageSize}` : query += `&pageSize=${pageSize}` : null;
     (currentPage) ? (query === "?") ? query += `currentPage=${currentPage}` : query += `&currentPage=${currentPage}` : null;
     (orderBy) ? (query === "?") ? query += `orderBy=${orderBy}` : query += `&orderBy=${orderBy}` : null;
