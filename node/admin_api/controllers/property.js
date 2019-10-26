@@ -1,8 +1,6 @@
 const baseController = require('../controllers');
 const { list } = require('../helpers/mysql');
 
-
-
 async function fullList(req, res, next) {
   try {
     let data = req.query;

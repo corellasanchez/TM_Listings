@@ -29,6 +29,7 @@
               <md-table-cell md-label="Precio de Venta">₡{{ item.precio_venta }}</md-table-cell>
             </md-table-row>
           </md-table>
+          <matPaginator :params="params"></matPaginator>
         </md-card-content>
       </md-card>
     </div>
@@ -36,8 +37,12 @@
 </template>
 <script>
 import propertyService from "@/services/Property";
+import matPaginator from "@/components/Tables/MatPaginator.vue";
 
 export default {
+  components: {
+    matPaginator
+  },
   props: {
     tableHeaderColor: {
       type: String,
@@ -45,21 +50,35 @@ export default {
     }
   },
   async mounted() {
-    let params = {
-      args: "test",
-      pageSize: 5,
-      currentPage: 1,
-      orderBy: "id",
-      sortOrder: "desc"
-    };
-    let properties = await propertyService.list(params);
-    this.properties = properties.data.data;
+    this.loadData();
   },
   data() {
     return {
       selected: [],
-      properties: null
+      properties: null,
+      params: {
+        args: "",
+        pageSize: 5,
+        currentPage: 1,
+        orderBy: "id",
+        sortOrder: "asc"
+      }
     };
+  },
+  methods: {
+    async loadData(){
+      let properties = await propertyService.list(this.params);
+      this.properties = properties.data.data;
+      this.params.totalPages = properties.data.meta.pagination.total_pages;
+    }
+  },
+  watch:{
+    params:{
+      handler(){
+        this.loadData();
+      },
+      deep: true
+    }
   }
 };
 </script>

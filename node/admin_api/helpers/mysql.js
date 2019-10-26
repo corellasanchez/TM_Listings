@@ -1,40 +1,5 @@
 const db = require('../config/db');
 
-// function createDummyData(args, table, quantity) { //TESTING
-//   // ------------------------- HOW TO CALL IT
-//   // let data = {
-//   //   nombre: {
-//   //     type: "string",
-//   //     size: 10
-//   //   },
-//   //   contrasena: {
-//   //     type: "string",
-//   //     size: 10
-//   //   },
-//   //   email: {
-//   //     type: "string",
-//   //     size: 10
-//   //   },
-//   //   acceso: {
-//   //     type: "integer",
-//   //     size: 1
-//   //   }
-//   // };
-//   // createDummyData(data, table, 100);
-//   // -------------------------
-//   for (let i = 0; i < quantity; i++) {
-//     let tempEntry = {};
-//     let keys = Object.keys(args);
-//     keys.forEach(key => {
-//       switch (args[key].type) {
-//         case 'string': tempEntry[key] = Math.random().toString(36).substring(7); break;
-//         case 'integer': tempEntry[key] = Math.floor((Math.random() * 10) + 1); break;
-//       }
-//     })
-//     create(tempEntry, table);
-//   }
-// }
-
 function tablePicker(req, res, next) {
   let path = req.baseUrl.substr(1);
   path = (path.split('?'))[0];
