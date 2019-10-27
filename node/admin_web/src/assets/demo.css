@@ -216,3 +216,7 @@
   padding-top: 17px;
   font-size: 0.9rem;
 }
+
+.md-datepicker-dialog.md-theme-default .md-datepicker-body-footer{
+  display: none;
+}

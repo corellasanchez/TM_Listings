@@ -13,7 +13,9 @@ const paisRoutes = require('./pais');
 const provinciaRoutes = require('./provincia');
 const distritoRoutes = require('./distrito');
 const corregimientoRoutes = require('./corregimiento');
-
+const propiedadTipoRoutes = require('./propiedad_tipo');
+const estadoRoutes = require('./estado');
+const departamentoOrigenRoutes = require('./departamento_origen');
 
 
 router.get('/', function (req, res, next) {
@@ -29,7 +31,9 @@ router.use('/pais', paisRoutes);
 router.use('/provincia', provinciaRoutes);
 router.use('/distrito', distritoRoutes);
 router.use('/corregimiento', corregimientoRoutes);
-
+router.use('/propiedad_tipo', propiedadTipoRoutes);
+router.use('/estado', estadoRoutes);
+router.use('/departamento_origen', departamentoOrigenRoutes);
 
 router.use(errorHandler);
 
