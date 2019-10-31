@@ -1,15 +1,15 @@
 <template>
   <div class="mat-paginator-container" v-if="params">
     <div class="mat-paginator-page-size">
-      <span>Items per page:</span>
+      <span>Registros por pagina:</span>
       <md-field>
         <md-select v-model="params.pageSize">
           <md-option :value="5">5</md-option>
+          <md-option :value="10">10</md-option>
           <md-option :value="25">25</md-option>
-          <md-option :value="50">50</md-option>
         </md-select>
       </md-field>
-      <span>1 - 4 of {{totalPages}}</span>
+      <span v-if="meta">{{first}} - {{last}} de {{meta.total_pages}}</span>
     </div>
     <div class="mat-paginator-range-actions">
       <md-button class="md-fab" @click="toFirstPage">
@@ -29,24 +29,35 @@
 </template>
 <script>
 export default {
-  props: ["params"],
+  props: ["params", "meta"],
   data() {
     return {
-      totalPages: null
+      first: null,
+      last: null
     };
   },
+  mounted() {
+    this.loadRange();
+  },
   methods: {
+    loadRange() {
+      this.first =
+        this.params.currentPage === 1
+          ? 1
+          : (this.params.currentPage - 1) * this.params.pageSize + 1;
+      this.last =
+        (this.first === 1 ? 0 : this.first - 1) + this.params.pageSize;
+    },
     toFirstPage() {
-      //   this.params.currentPage = 1;
-      console.log(this.params.totalPages);
+      this.params.currentPage = 1;
     },
     toLastPage() {
-      this.params.currentPage = this.params.totalPages;
+      this.params.currentPage = this.meta.total_pages;
     },
     nextPage() {
       let tempScope = this.params.currentPage + 1;
-      tempScope > this.params.totalPages
-        ? (this.params.currentPage = this.params.totalPages)
+      tempScope > this.meta.total_pages
+        ? (this.params.currentPage = this.meta.total_pages)
         : (this.params.currentPage = this.params.currentPage + 1);
     },
     previousPage() {
@@ -58,11 +69,8 @@ export default {
   },
   watch: {
     params: {
-      handler(val, oldVal) {
-        //   console.log(val);
-        //   console.log(oldVal);
-        //   this.totalPages = this.params.totalPages;
-        //   console.log(this.totalPages);
+      handler() {
+        this.loadRange();
       },
       deep: true
     }
@@ -70,49 +78,47 @@ export default {
 };
 </script>
 <style lang="scss">
+.md-select-menu {
+  width: 75px;
+}
+.mat-paginator-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 56px;
+  padding: 0 8px;
+  flex-wrap: wrap-reverse;
+  width: 100%;
 
-  .md-select-menu {
-    width: 75px;
+  > * {
+    padding: 10px;
   }
-  .mat-paginator-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    min-height: 56px;
-    padding: 0 8px;
-    flex-wrap: wrap-reverse;
-    width: 100%;
 
+  .mat-paginator-page-size {
     > * {
-      padding: 10px;
+      display: inline-block;
+      width: auto;
     }
-
-    .mat-paginator-page-size {
-      > * {
-        display: inline-block;
-        width: auto;
-      }
-      .md-select {
-        width: 75px;
-      }
-    }
-
-    .mat-paginator-range-actions {
-      .md-ripple {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-      }
-      .md-button:not(.md-just-icon) .md-button-content i {
-        font-size: 1.5rem !important;
-      }
-      .md-button {
-        background-color: #ff5252 !important;
-      }
-    }
-
-    span {
-      padding: 10px;
+    .md-select {
+      width: 75px;
     }
   }
 
+  .mat-paginator-range-actions {
+    .md-ripple {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    .md-button:not(.md-just-icon) .md-button-content i {
+      font-size: 1.5rem !important;
+    }
+    .md-button {
+      background-color: #ff5252 !important;
+    }
+  }
+
+  span {
+    padding: 10px;
+  }
+}
 </style>
