@@ -10,7 +10,8 @@
           v-model="propiedad.direccion.pais_id"
           name="pais"
           id="pais"
-          @md-selected="onPaisChange()">
+          @md-selected="onPaisChange()"
+        >
           <md-option v-for="i in paises" :value="i.id" :key="i.id">{{ i.nombre }}</md-option>
         </md-select>
       </md-field>
@@ -20,7 +21,8 @@
           v-model="propiedad.direccion.provincia_id"
           name="provincia"
           id="provincia"
-          @md-selected="onProvinciaChange()">
+          @md-selected="onProvinciaChange()"
+        >
           <md-option v-for="i in provincias" :value="i.id" :key="i.id">{{ i.nombre }}</md-option>
         </md-select>
       </md-field>
@@ -30,7 +32,8 @@
           v-model="propiedad.direccion.distrito_id"
           name="distrito"
           id="distrito"
-          @md-selected="onDistritoChange()">
+          @md-selected="onDistritoChange()"
+        >
           <md-option v-for="i in distritos" :value="i.id" :key="i.id">{{ i.nombre }}</md-option>
         </md-select>
       </md-field>
@@ -39,13 +42,19 @@
         <md-select
           v-model="propiedad.direccion.corregimiento_id"
           name="corregimiento"
-          id="corregimiento">
+          id="corregimiento"
+        >
           <md-option v-for="i in corregimientos" :value="i.id" :key="i.id">{{ i.nombre }}</md-option>
         </md-select>
       </md-field>
       <md-field>
         <label>Dirección exacta</label>
-        <md-textarea v-model="propiedad.direccion.detalle" md-autogrow></md-textarea>
+        <md-textarea v-model="propiedad.direccion.detalle" md-autogrow maxlength="255"></md-textarea>
+      </md-field>
+      <md-field :md-counter="false">
+        <label>Unidad</label>
+        <md-input v-model="propiedad.unidad" required maxlength="99"></md-input>
+        <span class="md-helper-text">Numero de apartamento, Casa o Local</span>
       </md-field>
     </md-card-content>
   </md-card>
