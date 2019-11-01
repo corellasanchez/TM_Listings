@@ -11,24 +11,11 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 13/10/2019 18:29:54
+ Date: 01/11/2019 15:24:26
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for barriada
--- ----------------------------
-DROP TABLE IF EXISTS `barriada`;
-CREATE TABLE `barriada` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) DEFAULT NULL,
-  `corregimiento_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_barriada_corregimiento1_idx` (`corregimiento_id`),
-  CONSTRAINT `fk_barriada_corregimiento1` FOREIGN KEY (`corregimiento_id`) REFERENCES `corregimiento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for corregimiento
@@ -41,7 +28,7 @@ CREATE TABLE `corregimiento` (
   PRIMARY KEY (`id`),
   KEY `fk_corregimiento_distrito1_idx` (`distrito_id`),
   CONSTRAINT `fk_corregimiento_distrito1` FOREIGN KEY (`distrito_id`) REFERENCES `distrito` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1080 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for departamento_origen
@@ -49,9 +36,9 @@ CREATE TABLE `corregimiento` (
 DROP TABLE IF EXISTS `departamento_origen`;
 CREATE TABLE `departamento_origen` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for direccion
@@ -62,25 +49,19 @@ CREATE TABLE `direccion` (
   `detalle` varchar(255) DEFAULT NULL,
   `fecha_creacion` date DEFAULT NULL,
   `pais_id` int(11) NOT NULL,
-  `region_id` int(11) NOT NULL,
   `provincia_id` int(11) NOT NULL,
   `distrito_id` int(11) NOT NULL,
   `corregimiento_id` int(11) NOT NULL,
-  `barriada_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_direccion_pais1_idx` (`pais_id`),
-  KEY `fk_direccion_region1_idx` (`region_id`),
   KEY `fk_direccion_provincia1_idx` (`provincia_id`),
   KEY `fk_direccion_distrito1_idx` (`distrito_id`),
   KEY `fk_direccion_corregimiento1_idx` (`corregimiento_id`),
-  KEY `fk_direccion_barriada1_idx` (`barriada_id`),
-  CONSTRAINT `fk_direccion_barriada1` FOREIGN KEY (`barriada_id`) REFERENCES `barriada` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_direccion_corregimiento1` FOREIGN KEY (`corregimiento_id`) REFERENCES `corregimiento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_direccion_distrito1` FOREIGN KEY (`distrito_id`) REFERENCES `distrito` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_direccion_pais1` FOREIGN KEY (`pais_id`) REFERENCES `pais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_direccion_provincia1` FOREIGN KEY (`provincia_id`) REFERENCES `provincia` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_direccion_region1` FOREIGN KEY (`region_id`) REFERENCES `region` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_direccion_provincia1` FOREIGN KEY (`provincia_id`) REFERENCES `provincia` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for distrito
@@ -93,7 +74,7 @@ CREATE TABLE `distrito` (
   PRIMARY KEY (`id`),
   KEY `fk_distrito_provincia1_idx` (`provincia_id`),
   CONSTRAINT `fk_distrito_provincia1` FOREIGN KEY (`provincia_id`) REFERENCES `provincia` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for estado
@@ -103,6 +84,20 @@ CREATE TABLE `estado` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for imagenes_propiedad
+-- ----------------------------
+DROP TABLE IF EXISTS `imagenes_propiedad`;
+CREATE TABLE `imagenes_propiedad` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `url` varchar(255) DEFAULT NULL,
+  `destacada` tinyint(4) DEFAULT '0',
+  `propiedad_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_imagenes_propiedad_propiedad1_idx` (`propiedad_id`),
+  CONSTRAINT `fk_imagenes_propiedad_propiedad1` FOREIGN KEY (`propiedad_id`) REFERENCES `propiedad` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -115,7 +110,7 @@ CREATE TABLE `pais` (
   `extension` varchar(20) DEFAULT NULL,
   `iso3` varchar(3) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=248 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for persona
@@ -174,6 +169,7 @@ CREATE TABLE `propiedad` (
   `anotaciones_especiales` text,
   `direccion_id` int(11) NOT NULL,
   `se_financia` tinyint(4) DEFAULT NULL,
+  `destacada` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_propiedad_sociedad1_idx` (`sociedad_id`),
   KEY `fk_propiedad_propiedad_tipo1_idx` (`propiedad_tipo_id`),
@@ -185,7 +181,7 @@ CREATE TABLE `propiedad` (
   CONSTRAINT `fk_propiedad_propiedad_estado1` FOREIGN KEY (`propiedad_estado_id`) REFERENCES `estado` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_propiedad_propiedad_tipo1` FOREIGN KEY (`propiedad_tipo_id`) REFERENCES `propiedad_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_propiedad_sociedad1` FOREIGN KEY (`sociedad_id`) REFERENCES `sociedad` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for propiedad_oferta
@@ -212,7 +208,7 @@ CREATE TABLE `propiedad_tipo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for provincia
@@ -221,24 +217,11 @@ DROP TABLE IF EXISTS `provincia`;
 CREATE TABLE `provincia` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) DEFAULT NULL,
-  `region_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_provincia_region1_idx` (`region_id`),
-  CONSTRAINT `fk_provincia_region1` FOREIGN KEY (`region_id`) REFERENCES `region` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=80554 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for region
--- ----------------------------
-DROP TABLE IF EXISTS `region`;
-CREATE TABLE `region` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) DEFAULT NULL,
   `pais_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_region_pais_idx` (`pais_id`),
-  CONSTRAINT `fk_region_pais` FOREIGN KEY (`pais_id`) REFERENCES `pais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=1398 DEFAULT CHARSET=utf8;
+  KEY `fk_provincia_pais1_idx` (`pais_id`),
+  CONSTRAINT `fk_provincia_pais1` FOREIGN KEY (`pais_id`) REFERENCES `pais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for sociedad
@@ -252,7 +235,7 @@ CREATE TABLE `sociedad` (
   `estado` tinyint(4) DEFAULT NULL,
   `banco` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for telefono
@@ -294,6 +277,13 @@ CREATE TABLE `usuario` (
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of usuario
+-- ----------------------------
+BEGIN;
+INSERT INTO `usuario` VALUES (1, 'admin', '$2a$10$cFo0IkrmuMZpJ6Mccuf1ce6tqbYBLntnCMyCxMl7OyKPRgvKMehHW', 'deleteme@please.com', 1);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for vehiculo
@@ -348,7 +338,7 @@ CREATE TABLE `vehiculo` (
   CONSTRAINT `fk_vehiculo_vehiculo_estilo1` FOREIGN KEY (`vehiculo_estilo_id`) REFERENCES `vehiculo_estilo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_vehiculo_vehiculo_marca1` FOREIGN KEY (`vehiculo_marca_id`) REFERENCES `vehiculo_marca` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_vehiculo_vehiculo_transmision1` FOREIGN KEY (`vehiculo_transmision_id`) REFERENCES `vehiculo_transmision` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for vehiculo_combustible
@@ -358,7 +348,7 @@ CREATE TABLE `vehiculo_combustible` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for vehiculo_estilo
@@ -371,7 +361,7 @@ CREATE TABLE `vehiculo_estilo` (
   PRIMARY KEY (`id`),
   KEY `fk_vehiculo_estilo_vehiculo_tipo1_idx` (`vehiculo_tipo_id`),
   CONSTRAINT `fk_vehiculo_estilo_vehiculo_tipo1` FOREIGN KEY (`vehiculo_tipo_id`) REFERENCES `vehiculo_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for vehiculo_marca
@@ -381,7 +371,7 @@ CREATE TABLE `vehiculo_marca` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for vehiculo_oferta
@@ -408,7 +398,7 @@ CREATE TABLE `vehiculo_tipo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for vehiculo_transmision
@@ -418,12 +408,6 @@ CREATE TABLE `vehiculo_transmision` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;
-
--- ----------------------------
--- USUARIO POR DEFECTO admin 123
--- ----------------------------
-INSERT INTO `usuario` VALUES (1, 'admin', '$2a$10$cFo0IkrmuMZpJ6Mccuf1ce6tqbYBLntnCMyCxMl7OyKPRgvKMehHW', 'deleteme@please.com', 1);
-
