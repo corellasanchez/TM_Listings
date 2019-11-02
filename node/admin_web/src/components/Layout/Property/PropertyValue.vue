@@ -4,25 +4,18 @@
       <h4 class="title">Valor de la propiedad</h4>
     </md-card-header>
     <md-card-content>
-      <md-field>
-        <label>Valor en Libros</label>
-        <md-input v-model="propiedad.valor_libros" type="number"></md-input>
-      </md-field>
-      <md-field>
-        <label>Valor del avalúo</label>
-        <md-input v-model="propiedad.valor_avaluo" type="number"></md-input>
-      </md-field>
+      <currency-input v-model="propiedad.valor_libros" placeholder="Valor en Libros"></currency-input>
+      <currency-input v-model="propiedad.valor_avaluo" placeholder="Valor del avalúo"></currency-input>
       <md-datepicker v-model="propiedad.fecha_avaluo" md-immediately>
         <label>Fecha del avalúo</label>
       </md-datepicker>
-      <md-field>
-        <label>Precio de Venta</label>
-        <md-input v-model="propiedad.precio_venta" type="number"></md-input>
-      </md-field>
+      <currency-input v-model="propiedad.precio_venta" placeholder="Precio de Venta"></currency-input>
     </md-card-content>
   </md-card>
 </template>
 <script>
+import CurrencyInput from "../../Currency/CurrencyInput";
+
 export default {
   name: "property-value",
   props: {
@@ -36,7 +29,10 @@ export default {
   data() {
     return {};
   },
-  methods: {}
+  methods: {},
+  components: {
+    CurrencyInput
+  }
 };
 </script>
 <style></style>

@@ -7,10 +7,7 @@
       <md-card-content>
         <div class="md-layout md-gutter">
           <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-field>
-              <label>Precio del préstamo</label>
-              <md-input v-model="propiedad.precio_prestamo" type="number"></md-input>
-            </md-field>
+            <currency-input v-model="propiedad.precio_prestamo" placeholder="Precio del préstamo"></currency-input>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-datepicker v-model="propiedad.fecha_prestamo" md-immediately>
@@ -20,10 +17,7 @@
         </div>
         <div class="md-layout md-gutter">
           <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-field>
-              <label>Precio de captura</label>
-              <md-input v-model="propiedad.precio_captura" type="number"></md-input>
-            </md-field>
+            <currency-input v-model="propiedad.precio_captura" placeholder="Precio de captura"></currency-input>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-datepicker v-model="propiedad.fecha_captura" md-immediately>
@@ -34,16 +28,16 @@
 
         <div class="md-layout md-gutter">
           <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-field>
-              <label>Provisión Regulatoria</label>
-              <md-input v-model="propiedad.provision_regulatoria" type="number"></md-input>
-            </md-field>
+            <currency-input
+              v-model="propiedad.provision_regulatoria"
+              placeholder="Provisión Regulatoria"
+            ></currency-input>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-field>
-              <label>Porcentaje de reserva</label>
-              <md-input v-model="propiedad.porcentaje_reserva" type="number"></md-input>
-            </md-field>
+            <currency-input
+              v-model="propiedad.porcentaje_reserva"
+              placeholder="Porcentaje de reserva"
+            ></currency-input>
           </div>
         </div>
 
@@ -149,17 +143,13 @@
             </md-field>
           </div>
         </div>
-
-        <!-- 
-  `cliente_id` int(11) DEFAULT NULL COMMENT 'Falta definir tabla cliente',
-  `comprador_id` int(11) DEFAULT NULL COMMENT 'Falta definir tabla comprador',
-        -->
       </md-card-content>
     </md-card>
   </form>
 </template>
 <script>
 const { LOCALE } = require("../../../config");
+import CurrencyInput from "../../Currency/CurrencyInput";
 
 export default {
   name: "property-adjudication",
@@ -192,6 +182,9 @@ export default {
         }
       }
     }
+  },
+  components: {
+    CurrencyInput
   }
 };
 </script>

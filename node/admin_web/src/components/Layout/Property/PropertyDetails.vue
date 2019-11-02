@@ -56,7 +56,7 @@
         <div class="md-layout md-gutter">
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field :md-counter="false">
-              <label># Referencia (Id interno)</label>
+              <label># Referencia</label>
               <md-input v-model="propiedad.id_interno" maxlength="99"></md-input>
             </md-field>
           </div>
@@ -111,11 +111,6 @@
             </md-field>
           </div>
         </div>
-
-        <!-- 
-  `cliente_id` int(11) DEFAULT NULL COMMENT 'Falta definir tabla cliente',
-  `comprador_id` int(11) DEFAULT NULL COMMENT 'Falta definir tabla comprador',
-        -->
 
         <div class="md-layout md-gutter">
           <div class="md-layout-item md-small-size-100 md-size-33">
