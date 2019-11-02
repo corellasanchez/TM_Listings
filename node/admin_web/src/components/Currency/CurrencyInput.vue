@@ -2,7 +2,7 @@
   <div>
     <md-field>
       <label>{{placeholder}}</label>
-      <span class="md-prefix">$</span>
+      <span class="md-prefix">{{currencySymbol}}</span>
       <md-input :md-counter="'false'"
         type="text"
         v-model="displayValue"
@@ -15,6 +15,8 @@
   </div>
 </template>
 <script>
+const { DEFAULT_CURRENCY } = require("../../config");
+
 export default {
   name: "currency-input",
   props: {
@@ -30,7 +32,8 @@ export default {
 
   data() {
     return {
-      isInputActive: false
+      isInputActive: false,
+      currencySymbol: DEFAULT_CURRENCY.symbol
     };
   },
   computed: {

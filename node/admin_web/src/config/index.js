@@ -14,6 +14,9 @@ module.exports = {
       shortMonths: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Dec'],
       shorterMonths: ['J', 'F', 'M', 'A', 'M', 'Ju', 'Ju', 'A', 'Se', 'O', 'N', 'D'],
       firstDayOfAWeek: 0
+    },
+    DEFAULT_CURRENCY:{
+      name: 'Dollar',
+      symbol:'$'
     }
-
 }
