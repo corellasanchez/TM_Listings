@@ -1,6 +1,6 @@
 <template>
   <form>
-    <md-card>
+    <md-card class="propertyAdjudicationCard">
       <md-card-header :data-background-color="dataBackgroundColor">
         <h4 class="title">Datos de la adjudicacíon</h4>
       </md-card-header>
@@ -52,7 +52,7 @@
           </div>
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-datepicker v-model="propiedad.fecha_entregados_cobro" md-immediately>
-              <label>Fecha de expedientes entregados cobro</label>
+              <label>Fecha de exp. entregados cobro</label>
             </md-datepicker>
           </div>
         </div>
@@ -92,7 +92,7 @@
           <div class="md-layout-item md-small-size-100 md-size-100">
             <md-field>
               <label>Dato de adjudicación</label>
-              <md-textarea v-model="propiedad.dato_adjudicacion" md-autogrow maxlength="255"></md-textarea>
+              <md-textarea v-model="propiedad.dato_adjudicacion" maxlength="255"></md-textarea>
             </md-field>
           </div>
         </div>
@@ -101,45 +101,7 @@
           <div class="md-layout-item md-small-size-100 md-size-100">
             <md-field>
               <label>Anotaciones Especiales</label>
-              <md-textarea v-model="propiedad.anotaciones_especiales" md-autogrow maxlength="1000"></md-textarea>
-            </md-field>
-          </div>
-        </div>
-        <br />
-        <br />
-        <md-divider></md-divider>
-        <br />
-
-        <label>Datos del cliente al que pertenecia la propiedad</label>
-        <div class="md-layout md-gutter">
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field :md-counter="false">
-              <label>Nombre</label>
-              <md-input v-model="propiedad.cliente.nombre" maxlength="99"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field :md-counter="false">
-              <label>Apellido</label>
-              <md-input v-model="propiedad.cliente.apellido1" maxlength="99"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field :md-counter="false">
-              <label>Segundo apellido</label>
-              <md-input v-model="propiedad.cliente.apellido2" maxlength="99"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field :md-counter="false">
-              <label>Email</label>
-              <md-input v-model="propiedad.cliente.email" maxlength="255" type="email"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field :md-counter="false">
-              <label>Cédula</label>
-              <md-input v-model="propiedad.cliente.cedula" maxlength="50"></md-input>
+              <md-textarea v-model="propiedad.anotaciones_especiales" maxlength="1000"></md-textarea>
             </md-field>
           </div>
         </div>
@@ -188,4 +150,8 @@ export default {
   }
 };
 </script>
-<style></style>
+<style lang="scss">
+.propertyAdjudicationCard{
+  min-height: 918px;
+}
+</style>

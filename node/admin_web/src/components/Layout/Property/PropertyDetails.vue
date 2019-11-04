@@ -1,6 +1,6 @@
 <template>
   <form>
-    <md-card>
+    <md-card class="propertyDetails">
       <md-card-header :data-background-color="dataBackgroundColor">
         <h4 class="title">Detalles de la propiedad</h4>
       </md-card-header>
@@ -89,16 +89,14 @@
         <div class="md-layout md-gutter">
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
-              <label>Area</label>
+              <label>Metraje de la propiedad</label>
               <md-input v-model="propiedad.area" required type="number"></md-input>
-              <span class="md-helper-text">Metraje de la propiedad</span>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
-              <label>Area Construída</label>
+              <label>Metraje de la construcción</label>
               <md-input v-model="propiedad.area_construida" required type="number"></md-input>
-              <span class="md-helper-text">Metraje de la construcción</span>
             </md-field>
           </div>
         </div>
@@ -251,4 +249,8 @@ export default {
   }
 };
 </script>
-<style></style>
+<style lang="scss">
+.propertyDetails {
+  min-height: 612px !important;
+}
+</style>

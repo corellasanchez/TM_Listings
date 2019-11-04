@@ -49,7 +49,7 @@
       </md-field>
       <md-field>
         <label>Dirección exacta</label>
-        <md-textarea v-model="propiedad.direccion.detalle" md-autogrow maxlength="255"></md-textarea>
+        <md-textarea v-model="propiedad.direccion.detalle" maxlength="255"></md-textarea>
       </md-field>
       <md-field :md-counter="false">
         <label>Unidad</label>
@@ -169,4 +169,5 @@ export default {
   }
 };
 </script>
-<style></style>
+<style lang="scss">
+</style>

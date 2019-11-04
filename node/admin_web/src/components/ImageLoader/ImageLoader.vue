@@ -1,5 +1,5 @@
 <template>
-  <md-card md-waterfall md-mode="fixed">
+  <md-card md-waterfall md-mode="fixed" class="imageLoaderCard">
     <md-card-header :data-background-color="dataBackgroundColor">
       <h4 class="title">{{title}}</h4>
     </md-card-header>
@@ -43,7 +43,7 @@ export default {
     return {
       dropzoneOptions: {
         url: `${API_PROTOCOL}://${API_URL}:${API_PORT}/file`,
-        thumbnailWidth: 185,
+        thumbnailWidth: 186,
         maxFilesize: 15,
         resizeQuality: 0.9,
         resizeWidth: 1080,
@@ -106,5 +106,11 @@ export default {
 <style lang="scss">
 .dropzone .dz-preview .dz-remove:hover {
   color: #fff !important;
+}
+.imageLoaderCard {
+    min-height: 235px !important;
+}
+.dropzone .dz-preview {
+  margin:17px !important;
 }
 </style>

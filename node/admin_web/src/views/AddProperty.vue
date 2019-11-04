@@ -24,14 +24,24 @@
           v-bind:data-background-color="headerBackground"
           v-bind:propiedad="propiedad"
         ></property-value>
+        <property-client
+          v-bind:data-background-color="headerBackground"
+          v-bind:propiedad="propiedad"
+        ></property-client>
       </div>
 
-      <div class="md-layout-item md-medium-size-100 md-size-100">
+      <div class="md-layout-item md-medium-size-100 md-size-66">
         <image-loader
           title="Fotos de la propiedad"
           v-bind:data-background-color="headerBackground"
           v-bind:images="propiedad.imagenes"
         ></image-loader>
+      </div>
+       <div class="md-layout-item md-medium-size-100 md-size-33">
+        <property-save
+          v-bind:data-background-color="headerBackground"
+          v-bind:propiedad="propiedad"
+        ></property-save>
       </div>
       <pre>{{propiedad}}</pre>
     </div>
@@ -44,9 +54,11 @@ import {
   PropertyAddress,
   PropertyAdjudication,
   PropertyValue,
+  PropertyClient,
+  PropertySave
 } from "../components/Layout/Property";
 
-import ImageLoader from "../components/ImageLoader/ImageLoader"
+import ImageLoader from "../components/ImageLoader/ImageLoader";
 
 // `fecha_cambio_estado` date DEFAULT NULL, recordar cambiar la fecha al actualizar si cambia
 export default {
@@ -56,7 +68,7 @@ export default {
         mostrar: "1",
         direccion: {},
         cliente: {},
-        imagenes:[]
+        imagenes: []
       },
       headerBackground: "green"
     };
@@ -66,6 +78,8 @@ export default {
     PropertyAddress,
     PropertyAdjudication,
     PropertyValue,
+    PropertyClient,
+    PropertySave,
     ImageLoader
   }
 };
