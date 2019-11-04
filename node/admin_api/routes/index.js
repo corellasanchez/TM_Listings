@@ -16,7 +16,7 @@ const corregimientoRoutes = require('./corregimiento');
 const propiedadTipoRoutes = require('./propiedad_tipo');
 const estadoRoutes = require('./estado');
 const departamentoOrigenRoutes = require('./departamento_origen');
-
+const fileRoutes = require('./file');
 
 router.get('/', function (req, res, next) {
   res.sendFile(path.join(__dirname + '/home/index.html'));
@@ -34,6 +34,7 @@ router.use('/corregimiento', corregimientoRoutes);
 router.use('/propiedad_tipo', propiedadTipoRoutes);
 router.use('/estado', estadoRoutes);
 router.use('/departamento_origen', departamentoOrigenRoutes);
+router.use('/file', fileRoutes);
 
 router.use(errorHandler);
 

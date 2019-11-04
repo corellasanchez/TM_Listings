@@ -1,6 +1,7 @@
 require('dotenv').config();
 
-const app = require('express')();
+const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -14,6 +15,7 @@ app.use(cors());
 
 const PORT = process.env.PORT || 4000;
 const HOST = process.env.HOST || '0.0.0.0';
+const UPLOAD_FOLDER = process.env.UPLOAD_FOLDER || 'uploads';
 
 
 app.use((err, req, res, next) => {
@@ -23,6 +25,7 @@ app.use((err, req, res, next) => {
 
 app.use('/', routes);
 
+app.use('/images', express.static(UPLOAD_FOLDER));
 
 app.listen(PORT, HOST, (err) => {
 	if (err) {
