@@ -10,6 +10,12 @@
         <label>Fecha del avalúo</label>
       </md-datepicker>
       <currency-input v-model="propiedad.precio_venta" placeholder="Precio de Venta"></currency-input>
+       <md-switch
+      v-model="propiedad.se_financia"
+      value="1"
+      class="md-primary"
+      @change="value => switchChanged(value,'se_financia')"
+    >Financiamiento Disponible</md-switch>
     </md-card-content>
   </md-card>
 </template>

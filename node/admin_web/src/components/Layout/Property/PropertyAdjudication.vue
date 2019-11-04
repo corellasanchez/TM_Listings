@@ -152,6 +152,6 @@ export default {
 </script>
 <style lang="scss">
 .propertyAdjudicationCard{
-  min-height: 918px;
+  min-height: 970px;
 }
 </style>

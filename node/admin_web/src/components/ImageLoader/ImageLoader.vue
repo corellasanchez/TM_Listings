@@ -108,7 +108,7 @@ export default {
   color: #fff !important;
 }
 .imageLoaderCard {
-    min-height: 235px !important;
+    min-height: 250px !important;
 }
 .dropzone .dz-preview {
   margin:17px !important;

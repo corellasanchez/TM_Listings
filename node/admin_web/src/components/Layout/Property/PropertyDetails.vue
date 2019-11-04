@@ -109,33 +109,6 @@
             </md-field>
           </div>
         </div>
-
-        <div class="md-layout md-gutter">
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-switch
-              v-model="propiedad.mostrar"
-              value="1"
-              class="md-primary"
-              @change="value => switchChanged(value,'mostrar')"
-            >Mostrar al público</md-switch>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-switch
-              v-model="propiedad.destacada"
-              value="1"
-              class="md-primary"
-              @change="value => switchChanged(value,'destacada')"
-            >Propiedad Destacada</md-switch>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-switch
-              v-model="propiedad.se_financia"
-              value="1"
-              class="md-primary"
-              @change="value => switchChanged(value,'se_financia')"
-            >Financiamiento Disponible</md-switch>
-          </div>
-        </div>
       </md-card-content>
     </md-card>
   </form>
