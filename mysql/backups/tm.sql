@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 01/11/2019 15:24:26
+ Date: 04/11/2019 18:16:30
 */
 
 SET NAMES utf8mb4;
@@ -38,7 +38,7 @@ CREATE TABLE `departamento_origen` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for direccion
@@ -93,7 +93,6 @@ DROP TABLE IF EXISTS `imagenes_propiedad`;
 CREATE TABLE `imagenes_propiedad` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) DEFAULT NULL,
-  `destacada` tinyint(4) DEFAULT '0',
   `propiedad_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_imagenes_propiedad_propiedad1_idx` (`propiedad_id`),

@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 01/11/2019 15:24:02
+ Date: 04/11/2019 18:16:49
 */
 
 SET NAMES utf8mb4;
@@ -1123,7 +1123,7 @@ CREATE TABLE `departamento_origen` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of departamento_origen
@@ -1467,7 +1467,6 @@ DROP TABLE IF EXISTS `imagenes_propiedad`;
 CREATE TABLE `imagenes_propiedad` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) DEFAULT NULL,
-  `destacada` tinyint(4) DEFAULT '0',
   `propiedad_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_imagenes_propiedad_propiedad1_idx` (`propiedad_id`),
@@ -1569,7 +1568,7 @@ CREATE TABLE `propiedad` (
 -- Records of propiedad
 -- ----------------------------
 BEGIN;
-INSERT INTO `propiedad` VALUES (101, 1, '123sj112z1w235', 'k1r23qa22j34r', 'Suite 225', 717, 405, 0, 3043890.00, 8855616.00, 1611687.00, 5050548.00, 8399289.00, '1976-04-23', '2010-08-15', '2006-10-08', '2013-12-03', '1996-08-30', '1999-02-22', '1998-02-24', '1991-09-01', '2005-04-07', '1234ik', 2, NULL, NULL, 4, 346717.00, NULL, 4, 9982.00, 0, 1, 1, 'Ut enim et enim et.', 'Non suscipit voluptas error aut tempora reprehenderit suscipit fuga.', 139, 1, NULL);
+INSERT INTO `propiedad` VALUES (101, 1, '123sj112z1w235', 'k1r23qa22j34r', 'Suite 225', 717, 405, 0, 99999999999.00, 8855616.00, 1611687.00, 5050548.00, 8399289.00, '1976-04-23', '2010-08-15', '2006-10-08', '2013-12-03', '1996-08-30', '1999-02-22', '1998-02-24', '1991-09-01', '2005-04-07', '1234ik', 2, NULL, NULL, 4, 346717.00, NULL, 4, 9982.00, 0, 1, 1, 'Ut enim et enim et.', 'Non suscipit voluptas error aut tempora reprehenderit suscipit fuga.', 139, 1, NULL);
 INSERT INTO `propiedad` VALUES (102, 1, '123et112x1c235', 'j1q23rg22y34m', 'Apt. 670', 734, 254, 1, 6365038.00, 1130253.00, 4292683.00, 9312982.00, 2851052.00, '1977-04-26', '2014-10-09', '2015-01-24', '1997-11-26', '2003-12-12', '1978-07-23', '2013-08-19', '1990-09-17', '2003-02-09', '1234oi', 5, NULL, NULL, 2, 849473.00, NULL, 1, 5136.00, 1, 1, 1, 'Fugiat magni aliquam eveniet illo vel nesciunt molestiae.', 'Velit consequatur voluptate doloribus repellat voluptas corporis.', 175, 1, NULL);
 INSERT INTO `propiedad` VALUES (103, 1, '123nl112a1s235', 'c1l23yf22e34n', 'Suite 034', 690, 440, 0, 7100704.00, 1784143.00, 5715489.00, 5903471.00, 1365432.00, '2016-03-20', '1975-09-07', '2003-09-05', '2006-07-03', '1993-05-30', '2017-08-03', '1983-10-03', '1991-01-19', '1991-12-02', '1234tn', 1, NULL, NULL, 8, 556503.00, NULL, 1, 8310.00, 0, 1, 0, 'Nam quam amet illum qui laborum.', 'Quae voluptatem eum aut molestias ratione.', 149, 0, NULL);
 INSERT INTO `propiedad` VALUES (104, 1, '123qz112j1w235', 'y1t23je22u34s', 'Apt. 489', 416, 399, 0, 223344.00, 3972846.00, 8591456.00, 3461812.00, 6730730.00, '1985-10-15', '1979-08-01', '2003-09-09', '1977-08-16', '2014-10-05', '1983-03-25', '1972-07-09', '2017-03-09', '1987-09-20', '1234ko', 5, NULL, NULL, 8, 979969.00, NULL, 3, 5114.00, 1, 0, 1, 'Soluta maiores aliquam deleniti sed.', 'Aut perferendis mollitia provident velit quos.', 167, 0, NULL);
