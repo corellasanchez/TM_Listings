@@ -17,6 +17,7 @@ const propiedadTipoRoutes = require('./propiedad_tipo');
 const estadoRoutes = require('./estado');
 const departamentoOrigenRoutes = require('./departamento_origen');
 const fileRoutes = require('./file');
+const imagenesPropiedad = require('./imagenes_propiedad');
 
 router.get('/', function (req, res, next) {
   res.sendFile(path.join(__dirname + '/home/index.html'));
@@ -35,6 +36,7 @@ router.use('/propiedad_tipo', propiedadTipoRoutes);
 router.use('/estado', estadoRoutes);
 router.use('/departamento_origen', departamentoOrigenRoutes);
 router.use('/file', fileRoutes);
+router.use('/imagenes_propiedad', imagenesPropiedad);
 
 router.use(errorHandler);
 
