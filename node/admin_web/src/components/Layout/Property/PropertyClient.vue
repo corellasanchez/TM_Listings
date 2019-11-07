@@ -8,27 +8,27 @@
         <label>Datos del cliente al que pertenecia la propiedad</label>
         <md-field :md-counter="false">
           <label>Cédula</label>
-          <md-input v-model="propiedad.cliente.cedula" maxlength="50"></md-input>
+          <md-input v-model="cliente.cedula" maxlength="50"></md-input>
         </md-field>
 
         <md-field :md-counter="false">
           <label>Nombre</label>
-          <md-input v-model="propiedad.cliente.nombre" maxlength="99"></md-input>
+          <md-input v-model="cliente.nombre" maxlength="99"></md-input>
         </md-field>
 
         <md-field :md-counter="false">
           <label>Apellido</label>
-          <md-input v-model="propiedad.cliente.apellido1" maxlength="99"></md-input>
+          <md-input v-model="cliente.apellido1" maxlength="99"></md-input>
         </md-field>
 
         <md-field :md-counter="false">
           <label>Segundo apellido</label>
-          <md-input v-model="propiedad.cliente.apellido2" maxlength="99"></md-input>
+          <md-input v-model="cliente.apellido2" maxlength="99"></md-input>
         </md-field>
 
         <md-field :md-counter="false">
           <label>Email</label>
-          <md-input v-model="propiedad.cliente.email" maxlength="255" type="email"></md-input>
+          <md-input v-model="cliente.email" maxlength="255" type="email"></md-input>
         </md-field>
       </md-card-content>
     </md-card>
@@ -42,7 +42,7 @@ export default {
       type: String,
       default: ""
     },
-    propiedad: {}
+    cliente: {}
   },
   data() {
     return {};

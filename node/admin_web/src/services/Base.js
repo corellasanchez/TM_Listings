@@ -6,6 +6,10 @@ export default class BaseApiService {
     this.path =  '/' + tableName;
   }
 
+  add(params){
+   return api.post(`${this.path}`, JSON.stringify(params)).then(res => res).catch(err => err.response);
+  }
+
   list(params, full_list = false) {
     let listType = full_list ? 'full-list' : 'list';
     let { args, pageSize, currentPage, orderBy, sortOrder } = params;

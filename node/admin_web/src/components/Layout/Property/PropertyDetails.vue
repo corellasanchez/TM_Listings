@@ -77,7 +77,7 @@
         <div class="md-layout md-gutter">
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-datepicker v-model="propiedad.fecha_inscripcion_registro_publico" md-immediately>
-              <label>Fecha de inscripcion en el registro público</label>
+              <label>Fecha de inscripcion</label>
             </md-datepicker>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-50">

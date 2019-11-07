@@ -18,7 +18,7 @@
         @change="value => switchChanged(value,'destacada')"
       >Propiedad Destacada</md-switch>
 
-      <md-button class="md-raised md-primary saveButton">
+      <md-button class="md-raised md-primary saveButton" @click="save">
         <md-icon>save</md-icon>Guardar Propiedad
       </md-button>
     </md-card-content>
@@ -38,7 +38,11 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    save: function () {
+      this.$emit('save');
+    }
+  },
   components: {}
 };
 </script>
