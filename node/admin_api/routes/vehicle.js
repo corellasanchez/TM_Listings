@@ -9,5 +9,6 @@ vehicle.get('/', verifyToken, tablePicker, vehicleController.baseFind);
 vehicle.delete('/', verifyToken, tablePicker, vehicleController.baseRemove);
 vehicle.patch('/', verifyToken, tablePicker, vehicleController.baseUpdate);
 vehicle.get('/list', verifyToken, tablePicker, vehicleController.baseList);
+vehicle.get('/full-list', verifyToken, tablePicker, vehicleController.fullList);
 
 module.exports = vehicle;

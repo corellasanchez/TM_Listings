@@ -51,10 +51,10 @@ function update(args, id, table) {
 }
 
 async function list(params, table, select = '', joins = '') {
-  let { args, pageSize, currentPage, orderBy, sortOrder } = params;
+  let { args, andArgs, rangeArgs, pageSize, currentPage, orderBy, sortOrder } = params;
   let startingRow = (currentPage > 1) ? pageSize * (currentPage - 1) : 0;
-  let whereStatement = '', values = null;
-  let parsedArgs = {};
+  let whereStatement = '', values = [];
+  let parsedArgs = {}, parsedAndArgs = {}, parsedRangeArgs = {};
   let resultCount = 0;
   let sql = '';
 
@@ -70,7 +70,37 @@ async function list(params, table, select = '', joins = '') {
       (whereStatement === '') ? whereStatement += `WHERE ${field} LIKE ?` : whereStatement += ` OR ${field} LIKE ?`;
     });
   }
- 
+
+  if (andArgs) {
+    andArgs.split(';').forEach(arg => {
+      let tempArg = arg.split(':');
+      parsedAndArgs[tempArg[0]] = tempArg[1];
+    });
+    let fields = Object.keys(parsedAndArgs);
+    values = Object.values(parsedAndArgs).map(value => "%" + value + "%");
+    fields.map(field => {
+      (whereStatement === '') ? whereStatement += `WHERE ${field} LIKE ?` : whereStatement += ` AND ${field} LIKE ?`;
+    });
+  }
+
+  if (rangeArgs) {
+    rangeArgs.split(';').forEach(arg => {
+      let tempArg = arg.split(':');
+      let tempRange = tempArg[1].split('~');
+      parsedRangeArgs[tempArg[0]] = {
+        from: tempRange[0],
+        to: tempRange[1]
+      }
+    });
+    let fields = Object.keys(parsedRangeArgs);
+    rangeValues = Object.values(parsedRangeArgs).map(value => {
+      values.push(value.from, value.to);
+    });
+    fields.map(field => {
+      (whereStatement === '') ? whereStatement += `WHERE ${field} BETWEEN ? AND ?` : whereStatement += ` AND ${field} BETWEEN ? AND ?`;
+    });
+  }
+
   if (joins) { // the table has foreing keys
     resultCount = (await runQuery(`SELECT COUNT(*) count FROM ${table} ${joins} ${whereStatement};`, values))[0].count;
   } else {

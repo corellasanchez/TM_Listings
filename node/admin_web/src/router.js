@@ -5,10 +5,9 @@ import Dashboard from './views/Dashboard.vue';
 import Properties from './views/Properties.vue';
 import AddProperty from './views/AddProperty.vue';
 
-
 import Vehicles from './views/Vehicles.vue';
 import Companias from './views/Companias.vue';
-import Reports from './views/Reports.vue';
+// import Reports from './views/Reports.vue';
 
 import DashboardLayout from "./components/Layout/DashboardLayout.vue";
 import authService from "@/services/Auth";
@@ -57,12 +56,12 @@ let router = new Router({
           component: Vehicles,
           meta: { logued: true },
         },
-        {
-          path: "reports",
-          name: "Reportes",
-          component: Reports,
-          meta: { logued: true },
-        }
+        // {
+        //   path: "reports",
+        //   name: "Reportes",
+        //   component: Reports,
+        //   meta: { logued: true },
+        // }
       ]
     }
   ],

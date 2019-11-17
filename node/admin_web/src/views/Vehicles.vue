@@ -1,273 +1,277 @@
 <template>
-  <div class="content">
-    <baseTable v-if="config.table.data" :config="config" :filtering="filtering">
-      <div v-if="filtering.advanced" class="filtering">
-        <div class="md-layout md-gutter">
-          <div class="md-layout-item md-size-15">
-            <md-field>
-              <label>Tipo</label>
-              <md-select v-if="propertyTypeList" v-model="tipo">
-                <md-option v-for="type in propertyTypeList" :value="type.id">{{type.nombre}}</md-option>
-              </md-select>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-size-15">
-            <md-field>
-              <label>Estado</label>
-              <md-select v-if="statusList" v-model="estado">
-                <md-option v-for="status in statusList" :value="status.id">{{status.nombre}}</md-option>
-              </md-select>
-            </md-field>
-          </div>
-          <!-- <div class="md-layout-item md-size-15">
-            <md-field>
-              <label>Moneda</label>
-              <md-select>
-                <md-option value="0">Opcion 1</md-option>
-                <md-option value="1">Opcion 2</md-option>
-              </md-select>
-            </md-field>
-          </div>-->
-          <!-- <div class="md-layout-item md-size-15">
-            <md-field>
-              <label>Area</label>
-              <md-input></md-input>
-            </md-field>
-          </div>-->
-          <!-- <div class="md-layout-item md-size-15">
-            <md-field>
-              <label>Precio</label>
-              <md-input></md-input>
-            </md-field>
-          </div>-->
-          <div class="md-layout-item md-size-55">
-            <md-field>
-              <label>Buscar...</label>
-              <md-input v-model="query"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-size-15">
-            <md-button @click="applyFilters()">Buscar</md-button>
-          </div>
+  <base-table
+    v-if="data"
+    :advanced_filter="false"
+    :add_route="'add-vehicles'"
+    :messages="messages"
+    :theme_color="theme_color"
+    :data="data"
+    :fields="tableHeaders"
+    :pars="pars"
+    :paginator="filtering"
+    @updateResult="loadData"
+    @resetFiltering="resetFilters"
+  >
+    <template slot="advanced_filter">
+      <div class="md-layout">
+        <div class="md-layout-item md-size-95">
+          <!-- <div class="md-layout custom-filter-advanced">
+            <div class="md-layout-item md-size-40">
+              <label>Datos Generales</label>
+              <div class="md-layout">
+                <div class="md-layout-item md-size-50">
+                  <md-field>
+                    <label>Tipo</label>
+                    <md-select v-if="propertyTypeList" v-model="pars.tipo">
+                      <md-option v-for="type in propertyTypeList" :value="type.id">{{type.nombre}}</md-option>
+                    </md-select>
+                  </md-field>
+                </div>
+                <div class="md-layout-item md-size-50">
+                  <md-field>
+                    <label>Estado</label>
+                    <md-select v-if="statusList" v-model="pars.estado">
+                      <md-option v-for="status in statusList" :value="status.id">{{status.nombre}}</md-option>
+                    </md-select>
+                  </md-field>
+                </div>
+              </div>
+            </div>
+            <div class="md-layout-item md-size-60">
+              <label>Ubicación</label>
+              <div class="md-layout">
+                <div class="md-layout-item md-size-33">
+                  <md-field>
+                    <label>País</label>
+                    <md-select v-if="countryList" v-model="pars.pais">
+                      <md-option
+                        v-for="country in countryList"
+                        :value="country.id"
+                      >{{country.nombre}}</md-option>
+                    </md-select>
+                  </md-field>
+                </div>
+                <div class="md-layout-item md-size-33">
+                  <md-field>
+                    <label>Provincia</label>
+                    <md-select v-if="provinceList" v-model="pars.provincia">
+                      <md-option
+                        v-for="province in provinceList"
+                        :value="province.id"
+                      >{{province.nombre}}</md-option>
+                    </md-select>
+                  </md-field>
+                </div>
+                <div class="md-layout-item md-size-33">
+                  <md-field>
+                    <label>Distrito</label>
+                    <md-select v-if="districtList" v-model="pars.distrito">
+                      <md-option
+                        v-for="district in districtList"
+                        :value="district.id"
+                      >{{district.nombre}}</md-option>
+                    </md-select>
+                  </md-field>
+                </div>
+              </div>
+            </div>
+            <div class="md-layout-item md-size-50">
+              <label>Area de Construcción</label>
+              <div class="md-layout">
+                <div class="md-layout-item md-size-50">
+                  <custom-input v-model="pars.areaFrom" placeholder="Desde" sufix="m²"></custom-input>
+                </div>
+                <div class="md-layout-item md-size-50">
+                  <custom-input v-model="pars.areaTo" placeholder="Hasta" sufix="m²"></custom-input>
+                </div>
+              </div>
+            </div>
+            <div class="md-layout-item md-size-50">
+              <label>Precio de Venta</label>
+              <div class="md-layout">
+                <div class="md-layout-item md-size-50">
+                  <currency-input v-model="pars.priceFrom" placeholder="Desde"></currency-input>
+                </div>
+                <div class="md-layout-item md-size-50">
+                  <currency-input v-model="pars.priceTo" placeholder="Hasta"></currency-input>
+                </div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+        <div class="md-layout-item md-size-5">
+          <md-button
+            class="md-icon-button md-fab"
+            :data-background-color="theme_color"
+            @click="loadData()"
+          >
+            <md-icon>search</md-icon>
+          </md-button>
         </div>
       </div>
-      <div v-else>
-        <div class="md-layout md-gutter">
-          <div class="md-layout-item md-size-85">
-            <md-field>
-              <label>Buscar...</label>
-              <md-input v-model="query"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-size-15">
-            <md-button @click="applyFilters()">Buscar</md-button>
-          </div>
-        </div>
-      </div>
-    </baseTable>
-  </div>
+    </template>
+    <template slot="table_no_results">
+      <md-icon class="md-size-3x">sentiment_very_dissatisfied</md-icon>
+    </template>
+  </base-table>
 </template>
 <script>
-import matPaginator from "@/components/Tables/MatPaginator.vue";
-import baseTable from "@/components/Tables/BaseTable.vue";
+import BaseTable from "@/components/Tables/BaseTable";
+// import CurrencyInput from "@/components/Currency/CurrencyInput";
+// import CustomInput from "@/components/CustomInput";
 import BaseApiService from "@/services/Base";
+import dataStructure from "@/consts/vehicleFields";
 
 export default {
+  components: {
+    BaseTable,
+    // CurrencyInput,
+    // CustomInput
+  },
   data() {
     return {
-      propertyService: new BaseApiService("propiedad"),
-      statusService: new BaseApiService("estado"),
-      propertyTypeService: new BaseApiService("propiedad_tipo"),
-      lastFiltering: null,
-      statusList: null,
-      propertyTypeList: null,
-      tipo: null,
-      estado: null,
-      query: null,
-      config: {
-        header: {
-          color: "red",
-          title: "Lista de Propiedades",
-          create: {
-            enable: true,
-            route: "add-property"
-          }
-        },
-        table: {
-          data: null,
-          meta: null,
-          header: [
-            {
-              label: "ID",
-              column: "id",
-              first: "",
-              last: ""
-            },
-            {
-              label: "Compañia",
-              column: "sociedad",
-              first: "",
-              last: ""
-            },
-            {
-              label: "Provincia",
-              column: "provincia",
-              first: "",
-              last: ""
-            },
-            {
-              label: "Distrito",
-              column: "distrito",
-              first: "",
-              last: ""
-            },
-            {
-              label: "Tipo",
-              column: "tipo_propiedad",
-              first: "",
-              last: ""
-            },
-            {
-              label: "Área de Construcción",
-              column: "area_construida",
-              first: "",
-              last: "m²"
-            },
-            {
-              label: "Estado",
-              column: "estado",
-              first: "",
-              last: ""
-            },
-            {
-              label: "Precio de Venta",
-              column: "precio_venta",
-              first: "₡",
-              last: ""
-            }
-          ]
-        }
+      theme_color: "blue",
+      messages: {
+        headerTitle: "Lista de Vehículos",
+        noResTitle: "Sin resultados",
+        noResSubtitle: "Por favor cambie los parametros de busqueda"
       },
       filtering: {
-        advanced: false,
         args: "",
+        andArgs: "",
+        rangeArgs: "",
         pageSize: 5,
         currentPage: 1,
         orderBy: "id",
         sortOrder: "asc"
-      }
+      },
+      // statusService: new BaseApiService("estado"),
+      // propertyTypeService: new BaseApiService("propiedad_tipo"),
+      // countryService: new BaseApiService("pais"),
+      // provinceService: new BaseApiService("provincia"),
+      // districtService: new BaseApiService("distrito"),
+      vehicleService: new BaseApiService("vehiculo"),
+      // statusList: null,
+      // propertyTypeList: null,
+      // countryList: null,
+      // provinceList: null,
+      // districtList: null,
+      pars: {
+        query: "",
+        // tipo: "",
+        // estado: "",
+        // pais: null,
+        // provincia: null,
+        // distrito: null,
+        // areaFrom: 0,
+        // areaTo: 0,
+        // priceFrom: 0,
+        // priceTo: 0
+      },
+      data: null,
+      tableHeaders: null,
+      lastFiltering: null
     };
   },
-  async mounted() {
+  mounted() {
+    this.firstLoad();
     this.loadData();
-    this.statusList = (await this.statusService.list({
-      pageSize: 100,
-      currentPage: 1
-    })).data.data;
-    this.propertyTypeList = (await this.propertyTypeService.list({
-      pageSize: 100,
-      currentPage: 1
-    })).data.data;
   },
   methods: {
-    async loadData() {
-      let properties = await this.propertyService.list(this.filtering, true);
-      this.config.table.data = properties.data.data;
-      this.config.table.meta = properties.data.meta;
-      this.lastFiltering = Object.assign({}, this.filtering);
+    tabChanged() {
+      this.resetFilters();
     },
-    switchAdvancedFilter() {
-      this.config.advanced = !this.config.advanced;
+    async firstLoad() {
+      let defaultConfig = {
+        pageSize: 100,
+        currentPage: 1
+      };
+      // this.statusList = (await this.statusService.list(
+      //   defaultConfig
+      // )).data.data;
+      // this.propertyTypeList = (await this.propertyTypeService.list(
+      //   defaultConfig
+      // )).data.data;
+      // this.countryList = (await this.countryService.list(
+      //   defaultConfig
+      // )).data.data;
+      // this.provinceList = (await this.provinceService.list(
+      //   defaultConfig
+      // )).data.data;
+      // this.districtList = (await this.districtService.list(
+      //   defaultConfig
+      // )).data.data;
+    },
+    resetFilters() {
+      // this.pars.tipo = "";
+      // this.pars.estado = "";
+      // this.pars.provincia = null;
+      // this.pars.distrito = null;
+      // this.pars.areaFrom = 0;
+      // this.pars.areaTo = 0;
+      // this.pars.priceFrom = 0;
+      // this.pars.priceTo = 0;
+      this.pars.query = "";
+      this.applyFilters();
+      this.loadData();
     },
     applyFilters() {
-      let args = "";
-      this.query !== null
+      let args = "",
+        andArgs = "",
+        rangeArgs = "";
+      this.pars.query !== ""
         ? args === ""
-          ? (args += `propiedad.id:${this.query};sociedad.nombre:${this.query};provincia.nombre:${this.query};distrito.nombre:${this.query}`)
-          : (args += `;propiedad.id:${this.query};sociedad.nombre:${this.query};provincia.nombre:${this.query};distrito.nombre:${this.query}`)
+          ? (args += `propiedad.id:${this.pars.query};sociedad.nombre:${this.pars.query};provincia.nombre:${this.pars.query};distrito.nombre:${this.pars.query}`)
+          : (args += `;propiedad.id:${this.pars.query};sociedad.nombre:${this.pars.query};provincia.nombre:${this.pars.query};distrito.nombre:${this.pars.query}`)
         : null;
-
-      this.tipo !== null
-        ? args === ""
-          ? (args += `propiedad_tipo.id:${this.tipo}`)
-          : (args += `;propiedad_tipo.id:${this.tipo}`)
-        : null;
-
-      this.estado !== null
-        ? args === ""
-          ? (args += `propiedad.propiedad_estado_id:${this.estado}`)
-          : (args += `;propiedad.propiedad_estado_id:${this.estado}`)
-        : null;
-
+      // this.pars.tipo !== ""
+      //   ? andArgs === ""
+      //     ? (andArgs += `propiedad_tipo.id:${this.pars.tipo}`)
+      //     : (andArgs += `;propiedad_tipo.id:${this.pars.tipo}`)
+      //   : null;
+      // this.pars.estado !== ""
+      //   ? andArgs === ""
+      //     ? (andArgs += `propiedad.propiedad_estado_id:${this.pars.estado}`)
+      //     : (andArgs += `;propiedad.propiedad_estado_id:${this.pars.estado}`)
+      //   : null;
+      // this.pars.provincia !== null
+      //   ? andArgs === ""
+      //     ? (andArgs += `direccion.provincia_id:${this.pars.provincia}`)
+      //     : (andArgs += `;direccion.provincia_id:${this.pars.provincia}`)
+      //   : null;
+      // this.pars.distrito !== null
+      //   ? andArgs === ""
+      //     ? (andArgs += `direccion.distrito_id:${this.pars.distrito}`)
+      //     : (andArgs += `;direccion.distrito_id:${this.pars.distrito}`)
+      //   : null;
+      // this.pars.areaFrom !== 0 && this.pars.areaTo !== 0
+      //   ? rangeArgs === ""
+      //     ? (rangeArgs += `propiedad.area_construida:${this.pars.areaFrom}~${this.pars.areaTo}`)
+      //     : (rangeArgs += `;propiedad.area_construida:${this.pars.areaFrom}~${this.pars.areaTo}`)
+      //   : null;
+      // this.pars.priceFrom !== 0 &&
+      // this.pars.priceTo !== 0 &&
+      // (this.pars.priceFrom !== 0 && this.pars.priceTo !== 0)
+      //   ? rangeArgs === ""
+      //     ? (rangeArgs += `propiedad.precio_venta:${this.pars.priceFrom}~${this.pars.priceTo}`)
+      //     : (rangeArgs += `;propiedad.precio_venta:${this.pars.priceFrom}~${this.pars.priceTo}`)
+      //   : null;
+      // this.filtering.rangeArgs = rangeArgs;
       this.filtering.args = args;
-    }
-  },
-  components: {
-    matPaginator,
-    baseTable
-  },
-  watch: {
-    filtering: {
-      handler() {
-        this.filtering.args !== this.lastFiltering.args ||
-        this.filtering.pageSize !== this.lastFiltering.pageSize
-          ? (this.filtering.currentPage = 1)
-          : null;
-        this.loadData();
-      },
-      deep: true
+      // this.filtering.andArgs = andArgs;
+    },
+    async loadData() {
+      this.applyFilters();
+      this.data = (await this.vehicleService.list(this.filtering, true)).data;
+      this.tableHeaders = dataStructure;
+      this.lastFiltering = Object.assign({}, this.filtering);
     }
   }
 };
 </script>
 <style lang="scss">
-div.add-button {
-  button,
-  button:hover {
-    margin-right: 10px !important;
-    background-color: white !important;
-    i {
-      color: #ff5252 !important;
-    }
-  }
-}
-
-div.filters {
-  .md-tabs-navigation {
-    padding-left: 0;
-    padding-bottom: 0;
-    margin-top: -15px;
-    margin-left: -5px;
-    background-color: transparent !important;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-
-    .md-tab-nav-button {
-      background-color: #e94542 !important;
-      margin-right: 5px;
-      border-radius: 3px;
-      box-shadow: 0 12px 20px -10px rgba(244, 67, 54, 0.28),
-        0 4px 20px 0px rgba(0, 0, 0, 0.12),
-        0 7px 8px -5px rgba(244, 67, 54, 0.2);
-      .md-button-content {
-        color: white;
-      }
-    }
-  }
-}
-
-.filtering {
-  overflow-x: auto;
-  > div {
-    &:nth-child(1) {
-      min-width: 750px;
-    }
-  }
-}
-
-.filters-container {
-  > div {
-    transition: opacity 0.5s;
-  }
+.custom-filter-advanced {
+  text-align: center;
+  margin-left: 0;
 }
 </style>

@@ -9,5 +9,6 @@ sociedad.get('/', verifyToken, tablePicker, sociedadController.baseFind);
 sociedad.delete('/', verifyToken, tablePicker, sociedadController.baseRemove);
 sociedad.patch('/', verifyToken, tablePicker, sociedadController.baseUpdate);
 sociedad.get('/list', verifyToken, tablePicker, sociedadController.baseList);
+sociedad.get('/full-list', verifyToken, tablePicker, sociedadController.fullList);
 
 module.exports = sociedad;
