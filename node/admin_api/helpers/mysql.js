@@ -77,7 +77,7 @@ async function list(params, table, select = '', joins = '') {
       parsedAndArgs[tempArg[0]] = tempArg[1];
     });
     let fields = Object.keys(parsedAndArgs);
-    values = Object.values(parsedAndArgs).map(value => "%" + value + "%");
+    values = Object.values(parsedAndArgs).map(value => value);
     fields.map(field => {
       (whereStatement === '') ? whereStatement += `WHERE ${field} LIKE ?` : whereStatement += ` AND ${field} LIKE ?`;
     });

@@ -16,97 +16,121 @@
       <div class="md-layout">
         <div class="md-layout-item md-size-95">
           <div class="md-layout custom-filter-advanced">
-            <div class="md-layout-item md-size-40">
-              <label>Datos Generales</label>
+            <div class="md-layout-item md-size-100">
               <div class="md-layout">
-                <div class="md-layout-item md-size-50">
-                  <md-field>
-                    <label>Tipo</label>
-                    <md-select v-if="propertyTypeList" v-model="pars.tipo">
-                      <md-option v-for="type in propertyTypeList" :value="type.id">{{type.nombre}}</md-option>
-                    </md-select>
-                  </md-field>
+                <div class="md-layout-item md-size-40">
+                  <label>Datos Generales</label>
+                  <div class="md-layout">
+                    <div class="md-layout-item">
+                      <md-field>
+                        <label>Tipo</label>
+                        <md-select v-if="propertyTypeList" v-model="pars.tipo">
+                          <md-option
+                            v-for="type in propertyTypeList"
+                            :value="type.id"
+                          >{{type.nombre}}</md-option>
+                        </md-select>
+                      </md-field>
+                    </div>
+                    <div class="md-layout-item">
+                      <md-field>
+                        <label>Estado</label>
+                        <md-select v-if="statusList" v-model="pars.estado">
+                          <md-option
+                            v-for="status in statusList"
+                            :value="status.id"
+                          >{{status.nombre}}</md-option>
+                        </md-select>
+                      </md-field>
+                    </div>
+                  </div>
                 </div>
-                <div class="md-layout-item md-size-50">
-                  <md-field>
-                    <label>Estado</label>
-                    <md-select v-if="statusList" v-model="pars.estado">
-                      <md-option v-for="status in statusList" :value="status.id">{{status.nombre}}</md-option>
-                    </md-select>
-                  </md-field>
+                <div class="md-layout-item md-size-60">
+                  <label>Ubicación</label>
+                  <div class="md-layout">
+                    <div class="md-layout-item">
+                      <md-field>
+                        <label>País</label>
+                        <md-select v-if="countryList" v-model="pars.pais">
+                          <md-option
+                            v-for="country in countryList"
+                            :value="country.id"
+                          >{{country.nombre}}</md-option>
+                        </md-select>
+                      </md-field>
+                    </div>
+                    <div class="md-layout-item">
+                      <md-field>
+                        <label>Provincia</label>
+                        <md-select v-if="provinceList" v-model="pars.provincia">
+                          <md-option
+                            v-for="province in provinceList"
+                            :value="province.id"
+                          >{{province.nombre}}</md-option>
+                        </md-select>
+                      </md-field>
+                    </div>
+                    <div class="md-layout-item">
+                      <md-field>
+                        <label>Distrito</label>
+                        <md-select v-if="districtList" v-model="pars.distrito">
+                          <md-option
+                            v-for="district in districtList"
+                            :value="district.id"
+                          >{{district.nombre}}</md-option>
+                        </md-select>
+                      </md-field>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="md-layout-item md-size-60">
-              <label>Ubicación</label>
+            <div class="md-layout-item md-size-100">
               <div class="md-layout">
-                <div class="md-layout-item md-size-33">
-                  <md-field>
-                    <label>País</label>
-                    <md-select v-if="countryList" v-model="pars.pais">
-                      <md-option
-                        v-for="country in countryList"
-                        :value="country.id"
-                      >{{country.nombre}}</md-option>
-                    </md-select>
-                  </md-field>
+                <div class="md-layout-item">
+                  <label>Area de Construcción</label>
+                  <div class="md-layout">
+                    <div class="md-layout-item">
+                      <custom-input v-model="pars.areaFrom" placeholder="Desde" sufix="m²"></custom-input>
+                    </div>
+                    <div class="md-layout-item">
+                      <custom-input v-model="pars.areaTo" placeholder="Hasta" sufix="m²"></custom-input>
+                    </div>
+                  </div>
                 </div>
-                <div class="md-layout-item md-size-33">
-                  <md-field>
-                    <label>Provincia</label>
-                    <md-select v-if="provinceList" v-model="pars.provincia">
-                      <md-option
-                        v-for="province in provinceList"
-                        :value="province.id"
-                      >{{province.nombre}}</md-option>
-                    </md-select>
-                  </md-field>
-                </div>
-                <div class="md-layout-item md-size-33">
-                  <md-field>
-                    <label>Distrito</label>
-                    <md-select v-if="districtList" v-model="pars.distrito">
-                      <md-option
-                        v-for="district in districtList"
-                        :value="district.id"
-                      >{{district.nombre}}</md-option>
-                    </md-select>
-                  </md-field>
-                </div>
-              </div>
-            </div>
-            <div class="md-layout-item md-size-50">
-              <label>Area de Construcción</label>
-              <div class="md-layout">
-                <div class="md-layout-item md-size-50">
-                  <custom-input v-model="pars.areaFrom" placeholder="Desde" sufix="m²"></custom-input>
-                </div>
-                <div class="md-layout-item md-size-50">
-                  <custom-input v-model="pars.areaTo" placeholder="Hasta" sufix="m²"></custom-input>
-                </div>
-              </div>
-            </div>
-            <div class="md-layout-item md-size-50">
-              <label>Precio de Venta</label>
-              <div class="md-layout">
-                <div class="md-layout-item md-size-50">
-                  <currency-input v-model="pars.priceFrom" placeholder="Desde"></currency-input>
-                </div>
-                <div class="md-layout-item md-size-50">
-                  <currency-input v-model="pars.priceTo" placeholder="Hasta"></currency-input>
+                <div class="md-layout-item">
+                  <label>Precio de Venta</label>
+                  <div class="md-layout">
+                    <div class="md-layout-item">
+                      <currency-input v-model="pars.priceFrom" placeholder="Desde"></currency-input>
+                    </div>
+                    <div class="md-layout-item">
+                      <currency-input v-model="pars.priceTo" placeholder="Hasta"></currency-input>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="md-layout-item md-size-5">
-          <md-button
-            class="md-icon-button md-fab"
-            :data-background-color="theme_color"
-            @click="loadData()"
-          >
-            <md-icon>search</md-icon>
-          </md-button>
+          <div class="md-layout custom-filter-actions">
+            <div class="md-layout-item md-size-100">
+              <md-button
+                class="md-icon-button md-fab"
+                :data-background-color="theme_color"
+                @click="loadData()"
+              >
+                <md-icon>search</md-icon>
+              </md-button>
+            </div>
+            <div class="md-layout-item md-size-100">
+              <md-button class="md-icon-button md-fab" @click="resetFilters()">
+                <md-icon>clear</md-icon>
+                <md-tooltip md-direction="bottom">Limpiar Filtros</md-tooltip>
+              </md-button>
+            </div>
+          </div>
         </div>
       </div>
     </template>
@@ -133,6 +157,8 @@ export default {
       theme_color: "red",
       messages: {
         headerTitle: "Lista de Propiedades",
+        basicSearchLabel:
+          "Busqueda por numero de referencia, compañia, provincia o distrito...",
         noResTitle: "Sin resultados",
         noResSubtitle: "Por favor cambie los parametros de busqueda"
       },
@@ -273,5 +299,9 @@ export default {
 .custom-filter-advanced {
   text-align: center;
   margin-left: 0;
+}
+
+.custom-filter-actions{
+  margin-top: 25px;
 }
 </style>

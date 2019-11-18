@@ -16,22 +16,7 @@
       <div class="md-layout">
         <div class="md-layout-item md-size-95">
           <div class="md-layout custom-filter-advanced">
-            <div class="md-layout-item md-size-100">
-              <label>Ubicación</label>
-              <div class="md-layout">
-                <div class="md-layout-item md-size-100">
-                  <md-field>
-                    <label>País</label>
-                    <md-select v-if="countryList" v-model="pars.pais">
-                      <md-option
-                        v-for="country in countryList"
-                        :value="country.id"
-                      >{{country.nombre}}</md-option>
-                    </md-select>
-                  </md-field>
-                </div>
-              </div>
-            </div>
+            <!-- THIS VIEW DOES NOT HAVE AN ADVANCED FILTERING SYSTEM -->
           </div>
         </div>
         <div class="md-layout-item md-size-5">
@@ -64,6 +49,7 @@ export default {
       theme_color: "orange",
       messages: {
         headerTitle: "Lista de Compañias",
+        basicSearchLabel: "Busqueda por numero de referencia, nombre o cedula juridica...",
         noResTitle: "Sin resultados",
         noResSubtitle: "Por favor cambie los parametros de busqueda"
       },
@@ -76,12 +62,9 @@ export default {
         orderBy: "id",
         sortOrder: "asc"
       },
-      countryService: new BaseApiService("pais"),
       companyService: new BaseApiService("sociedad"),
-      countryList: null,
       pars: {
-        query: "",
-        pais: null,
+        query: ""
       },
       data: null,
       tableHeaders: null,
@@ -89,46 +72,28 @@ export default {
     };
   },
   mounted() {
-    this.firstLoad();
     this.loadData();
   },
   methods: {
     tabChanged() {
       this.resetFilters();
     },
-    async firstLoad() {
-      let defaultConfig = {
-        pageSize: 100,
-        currentPage: 1
-      };
-      this.countryList = (await this.countryService.list(
-        defaultConfig
-      )).data.data;
-    },
     resetFilters() {
-      this.pars.pais = null;
       this.pars.query = "";
       this.applyFilters();
       this.loadData();
     },
     applyFilters() {
-      let args = "",
-        andArgs = "",
-        rangeArgs = "";
+      let args = "";
       this.pars.query !== ""
         ? args === ""
           ? (args += `id:${this.pars.query};nombre:${this.pars.query};cedula:${this.pars.query}`)
           : (args += `;id:${this.pars.query};nombre:${this.pars.query};cedula:${this.pars.query}`)
         : null;
-      // this.pars.pais !== ""
-      //   ? andArgs === ""
-      //     ? (andArgs += `propiedad.propiedad_estado_id:${this.pars.estado}`)
-      //     : (andArgs += `;propiedad.propiedad_estado_id:${this.pars.estado}`)
-      //   : null;
       this.filtering.args = args;
-      this.filtering.andArgs = andArgs;
     },
     async loadData() {
+      this.applyFilters();
       this.data = (await this.companyService.list(this.filtering, true)).data;
       this.tableHeaders = dataStructure;
       this.lastFiltering = Object.assign({}, this.filtering);

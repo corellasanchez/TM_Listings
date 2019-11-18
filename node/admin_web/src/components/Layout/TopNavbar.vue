@@ -14,7 +14,6 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </md-button>
-
         <div class="md-collapse">
           <md-list>
             <md-list-item to="/dashboard">

@@ -24,7 +24,7 @@
                 <div class="md-layout">
                   <div class="md-layout-item md-size-95">
                     <md-field>
-                      <label>Buscar...</label>
+                      <label>{{messages.basicSearchLabel}}</label>
                       <md-input v-model="pars.query" @keyup.enter="updateResult()"></md-input>
                     </md-field>
                   </div>
@@ -52,7 +52,7 @@
             v-model="data.data"
             md-fixed-header
             :table-header-color="theme_color"
-            style="max-height: 325px !important;"
+            style="max-height: 450px !important;"
           >
             <md-table-row slot="md-table-row" slot-scope="{ item }">
               <md-table-cell
@@ -103,6 +103,7 @@ export default {
         return {
           headerTitle: "Titulo por defecto",
           headerSubtitle: null,
+          basicSearchLabel: "Buscar...",
           noResTitle: "Titulo por defecto",
           noResSubtitle: "Subtitulo por defecto"
         };
