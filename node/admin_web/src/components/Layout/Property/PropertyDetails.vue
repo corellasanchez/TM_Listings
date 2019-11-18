@@ -115,6 +115,7 @@
 </template>
 <script>
 import BaseApiService from "@/services/Base";
+
 const { LOCALE } = require("../../../config");
 
 export default {
@@ -202,21 +203,6 @@ export default {
       this.departamentosOrigen = departamentosOrigen.data.data;
       if (this.departamentosOrigen) {
         this.propiedad.departamento_origen_id = this.departamentosOrigen[0].id;
-      }
-    },
-    switchChanged(value, nombre) {
-      if (!value) {
-        switch (nombre) {
-          case "mostrar":
-            this.propiedad.mostrar = "0";
-            break;
-          case "destacada":
-            this.propiedad.destacada = "0";
-            break;
-          case "se_financia":
-            this.propiedad.se_financia = "0";
-            break;
-        }
       }
     }
   }

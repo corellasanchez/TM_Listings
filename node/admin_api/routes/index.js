@@ -19,6 +19,7 @@ const departamentoOrigenRoutes = require('./departamento_origen');
 const fileRoutes = require('./file');
 const imagenesPropiedad = require('./imagenes_propiedad');
 const direccion = require('./direccion');
+const persona = require('./persona');
 
 router.get('/', function (req, res, next) {
   res.sendFile(path.join(__dirname + '/home/index.html'));
@@ -38,7 +39,8 @@ router.use('/estado', estadoRoutes);
 router.use('/departamento_origen', departamentoOrigenRoutes);
 router.use('/file', fileRoutes);
 router.use('/imagenes_propiedad', imagenesPropiedad);
-router.use('/direccion', imagenesPropiedad);
+router.use('/direccion', direccion);
+router.use('/persona', persona);
 router.use(errorHandler);
 
 module.exports = router;

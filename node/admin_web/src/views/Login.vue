@@ -14,12 +14,12 @@
                 <md-field class="md-form-group">
                   <md-icon>face</md-icon>
                   <label>Nombre de usuario</label>
-                  <md-input v-model="username"></md-input>
+                  <md-input v-model="username" autocomplete="off"></md-input>
                 </md-field>
                 <md-field class="md-form-group">
                   <md-icon>lock_outline</md-icon>
                   <label>Contraseña</label>
-                  <md-input type="password" v-model="password"></md-input>
+                  <md-input type="password" v-model="password" autocomplete="off"></md-input>
                 </md-field>
               </md-card-content>
               <md-card-actions>

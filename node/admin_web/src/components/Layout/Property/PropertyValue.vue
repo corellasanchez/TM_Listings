@@ -35,7 +35,17 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    switchChanged(value, nombre) {
+      if (!value) {
+        switch (nombre) {
+          case "se_financia":
+            this.propiedad.se_financia = "0";
+            break;
+        }
+      }
+    }
+  },
   components: {
     CurrencyInput
   }

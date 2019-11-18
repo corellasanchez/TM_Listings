@@ -27,3 +27,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Agregada Vue moment
+https://www.npmjs.com/package/vue-moment

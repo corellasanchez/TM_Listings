@@ -44,7 +44,7 @@
       </md-field>
       <md-field :md-counter="false">
         <label>Unidad</label>
-        <md-input v-model="propiedad.unidad" required maxlength="99"></md-input>
+        <md-input v-model="propiedad.unidad" maxlength="99"></md-input>
         <span class="md-helper-text">Numero de apartamento, Casa o Local</span>
       </md-field>
     </md-card-content>

@@ -21,6 +21,7 @@ Vue.component("drop-down", DropDown);
 Vue.directive("click-outside", vClickOutside);
 Vue.use(SideBar);
 Vue.use(Notifications);
+Vue.use(require('vue-moment'));
 
 Vue.config.productionTip = false;
 

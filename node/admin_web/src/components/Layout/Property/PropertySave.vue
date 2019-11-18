@@ -41,6 +41,18 @@ export default {
   methods: {
     save: function () {
       this.$emit('save');
+    },
+    switchChanged(value, nombre) {
+      if (!value) {
+        switch (nombre) {
+          case "mostrar":
+            this.propiedad.mostrar = "0";
+            break;
+          case "destacada":
+            this.propiedad.destacada = "0";
+            break;
+        }
+      }
     }
   },
   components: {}
