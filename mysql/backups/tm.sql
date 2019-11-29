@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : TM
+ Source Server         : tm
  Source Server Type    : MySQL
- Source Server Version : 50724
+ Source Server Version : 50728
  Source Host           : localhost:3307
  Source Schema         : tm
 
  Target Server Type    : MySQL
- Target Server Version : 50724
+ Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 04/11/2019 18:16:30
+ Date: 27/11/2019 20:53:44
 */
 
 SET NAMES utf8mb4;
@@ -61,7 +61,7 @@ CREATE TABLE `direccion` (
   CONSTRAINT `fk_direccion_distrito1` FOREIGN KEY (`distrito_id`) REFERENCES `distrito` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_direccion_pais1` FOREIGN KEY (`pais_id`) REFERENCES `pais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_direccion_provincia1` FOREIGN KEY (`provincia_id`) REFERENCES `provincia` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=234 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for distrito
@@ -94,10 +94,11 @@ CREATE TABLE `imagenes_propiedad` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) DEFAULT NULL,
   `propiedad_id` int(11) NOT NULL,
+  `size` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_imagenes_propiedad_propiedad1_idx` (`propiedad_id`),
   CONSTRAINT `fk_imagenes_propiedad_propiedad1` FOREIGN KEY (`propiedad_id`) REFERENCES `propiedad` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for pais
@@ -123,7 +124,7 @@ CREATE TABLE `persona` (
   `apellido2` varchar(100) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for propiedad
@@ -134,10 +135,10 @@ CREATE TABLE `propiedad` (
   `sociedad_id` int(11) NOT NULL,
   `folio` varchar(100) NOT NULL,
   `plano` varchar(100) NOT NULL,
-  `unidad` varchar(100) NOT NULL COMMENT 'Numero de apartamento, Casa o Local',
+  `unidad` varchar(100) DEFAULT NULL COMMENT 'Numero de apartamento, Casa o Local',
   `area` int(11) NOT NULL COMMENT 'Metraje de la propiedad',
   `area_construida` int(11) NOT NULL COMMENT 'Espacio del lote construido',
-  `mostrar` tinyint(4) NOT NULL,
+  `mostrar` tinyint(4) DEFAULT NULL,
   `valor_libros` decimal(13,2) DEFAULT NULL,
   `valor_avaluo` decimal(13,2) DEFAULT NULL,
   `precio_prestamo` decimal(13,2) DEFAULT NULL,
@@ -180,7 +181,7 @@ CREATE TABLE `propiedad` (
   CONSTRAINT `fk_propiedad_propiedad_estado1` FOREIGN KEY (`propiedad_estado_id`) REFERENCES `estado` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_propiedad_propiedad_tipo1` FOREIGN KEY (`propiedad_tipo_id`) REFERENCES `propiedad_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_propiedad_sociedad1` FOREIGN KEY (`sociedad_id`) REFERENCES `sociedad` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=223 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for propiedad_oferta

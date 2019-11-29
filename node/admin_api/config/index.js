@@ -9,7 +9,8 @@ module.exports = {
     port: process.env.MYSQL_PORT || 8889,
     multipleStatements: true,
     connectionLimit : 1000, //important
-    debug    :  false
+    debug    :  false,
+    dateStrings: true
   },
   secretKey: 'Tm115tInG'
 };

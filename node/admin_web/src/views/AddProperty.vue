@@ -5,21 +5,21 @@
                 <property-details v-bind:data-background-color="headerBackground" v-bind:propiedad="propiedad"></property-details>
             </div>
             <div class="md-layout-item md-medium-size-100 md-size-33">
-                <property-address v-bind:data-background-color="headerBackground" v-bind:direccion="direccion" v-bind:propiedad="propiedad"></property-address>
+                <property-address v-bind:data-background-color="headerBackground" v-bind:direccion="direccion" v-bind:propiedad="propiedad" v-bind:isUpdating="isUpdating"></property-address>
             </div>
             <div class="md-layout-item md-medium-size-100 md-size-66">
                 <property-adjudication v-bind:data-background-color="headerBackground" v-bind:propiedad="propiedad"></property-adjudication>
             </div>
             <div class="md-layout-item md-medium-size-100 md-size-33">
                 <property-value v-bind:data-background-color="headerBackground" v-bind:propiedad="propiedad"></property-value>
-                <property-client v-bind:data-background-color="headerBackground" v-bind:cliente="cliente"></property-client>
+                <property-client v-bind:data-background-color="headerBackground" v-bind:cliente="cliente" v-bind:propiedad="propiedad"></property-client>
             </div>
     
             <div class="md-layout-item md-medium-size-100 md-size-66">
-                <image-loader title="Fotos de la propiedad" v-bind:data-background-color="headerBackground" v-bind:images="imagenes"></image-loader>
+                <image-loader title="Fotos de la propiedad" v-bind:data-background-color="headerBackground" v-bind:images="imagenes" v-bind:preUploadedImages="preUploadedImages" v-bind:isUpdating="isUpdating"></image-loader>
             </div>
             <div class="md-layout-item md-medium-size-100 md-size-33">
-                <property-save v-bind:data-background-color="headerBackground" v-bind:propiedad="propiedad" @save="addProperty"></property-save>
+                <property-save v-bind:data-background-color="headerBackground" v-bind:propiedad="propiedad" @add="addProperty" @update="updateProperty" v-bind:isUpdating="isUpdating"></property-save>
             </div>
         </div>
     </div>
@@ -46,12 +46,14 @@ export default {
             propiedad: {},
             cliente: {},
             imagenes: [],
+            preUploadedImages: [],
             direccion: {},
             headerBackground: "green",
             propiedadService: new BaseApiService("propiedad"),
             direccionService: new BaseApiService("direccion"),
             personaService: new BaseApiService("persona"),
-            imagenes_propiedadService: new BaseApiService("imagenes_propiedad")
+            imagenes_propiedadService: new BaseApiService("imagenes_propiedad"),
+            isUpdating: false
         };
     },
     methods: {
@@ -64,7 +66,9 @@ export default {
             }
 
             if (!this.checkAreas()) {
-                this.showError("El area contruida no puede ser mayor a el area de la propiedad");
+                this.showError(
+                    "El area contruida no puede ser mayor a el area de la propiedad"
+                );
                 return;
             }
 
@@ -72,13 +76,19 @@ export default {
             propiedad = this.formatDates(propiedad);
 
             // Add the client if exists
-            if (this.cliente.cedula || this.cliente.nombre || this.cliente.apellido1 || this.cliente.apellido2 || this.cliente.email) {
+            if (
+                this.cliente.cedula ||
+                this.cliente.nombre ||
+                this.cliente.apellido1 ||
+                this.cliente.apellido2 ||
+                this.cliente.email
+            ) {
                 if (!this.validateEmail(this.cliente.email) && this.cliente.email) {
                     this.showError("Email del cliente no es válido");
                     return;
                 }
                 let resultClient = await this.personaService.add(this.cliente);
-                this.propiedad.cliente_id = resultClient.data.id;
+                propiedad.cliente_id = resultClient.data.id;
             }
 
             this.direccion.fecha_creacion = this.getDate();
@@ -104,12 +114,78 @@ export default {
             if (result.data.success) {
                 let imagenesPropiedad = await this.addImages(result.data.id);
                 this.showInfo("Propiedad agregada con éxito");
-               this.resetProperty();
+                this.resetProperty();
             } else {
                 this.showError("Error al agregar la propiedad " + result.data.error);
                 return;
             }
         },
+
+        updateProperty() {
+
+            let propiedad = Object.assign({}, this.propiedad);
+
+            if (!this.checkRequiredFiles()) {
+                this.showError("Los campos con * son requeridos");
+                return;
+            }
+
+            if (!this.checkAreas()) {
+                this.showError(
+                    "El area contruida no puede ser mayor a el area de la propiedad"
+                );
+                return;
+            }
+
+            // Change the date format before save the property
+            propiedad = this.formatDates(propiedad);
+
+            // Add the client if exists
+            // if (
+            //   this.cliente.cedula ||
+            //   this.cliente.nombre ||
+            //   this.cliente.apellido1 ||
+            //   this.cliente.apellido2 ||
+            //   this.cliente.email
+            // ) {
+            //   if (!this.validateEmail(this.cliente.email) && this.cliente.email) {
+            //     this.showError("Email del cliente no es válido");
+            //     return;
+            //   }
+            //   let resultClient = await this.personaService.add(this.cliente);
+            //   this.propiedad.cliente_id = resultClient.data.id;
+            // }
+
+            // this.direccion.fecha_creacion = this.getDate();
+
+            // Add the property address
+            // let resultDireccion = await this.direccionService.add(this.direccion);
+
+            // if (resultDireccion.data.success) {
+            //   propiedad.direccion_id = resultDireccion.data.id;
+            // } else {
+            //   this.showError(
+            //     "Error al agregar la direccion " + resultDireccion.data.error
+            //   );
+            //   return;
+            // }
+
+            // Creation date
+            // propiedad.fecha_cambio_estado = this.getDate();
+
+            // Add the property
+            //   let result = await this.propiedadService.add(propiedad);
+
+            //   if (result.data.success) {
+            //     let imagenesPropiedad = await this.addImages(result.data.id);
+            //     this.showInfo("Propiedad agregada con éxito");
+            //     this.resetProperty();
+            //   } else {
+            //     this.showError("Error al agregar la propiedad " + result.data.error);
+            //     return;
+            //   }
+        },
+
         checkRequiredFiles() {
             if (
                 this.propiedad.folio &&
@@ -123,20 +199,10 @@ export default {
             }
         },
         checkAreas() {
-            return this.propiedad.area_construida <= this.propiedad.area;
-        },
-        async addImages(propertyId) {
-            const results = [];
-            let propertyImage = {};
-            this.imagenes.forEach(imagen => {
-                propertyImage.propiedad_id = propertyId;
-                propertyImage.url = imagen.serverName;
-                results.push(this.addImage(propertyImage));
-            });
-            return await Promise.all(results);
-        },
-        async addImage(image) {
-            return await this.imagenes_propiedadService.add(image);
+            return (
+                parseInt(this.propiedad.area_construida) <=
+                parseInt(this.propiedad.area)
+            );
         },
         initProperty() {
             this.propiedad = {
@@ -202,11 +268,138 @@ export default {
             this.propiedad.precio_venta = 0;
             this.propiedad.dato_adjudicacion = "";
             this.propiedad.anotaciones_especiales = "";
-       
+        },
+        async loadPropertyData() {
+
+            let params = {
+                args: "id:" + this.$route.params.property_id,
+                orderBy: "id",
+                sortOrder: "asc"
+            };
+
+            let propertyData = (await this.propiedadService.find(params)).data[0];
+
+            propertyData.fecha_avaluo = this.tolocalDateFormat(
+                propertyData.fecha_avaluo
+            );
+            propertyData.fecha_cambio_estado = this.tolocalDateFormat(
+                propertyData.fecha_cambio_estado
+            );
+            propertyData.fecha_captura = this.tolocalDateFormat(
+                propertyData.fecha_captura
+            );
+            propertyData.fecha_construccion = this.tolocalDateFormat(
+                propertyData.fecha_construccion
+            );
+            propertyData.fecha_entregados_cobro = this.tolocalDateFormat(
+                propertyData.fecha_entregados_cobro
+            );
+            propertyData.fecha_inscripcion_registro_publico = this.tolocalDateFormat(
+                propertyData.fecha_inscripcion_registro_publico
+            );
+            propertyData.fecha_llaves_entregadas = this.tolocalDateFormat(
+                propertyData.fecha_llaves_entregadas
+            );
+            propertyData.fecha_prestamo = this.tolocalDateFormat(
+                propertyData.fecha_prestamo
+            );
+            propertyData.fecha_recibo_expediente = this.tolocalDateFormat(
+                propertyData.fecha_recibo_expediente
+            );
+
+            propertyData.llaves_tenemos = this.booleanToString(
+                propertyData.llaves_tenemos
+            );
+            propertyData.llaves_entregadas = this.booleanToString(
+                propertyData.llaves_entregadas
+            );
+            propertyData.expediente_entregados_cobro = this.booleanToString(
+                propertyData.expediente_entregados_cobro
+            );
+            propertyData.se_financia = this.booleanToString(propertyData.se_financia);
+            propertyData.mostrar = this.booleanToString(propertyData.mostrar);
+            propertyData.destacada = this.booleanToString(propertyData.destacada);
+
+            this.propiedad = Object.assign({}, propertyData);
+
+            // load client data
+            if (this.propiedad.cliente_id) {
+                this.getClientData(this.propiedad.cliente_id);
+            }
+
+            // load address data
+            if (this.propiedad.direccion_id) {
+                this.getAddressData(this.propiedad.direccion_id);
+            }
+
+            this.getPropertyImages(this.propiedad.id);
+            this.isUpdating = true;
+        },
+        async getClientData(clientId) {
+            let params = {
+                args: "id:" + clientId,
+                orderBy: "id",
+                sortOrder: "asc"
+            };
+
+            let clientData = (await this.personaService.find(params)).data[0];
+            this.cliente = clientData;
+        },
+        async getAddressData(addressId) {
+            let params = {
+                args: "id:" + addressId,
+                orderBy: "id",
+                sortOrder: "asc"
+            };
+
+            let addressData = (await this.direccionService.find(params)).data[0];
+            this.direccion = addressData;
+        },
+        async getPropertyImages(propertyId) {
+            let params = {
+                args: "propiedad_id:" + propertyId,
+                orderBy: "id",
+                sortOrder: "asc"
+            };
+            let result = (await this.imagenes_propiedadService.find(params)).data;
+            if (!result.error) {
+                this.preUploadedImages = result;
+            }
+        },
+        async addImage(image) {
+            return await this.imagenes_propiedadService.add(image);
+        },
+        // removes image from the property
+        async removeImage(imageUrl) {
+            let params = "url=" + imageUrl;
+            let result = await this.imagenes_propiedadService.delete(params);
+        },
+        async addImages(propertyId) {
+            const results = [];
+            let propertyImage = {};
+            this.imagenes.forEach(imagen => {
+                propertyImage.propiedad_id = propertyId;
+                propertyImage.url = imagen.serverName;
+                propertyImage.size = imagen.fileSize;
+                results.push(this.addImage(propertyImage));
+            });
+            return await Promise.all(results);
+        },
+        async linkImage(filename, size) {
+            let image = {};
+            image.propiedad_id = this.propiedad.id;
+            image.url = filename;
+            image.size = size;
+            let result = await this.imagenes_propiedadService.add(image);
         }
     },
     async mounted() {
         this.initProperty();
+        if (this.$route.params.property_id) {
+            this.loadPropertyData();
+        }else{
+         this.direccion = {};
+        }
     },
     components: {
         PropertyDetails,

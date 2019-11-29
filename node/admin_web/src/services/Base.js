@@ -1,13 +1,27 @@
 import api from "./Api";
 
 export default class BaseApiService {
-  
+
   constructor(tableName) {
-    this.path =  '/' + tableName;
+    this.path = '/' + tableName;
+  }
+  
+  find(params) {
+    let { args, orderBy, sortOrder } = params;
+    let query = "";
+    (args || orderBy || sortOrder) ? query += "?" : null;
+    (args) ? (query === "?") ? query += `args=${args}` : query += `&args=${args}` : null;
+    (orderBy) ? (query === "?") ? query += `orderBy=${orderBy}` : query += `&orderBy=${orderBy}` : null;
+    (sortOrder) ? (query === "?") ? query += `sortOrder=${sortOrder}` : query += `&sortOrder=${sortOrder}` : null;
+    return api.get(`${this.path}/${query}`).then(res => res).catch(err => err.response);
   }
 
-  add(params){
-   return api.post(`${this.path}`, JSON.stringify(params)).then(res => res).catch(err => err.response);
+  add(params) {
+    return api.post(`${this.path}`, JSON.stringify(params)).then(res => res).catch(err => err.response);
+  }
+
+  delete(params) {
+     return api.delete(`${this.path}/?${params}`).then(res => res).catch(err => err.response);
   }
 
   list(params, full_list = false) {

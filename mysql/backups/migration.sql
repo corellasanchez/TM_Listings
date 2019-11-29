@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : TM
+ Source Server         : tm
  Source Server Type    : MySQL
- Source Server Version : 50724
+ Source Server Version : 50728
  Source Host           : localhost:3307
  Source Schema         : tm
 
  Target Server Type    : MySQL
- Target Server Version : 50724
+ Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 13/11/2019 20:02:53
+ Date: 27/11/2019 20:53:11
 */
 
 SET NAMES utf8mb4;
@@ -1158,7 +1158,7 @@ CREATE TABLE `direccion` (
   CONSTRAINT `fk_direccion_distrito1` FOREIGN KEY (`distrito_id`) REFERENCES `distrito` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_direccion_pais1` FOREIGN KEY (`pais_id`) REFERENCES `pais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_direccion_provincia1` FOREIGN KEY (`provincia_id`) REFERENCES `provincia` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=231 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=234 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of direccion
@@ -1294,6 +1294,9 @@ INSERT INTO `direccion` VALUES (227, NULL, NULL, 2, 8, 82, 482);
 INSERT INTO `direccion` VALUES (228, NULL, NULL, 2, 8, 82, 482);
 INSERT INTO `direccion` VALUES (229, NULL, NULL, 2, 8, 82, 482);
 INSERT INTO `direccion` VALUES (230, NULL, NULL, 2, 8, 82, 482);
+INSERT INTO `direccion` VALUES (231, NULL, NULL, 2, 8, 82, 482);
+INSERT INTO `direccion` VALUES (232, NULL, NULL, 2, 8, 82, 482);
+INSERT INTO `direccion` VALUES (233, NULL, NULL, 2, 8, 82, 482);
 COMMIT;
 
 -- ----------------------------
@@ -1498,20 +1501,26 @@ CREATE TABLE `imagenes_propiedad` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) DEFAULT NULL,
   `propiedad_id` int(11) NOT NULL,
+  `size` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_imagenes_propiedad_propiedad1_idx` (`propiedad_id`),
   CONSTRAINT `fk_imagenes_propiedad_propiedad1` FOREIGN KEY (`propiedad_id`) REFERENCES `propiedad` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of imagenes_propiedad
 -- ----------------------------
 BEGIN;
-INSERT INTO `imagenes_propiedad` VALUES (1, '856c3d42-f471-4b24-a51f-7c0828e1d0a8.jpg', 216);
-INSERT INTO `imagenes_propiedad` VALUES (2, 'dbdb9b49-3a5a-43ff-a7e7-8abab59b67eb.jpg', 217);
-INSERT INTO `imagenes_propiedad` VALUES (3, '2f026d5b-e9ee-4a77-8b27-f1e299ccb1d9.jpg', 217);
-INSERT INTO `imagenes_propiedad` VALUES (4, 'e340ad41-f0d2-4733-bc01-1b7160b5876c.jpg', 218);
-INSERT INTO `imagenes_propiedad` VALUES (5, '124f1840-a89c-41ce-801d-4d6ed81a1238.jpg', 218);
+INSERT INTO `imagenes_propiedad` VALUES (1, '856c3d42-f471-4b24-a51f-7c0828e1d0a8.jpg', 216, 0);
+INSERT INTO `imagenes_propiedad` VALUES (2, 'dbdb9b49-3a5a-43ff-a7e7-8abab59b67eb.jpg', 217, 0);
+INSERT INTO `imagenes_propiedad` VALUES (3, '2f026d5b-e9ee-4a77-8b27-f1e299ccb1d9.jpg', 217, 0);
+INSERT INTO `imagenes_propiedad` VALUES (4, 'e340ad41-f0d2-4733-bc01-1b7160b5876c.jpg', 218, 0);
+INSERT INTO `imagenes_propiedad` VALUES (5, '124f1840-a89c-41ce-801d-4d6ed81a1238.jpg', 218, 0);
+INSERT INTO `imagenes_propiedad` VALUES (6, 'f6c07f82-8104-4fa8-a951-55cc2b79cffd.jpg', 221, 0);
+INSERT INTO `imagenes_propiedad` VALUES (7, '0d542b7f-1c1f-471f-81c6-9790cb08e771.jpg', 221, 0);
+INSERT INTO `imagenes_propiedad` VALUES (28, 'f4c0b89d-90ad-424b-b7db-16ea4559fbb8.jpg', 222, 202981);
+INSERT INTO `imagenes_propiedad` VALUES (29, '8555b7e9-71b2-4062-96df-b578b7350b31.jpg', 222, 172829);
+INSERT INTO `imagenes_propiedad` VALUES (30, '344fd859-288e-47a1-9b17-13e962e13a14.jpg', 222, 170128);
 COMMIT;
 
 -- ----------------------------
@@ -1556,7 +1565,7 @@ INSERT INTO `persona` VALUES (1, '122331', 'Nombre', 'app', 'seg', 'corella@as.c
 INSERT INTO `persona` VALUES (2, '1234456', 'Name', 'App', 'App2', 'csd@afas.com');
 INSERT INTO `persona` VALUES (3, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `persona` VALUES (4, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `persona` VALUES (5, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `persona` VALUES (5, '123', 'Pedro', 'Jimenez', 'Ramirez', 'asd@asdf.com');
 INSERT INTO `persona` VALUES (6, '2322', 'nombre', 'ap', 'seg', 'sadf@asdfa.com');
 INSERT INTO `persona` VALUES (7, '1223412', 'asdf', 'asdf', 'asf', 'aasdf@adsf.com');
 INSERT INTO `persona` VALUES (8, '1223412', 'asdf', 'asdf', 'asf', 'aasdf@adsf.com');
@@ -1624,13 +1633,13 @@ CREATE TABLE `propiedad` (
   CONSTRAINT `fk_propiedad_propiedad_estado1` FOREIGN KEY (`propiedad_estado_id`) REFERENCES `estado` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_propiedad_propiedad_tipo1` FOREIGN KEY (`propiedad_tipo_id`) REFERENCES `propiedad_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_propiedad_sociedad1` FOREIGN KEY (`sociedad_id`) REFERENCES `sociedad` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=220 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=223 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of propiedad
 -- ----------------------------
 BEGIN;
-INSERT INTO `propiedad` VALUES (101, 1, '123sj112z1w235', 'k1r23qa22j34r', 'Suite 225', 717, 405, 0, 99999999999.00, 8855616.00, 1611687.00, 5050548.00, 8399289.00, '1976-04-23', '2010-08-15', '2006-10-08', '2013-12-03', '1996-08-30', '1999-02-22', '1998-02-24', '1991-09-01', '2005-04-07', '1234ik', 2, NULL, NULL, 4, 346717.00, NULL, 4, 9982.00, 0, 1, 1, 'Ut enim et enim et.', 'Non suscipit voluptas error aut tempora reprehenderit suscipit fuga.', 139, 1, NULL);
+INSERT INTO `propiedad` VALUES (101, 1, '123sj112z1w235', 'k1r23qa22j34r', 'Suite 225', 717, 405, 1, 99999999999.00, 8855616.00, 1611687.00, 5050548.00, 8399289.00, '1976-04-23', '2019-08-15', '2006-11-20', '2013-12-03', '1996-08-30', '1999-02-22', '2019-02-28', '2019-11-20', '2005-04-07', '1234ik', 2, NULL, NULL, 4, 346717.00, NULL, 4, 9982.00, 0, 1, 1, 'Ut enim et enim et.', 'Non suscipit voluptas error aut tempora reprehenderit suscipit fuga.', 139, 1, 1);
 INSERT INTO `propiedad` VALUES (102, 1, '123et112x1c235', 'j1q23rg22y34m', 'Apt. 670', 734, 254, 1, 6365038.00, 1130253.00, 4292683.00, 9312982.00, 2851052.00, '1977-04-26', '2014-10-09', '2015-01-24', '1997-11-26', '2003-12-12', '1978-07-23', '2013-08-19', '1990-09-17', '2003-02-09', '1234oi', 5, NULL, NULL, 2, 849473.00, NULL, 1, 5136.00, 1, 1, 1, 'Fugiat magni aliquam eveniet illo vel nesciunt molestiae.', 'Velit consequatur voluptate doloribus repellat voluptas corporis.', 175, 1, NULL);
 INSERT INTO `propiedad` VALUES (103, 1, '123nl112a1s235', 'c1l23yf22e34n', 'Suite 034', 690, 440, 0, 7100704.00, 1784143.00, 5715489.00, 5903471.00, 1365432.00, '2016-03-20', '1975-09-07', '2003-09-05', '2006-07-03', '1993-05-30', '2017-08-03', '1983-10-03', '1991-01-19', '1991-12-02', '1234tn', 1, NULL, NULL, 8, 556503.00, NULL, 1, 8310.00, 0, 1, 0, 'Nam quam amet illum qui laborum.', 'Quae voluptatem eum aut molestias ratione.', 149, 0, NULL);
 INSERT INTO `propiedad` VALUES (104, 1, '123qz112j1w235', 'y1t23je22u34s', 'Apt. 489', 416, 399, 0, 223344.00, 3972846.00, 8591456.00, 3461812.00, 6730730.00, '1985-10-15', '1979-08-01', '2003-09-09', '1977-08-16', '2014-10-05', '1983-03-25', '1972-07-09', '2017-03-09', '1987-09-20', '1234ko', 5, NULL, NULL, 8, 979969.00, NULL, 3, 5114.00, 1, 0, 1, 'Soluta maiores aliquam deleniti sed.', 'Aut perferendis mollitia provident velit quos.', 167, 0, NULL);
@@ -1749,6 +1758,9 @@ INSERT INTO `propiedad` VALUES (216, 1, '2323', '2323', '232k', 23323, 232323, 1
 INSERT INTO `propiedad` VALUES (217, 1, '1234', '1234123', '12341234', 124124, 1234234, 1, NULL, NULL, NULL, NULL, NULL, '2019-11-12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 5, NULL, 2, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, 220, NULL, NULL);
 INSERT INTO `propiedad` VALUES (218, 1, 'Fol', 'Plan', 'Casa 10', 10000, 10000, 1, 5.00, 6.00, 1.00, 2.00, 0.00, '2019-11-18', '2019-11-13', '2019-11-14', '2019-11-14', NULL, '2019-11-22', '2019-11-14', '2019-11-15', '2019-11-14', 'REf', 1, NULL, NULL, 2, 3.00, 'asdf', 1, 4.00, 1, 1, 1, 'coments', 'asdfasdf', 226, 1, 1);
 INSERT INTO `propiedad` VALUES (219, 1, 'adsf', 'asdf', '2341243', 1234124, 12341234, 1, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 1, NULL, NULL, 2, 0.00, '', 1, 0.00, 0, 0, 0, '', '', 230, 0, 0);
+INSERT INTO `propiedad` VALUES (220, 1, '3242', '234', '', 234, 234, 1, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 1, NULL, NULL, 2, 0.00, '', 1, 0.00, 0, 0, 0, '', '', 231, 0, 0);
+INSERT INTO `propiedad` VALUES (221, 1, '123123', '12312', '', 3000, 2000, 1, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 1, NULL, NULL, 2, 0.00, '', 1, 0.00, 0, 0, 0, '', '', 232, 0, 0);
+INSERT INTO `propiedad` VALUES (222, 1, 'asdfasd', 'asdfadf', '', 2000, 1000, 1, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 1, NULL, NULL, 2, 0.00, '', 1, 0.00, 0, 0, 0, '', '', 233, 0, 0);
 COMMIT;
 
 -- ----------------------------

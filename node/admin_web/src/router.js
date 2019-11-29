@@ -51,6 +51,12 @@ let router = new Router({
           meta: { logued: true },
         },
         {
+          path: "edit-property/:property_id",
+          name: "Editar una propiedad",
+          component: AddProperty,
+          meta: { logued: true },
+        },
+        {
           path: "vehicles",
           name: "Vehiculos",
           component: Vehicles,

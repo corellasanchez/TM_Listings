@@ -50,6 +50,7 @@
     </md-card-content>
   </md-card>
 </template>
+
 <script>
 import BaseApiService from "@/services/Base";
 
@@ -60,11 +61,25 @@ export default {
       type: String,
       default: ""
     },
-    direccion: {},
-    propiedad: {}
+    direccion: {
+      type: Object,
+      default: {}
+    },
+    propiedad: {},
+    isUpdating: Boolean
   },
-  async mounted() {
-    this.getPaises();
+  watch: {
+    direccion: {
+      handler(direccion) {
+        if (this.firstLoad) {
+          if (this.isUpdating) {
+            this.preloadedAddress = Object.assign({}, direccion);
+          }
+          this.getPaises();
+          this.firstLoad = false;
+        }
+      }
+    }
   },
   data() {
     return {
@@ -77,11 +92,13 @@ export default {
       distritoService: new BaseApiService("distrito"),
       corregimientoService: new BaseApiService("corregimiento"),
       distritoLabel: "Distrito",
-      corregimientoLabel: "Corregimiento"
+      corregimientoLabel: "Corregimiento",
+      firstLoad: true,
+      preloadedAddress: {}
     };
   },
   methods: {
-    async getPaises() {
+    async getPaises(preloadId) {
       let params = {
         args: "",
         pageSize: 100,
@@ -91,52 +108,70 @@ export default {
       };
       let paises = await this.paisService.list(params);
       this.paises = paises.data.data;
+
       if (this.paises) {
-        this.direccion.pais_id = this.paises[0].id;
+        if (this.preloadedAddress.pais_id) {
+          this.direccion.pais_id = this.preloadedAddress.pais_id;
+          this.preloadedAddress.pais_id = null;
+        } else {
+          this.direccion.pais_id = this.paises[0].id;
+        }
       }
     },
     async getProvincias() {
       let params = {
         args: "pais_id:" + this.direccion.pais_id,
-        pageSize: 100,
-        currentPage: 1,
         orderBy: "nombre",
         sortOrder: "asc"
       };
-      let provincias = await this.provinciaService.list(params);
-      this.provincias = provincias.data.data;
+      let provincias = await this.provinciaService.find(params);
+      this.provincias = provincias.data;
       if (this.provincias) {
-        this.direccion.provincia_id = this.provincias[0].id;
+        if (this.preloadedAddress.provincia_id) {
+          this.direccion.provincia_id = this.preloadedAddress.provincia_id;
+          this.preloadedAddress.provincia_id = null;
+        } else {
+          this.direccion.provincia_id = this.provincias[0].id;
+        }
       }
     },
     async getDistritos() {
       let params = {
         args: "provincia_id:" + this.direccion.provincia_id,
-        pageSize: 100,
-        currentPage: 1,
         orderBy: "nombre",
         sortOrder: "asc"
       };
-      let distritos = await this.distritoService.list(params);
-      this.distritos = distritos.data.data;
+
+      let distritos = await this.distritoService.find(params);
+
+      this.distritos = distritos.data;
       if (this.distritos) {
-        this.direccion.distrito_id = this.distritos[0].id;
+        if (this.preloadedAddress.distrito_id) {
+          this.direccion.distrito_id = this.preloadedAddress.distrito_id;
+          this.preloadedAddress.distrito_id = null;
+        } else {
+          this.direccion.distrito_id = this.distritos[0].id;
+        }
       }
     },
     async getCorregimientos() {
       let params = {
         args: "distrito_id:" + this.direccion.distrito_id,
-        pageSize: 100,
-        currentPage: 1,
         orderBy: "nombre",
         sortOrder: "asc"
       };
-      let corregimientos = await this.corregimientoService.list(params);
-      this.corregimientos = corregimientos.data.data;
+      let corregimientos = await this.corregimientoService.find(params);
+      this.corregimientos = corregimientos.data;
       if (this.corregimientos) {
-        this.direccion.corregimiento_id = this.corregimientos[0].id;
+        if (this.preloadedAddress.corregimiento_id) {
+          this.direccion.corregimiento_id = this.preloadedAddress.corregimiento_id;
+          this.preloadedAddress.corregimiento_id = null;
+        } else {
+          this.direccion.corregimiento_id = this.corregimientos[0].id;
+        }
       }
     },
+    preloadAddress() {},
     onPaisChange(event) {
       this.getProvincias();
       switch (this.direccion.pais_id) {
@@ -161,5 +196,6 @@ export default {
   }
 };
 </script>
+
 <style lang="scss">
 </style>

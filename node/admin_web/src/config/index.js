@@ -3,6 +3,7 @@ module.exports = {
     API_URL: "localhost",
     API_PORT: 4000,
     API_PROTOCOL: "http",
+    IMAGE_FOLDER: "images",
     LOCALE: {
       startYear: 1900,
       endYear: 2099,

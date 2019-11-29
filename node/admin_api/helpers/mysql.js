@@ -25,11 +25,23 @@ function create(args, table) {
   return runQuery(sql, values);
 }
 
-function find(args, table) {
-  let fields = Object.keys(args);
-  let values = Object.values(args);
-  let valueMarks = fields.map(field => `${field} = ?`);
-  let sql = `SELECT * FROM ${table} WHERE ${valueMarks}`;
+function find(params, table) {
+  let parsedArgs = {};
+  let whereStatement = '', values = [];
+  let { args, orderBy, sortOrder } = params;
+  let orderByStatement = (orderBy) ? (sortOrder) ? `ORDER BY ${orderBy} ${sortOrder}` : `ORDER BY ${orderBy} ASC` : '';
+  if (args) {
+    args.split(';').forEach(arg => {
+      let tempArg = arg.split(':');
+      parsedArgs[tempArg[0]] = tempArg[1];
+    });
+    let fields = Object.keys(parsedArgs);
+    values = Object.values(parsedArgs);
+    fields.map(field => {
+      (whereStatement === '') ? whereStatement += `WHERE ${field} = ?` : whereStatement += ` AND ${field} = ?`;
+    });
+  }
+  sql = `SELECT * FROM ${table} ${whereStatement} ${orderByStatement}`;
   return runQuery(sql, values);
 }
 

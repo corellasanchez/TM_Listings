@@ -42,12 +42,14 @@ export default {
       type: String,
       default: ""
     },
-    cliente: {}
+    cliente: {},
+    propiedad: {}
   },
   data() {
     return {};
   },
-  async mounted() {},
+  async mounted() {
+  },
   methods: {},
   components: {}
 };
