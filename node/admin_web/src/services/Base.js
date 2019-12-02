@@ -20,6 +20,10 @@ export default class BaseApiService {
     return api.post(`${this.path}`, JSON.stringify(params)).then(res => res).catch(err => err.response);
   }
 
+  update(id, params) {
+    return api.patch(`${this.path}?id=${id}`, JSON.stringify(params)).then(res => res).catch(err => err.response);
+  }
+
   delete(params) {
      return api.delete(`${this.path}/?${params}`).then(res => res).catch(err => err.response);
   }

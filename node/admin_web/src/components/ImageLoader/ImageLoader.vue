@@ -5,7 +5,7 @@
         </md-card-header>
         <md-card-content>
             <p v-if="images.length > 0">Haga click o arrastre las imágenes al recuadro de abajo para agregar más</p>
-            <vue-dropzone ref="vueDropzone" id="dropzone" :options="dropzoneOptions" @vdropzone-success="fileUploaded" @vdropzone-removed-file="fileRemoved"></vue-dropzone>
+            <vue-dropzone ref="vueDropzone" id="dropzone" :options="dropzoneOptions" @vdropzone-success="fileUploaded" @vdropzone-removed-file="fileRemoved" :destroyDropzone="false"></vue-dropzone>
             <small class="md-helper-text">** Los cambios en las imágenes se ven reflejados inmediatamente </small>
         </md-card-content>
     </md-card>

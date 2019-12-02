@@ -2,7 +2,7 @@
     <div class="content">
         <div class="md-layout">
             <div class="md-layout-item md-medium-size-100 md-size-66">
-                <property-details v-bind:data-background-color="headerBackground" v-bind:propiedad="propiedad"></property-details>
+                <property-details v-bind:data-background-color="headerBackground" v-bind:propiedad="propiedad" v-bind:isUpdating="isUpdating"></property-details>
             </div>
             <div class="md-layout-item md-medium-size-100 md-size-33">
                 <property-address v-bind:data-background-color="headerBackground" v-bind:direccion="direccion" v-bind:propiedad="propiedad" v-bind:isUpdating="isUpdating"></property-address>
@@ -53,7 +53,8 @@ export default {
             direccionService: new BaseApiService("direccion"),
             personaService: new BaseApiService("persona"),
             imagenes_propiedadService: new BaseApiService("imagenes_propiedad"),
-            isUpdating: false
+            isUpdating: false,
+            originalPropertyState: 0
         };
     },
     methods: {
@@ -121,8 +122,7 @@ export default {
             }
         },
 
-        updateProperty() {
-
+        async updateProperty() {
             let propiedad = Object.assign({}, this.propiedad);
 
             if (!this.checkRequiredFiles()) {
@@ -137,53 +137,57 @@ export default {
                 return;
             }
 
+            if (
+                this.cliente.cedula ||
+                this.cliente.nombre ||
+                this.cliente.apellido1 ||
+                this.cliente.apellido2 ||
+                this.cliente.email
+            ) {
+                if (!this.validateEmail(this.cliente.email) && this.cliente.email) {
+                    this.showError("Email del cliente no es válido");
+                    return;
+                }
+
+                // update client data
+                if (propiedad.cliente_id) {
+                    // update cliente
+                    let resultClient = await this.personaService.update(
+                        propiedad.cliente_id,
+                        this.cliente
+                    );
+                    propiedad.cliente_id = resultClient.data.id;
+                } else {
+                    // Add a new client
+                    let resultClient = await this.personaService.add(this.cliente);
+                    propiedad.cliente_id = resultClient.data.id;
+                }
+            }
+
+            // update address data
+            if (propiedad.direccion_id) {
+                let resultAddress = await this.direccionService.update(
+                    propiedad.direccion_id,
+                    this.direccion
+                );
+            }
+
+            if (this.originalPropertyState !== propiedad.propiedad_estado_id) {
+                propiedad.fecha_cambio_estado = this.getDate();
+            }
+
             // Change the date format before save the property
             propiedad = this.formatDates(propiedad);
 
-            // Add the client if exists
-            // if (
-            //   this.cliente.cedula ||
-            //   this.cliente.nombre ||
-            //   this.cliente.apellido1 ||
-            //   this.cliente.apellido2 ||
-            //   this.cliente.email
-            // ) {
-            //   if (!this.validateEmail(this.cliente.email) && this.cliente.email) {
-            //     this.showError("Email del cliente no es válido");
-            //     return;
-            //   }
-            //   let resultClient = await this.personaService.add(this.cliente);
-            //   this.propiedad.cliente_id = resultClient.data.id;
-            // }
+            // Edit the the property
+            let result = await this.propiedadService.update(propiedad.id, propiedad);
 
-            // this.direccion.fecha_creacion = this.getDate();
-
-            // Add the property address
-            // let resultDireccion = await this.direccionService.add(this.direccion);
-
-            // if (resultDireccion.data.success) {
-            //   propiedad.direccion_id = resultDireccion.data.id;
-            // } else {
-            //   this.showError(
-            //     "Error al agregar la direccion " + resultDireccion.data.error
-            //   );
-            //   return;
-            // }
-
-            // Creation date
-            // propiedad.fecha_cambio_estado = this.getDate();
-
-            // Add the property
-            //   let result = await this.propiedadService.add(propiedad);
-
-            //   if (result.data.success) {
-            //     let imagenesPropiedad = await this.addImages(result.data.id);
-            //     this.showInfo("Propiedad agregada con éxito");
-            //     this.resetProperty();
-            //   } else {
-            //     this.showError("Error al agregar la propiedad " + result.data.error);
-            //     return;
-            //   }
+            if (result.data.success) {
+                this.showInfo("Propiedad actualizada con éxito");
+            } else {
+                this.showError("Error al actualizada la propiedad " + result.data.error);
+                return;
+            }
         },
 
         checkRequiredFiles() {
@@ -270,7 +274,6 @@ export default {
             this.propiedad.anotaciones_especiales = "";
         },
         async loadPropertyData() {
-
             let params = {
                 args: "id:" + this.$route.params.property_id,
                 orderBy: "id",
@@ -278,6 +281,8 @@ export default {
             };
 
             let propertyData = (await this.propiedadService.find(params)).data[0];
+
+            this.originalPropertyState = propertyData.propiedad_estado_id;
 
             propertyData.fecha_avaluo = this.tolocalDateFormat(
                 propertyData.fecha_avaluo
@@ -397,8 +402,8 @@ export default {
         this.initProperty();
         if (this.$route.params.property_id) {
             this.loadPropertyData();
-        }else{
-         this.direccion = {};
+        } else {
+            this.direccion = {};
         }
     },
     components: {

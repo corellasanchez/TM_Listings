@@ -7,8 +7,14 @@ export const mixins = {
 
     // transforms the mysql date format YYYY-MM-DD to Locale format dd-MM-yyyy
     tolocalDateFormat(date) {
-      if(date){
+      if (date) {
         return this.$moment(date, "YYYY-MM-DD").format("DD-MM-YYYY");
+      }
+    },
+    // transforms the date format dd-MM-yyyy to Locale format YYYY-MM-DD
+    fromLocaltoMysql(date) {
+      if (date) {
+        return this.$moment(date, "DD-MM-YYYY").format("YYYY-MM-DD");
       }
     },
     booleanToString(boolean) {
@@ -25,6 +31,9 @@ export const mixins = {
         if (object[attribute] instanceof Date) {
           object[attribute] = this.mysqlDateFormat(object[attribute]);
         }
+        if (typeof object[attribute] === 'string' && object[attribute].toString().match(/\d{2}-\d{2}-\d{4}/)) {
+          object[attribute] = this.fromLocaltoMysql(object[attribute]);
+        }
       }
       return object;
     },
@@ -40,7 +49,7 @@ export const mixins = {
       return object;
     },
     getDate() {
-      this.$moment().format("YYYY-MM-DD");
+      return this.$moment().format("YYYY-MM-DD");
     },
     validateEmail(email) {
       var re = /\S+@\S+\.\S+/;
