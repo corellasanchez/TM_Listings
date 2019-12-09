@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 27/11/2019 20:53:11
+ Date: 08/12/2019 23:24:18
 */
 
 SET NAMES utf8mb4;
@@ -1158,7 +1158,7 @@ CREATE TABLE `direccion` (
   CONSTRAINT `fk_direccion_distrito1` FOREIGN KEY (`distrito_id`) REFERENCES `distrito` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_direccion_pais1` FOREIGN KEY (`pais_id`) REFERENCES `pais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_direccion_provincia1` FOREIGN KEY (`provincia_id`) REFERENCES `provincia` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=234 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=246 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of direccion
@@ -1297,6 +1297,18 @@ INSERT INTO `direccion` VALUES (230, NULL, NULL, 2, 8, 82, 482);
 INSERT INTO `direccion` VALUES (231, NULL, NULL, 2, 8, 82, 482);
 INSERT INTO `direccion` VALUES (232, NULL, NULL, 2, 8, 82, 482);
 INSERT INTO `direccion` VALUES (233, NULL, NULL, 2, 8, 82, 482);
+INSERT INTO `direccion` VALUES (234, 'Direccion exacta ', NULL, 2, 8, 82, 482);
+INSERT INTO `direccion` VALUES (235, NULL, NULL, 2, 8, 82, 482);
+INSERT INTO `direccion` VALUES (236, 'asdf', NULL, 1, 1, 12, 827);
+INSERT INTO `direccion` VALUES (237, 'a', NULL, 1, 2, 21, 121);
+INSERT INTO `direccion` VALUES (238, 'Itaba', NULL, 2, 9, 89, 534);
+INSERT INTO `direccion` VALUES (239, 'Direccion', NULL, 1, 2, 31, 210);
+INSERT INTO `direccion` VALUES (240, NULL, NULL, 2, 8, 82, 482);
+INSERT INTO `direccion` VALUES (241, NULL, NULL, 2, 8, 82, 482);
+INSERT INTO `direccion` VALUES (242, NULL, '2019-12-01', 2, 8, 82, 482);
+INSERT INTO `direccion` VALUES (243, NULL, '2019-12-01', 2, 8, 82, 482);
+INSERT INTO `direccion` VALUES (244, NULL, '2019-12-01', 2, 9, 86, 514);
+INSERT INTO `direccion` VALUES (245, NULL, '2019-12-02', 1, 5, 59, 365);
 COMMIT;
 
 -- ----------------------------
@@ -1505,22 +1517,24 @@ CREATE TABLE `imagenes_propiedad` (
   PRIMARY KEY (`id`),
   KEY `fk_imagenes_propiedad_propiedad1_idx` (`propiedad_id`),
   CONSTRAINT `fk_imagenes_propiedad_propiedad1` FOREIGN KEY (`propiedad_id`) REFERENCES `propiedad` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of imagenes_propiedad
 -- ----------------------------
 BEGIN;
-INSERT INTO `imagenes_propiedad` VALUES (1, '856c3d42-f471-4b24-a51f-7c0828e1d0a8.jpg', 216, 0);
-INSERT INTO `imagenes_propiedad` VALUES (2, 'dbdb9b49-3a5a-43ff-a7e7-8abab59b67eb.jpg', 217, 0);
-INSERT INTO `imagenes_propiedad` VALUES (3, '2f026d5b-e9ee-4a77-8b27-f1e299ccb1d9.jpg', 217, 0);
-INSERT INTO `imagenes_propiedad` VALUES (4, 'e340ad41-f0d2-4733-bc01-1b7160b5876c.jpg', 218, 0);
-INSERT INTO `imagenes_propiedad` VALUES (5, '124f1840-a89c-41ce-801d-4d6ed81a1238.jpg', 218, 0);
-INSERT INTO `imagenes_propiedad` VALUES (6, 'f6c07f82-8104-4fa8-a951-55cc2b79cffd.jpg', 221, 0);
-INSERT INTO `imagenes_propiedad` VALUES (7, '0d542b7f-1c1f-471f-81c6-9790cb08e771.jpg', 221, 0);
-INSERT INTO `imagenes_propiedad` VALUES (28, 'f4c0b89d-90ad-424b-b7db-16ea4559fbb8.jpg', 222, 202981);
-INSERT INTO `imagenes_propiedad` VALUES (29, '8555b7e9-71b2-4062-96df-b578b7350b31.jpg', 222, 172829);
-INSERT INTO `imagenes_propiedad` VALUES (30, '344fd859-288e-47a1-9b17-13e962e13a14.jpg', 222, 170128);
+INSERT INTO `imagenes_propiedad` VALUES (18, '4de024c8-9582-4452-a379-24fa8c979aa3.jpg', 227, 149907);
+INSERT INTO `imagenes_propiedad` VALUES (19, '6f4a9a0c-921f-4b97-a859-0cb159f7f105.jpg', 227, 114341);
+INSERT INTO `imagenes_propiedad` VALUES (20, '2de2651c-49aa-448c-bf3a-c09075168098.jpg', 227, 158797);
+INSERT INTO `imagenes_propiedad` VALUES (21, 'fd3295b9-a4e1-4a06-b8e9-4e1865af0107.jpg', 228, 158797);
+INSERT INTO `imagenes_propiedad` VALUES (22, '7c4435b3-35a8-437e-8a94-a1e282a6d1e1.jpg', 228, 114341);
+INSERT INTO `imagenes_propiedad` VALUES (29, '5837755e-a298-4c7d-be83-47fe03562b8b.jpg', 233, 149907);
+INSERT INTO `imagenes_propiedad` VALUES (30, '365f01e0-7a65-4d93-89a5-06df4734e67b.jpg', 233, 114341);
+INSERT INTO `imagenes_propiedad` VALUES (31, 'ffe00fba-0bf6-4ec9-aa53-5e2084ba2042.jpg', 233, 158797);
+INSERT INTO `imagenes_propiedad` VALUES (32, '442aabf8-9160-45f2-9677-b4e81aa5bc58.jpg', 233, 179803);
+INSERT INTO `imagenes_propiedad` VALUES (40, 'dc4f612a-9820-498b-9c13-33597afbb34f.jpg', 234, 73063);
+INSERT INTO `imagenes_propiedad` VALUES (41, '708d96e9-7898-4743-9430-60d511bfd133.jpg', 234, 148984);
+INSERT INTO `imagenes_propiedad` VALUES (45, 'eba68486-cb8a-457d-aa7a-80e48f7beaa3.jpg', 233, 158797);
 COMMIT;
 
 -- ----------------------------
@@ -1555,7 +1569,7 @@ CREATE TABLE `persona` (
   `apellido2` varchar(100) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of persona
@@ -1576,6 +1590,14 @@ INSERT INTO `persona` VALUES (12, NULL, NULL, NULL, NULL, 'asd@aad.com');
 INSERT INTO `persona` VALUES (13, NULL, NULL, NULL, NULL, 'asd@aad.com');
 INSERT INTO `persona` VALUES (14, NULL, NULL, NULL, NULL, 'asdf@asd.com');
 INSERT INTO `persona` VALUES (15, NULL, NULL, NULL, NULL, 'asdf@asdf.com');
+INSERT INTO `persona` VALUES (16, '12345', 'Nombre', 'Apellido', 'Segundo ', 'email@nas.com');
+INSERT INTO `persona` VALUES (17, '1234', '12431234', 'asdf', 'asdf', 'asd@asdf.com');
+INSERT INTO `persona` VALUES (18, '123123', 'Name', 'App', 'Sapp', 'sad@asdf.com');
+INSERT INTO `persona` VALUES (19, 'rolex', 'Juan', 'root2221', 'root2221', 'root@aad11f.com');
+INSERT INTO `persona` VALUES (20, '123123', NULL, NULL, NULL, NULL);
+INSERT INTO `persona` VALUES (21, '123', '123', '123', NULL, '123@asd.com');
+INSERT INTO `persona` VALUES (22, 'asdf', 'peter', NULL, NULL, 'asd@as.com');
+INSERT INTO `persona` VALUES (23, '2211223', NULL, NULL, NULL, '122@ad.com');
 COMMIT;
 
 -- ----------------------------
@@ -1633,7 +1655,7 @@ CREATE TABLE `propiedad` (
   CONSTRAINT `fk_propiedad_propiedad_estado1` FOREIGN KEY (`propiedad_estado_id`) REFERENCES `estado` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_propiedad_propiedad_tipo1` FOREIGN KEY (`propiedad_tipo_id`) REFERENCES `propiedad_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_propiedad_sociedad1` FOREIGN KEY (`sociedad_id`) REFERENCES `sociedad` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=223 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=235 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of propiedad
@@ -1761,6 +1783,18 @@ INSERT INTO `propiedad` VALUES (219, 1, 'adsf', 'asdf', '2341243', 1234124, 1234
 INSERT INTO `propiedad` VALUES (220, 1, '3242', '234', '', 234, 234, 1, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 1, NULL, NULL, 2, 0.00, '', 1, 0.00, 0, 0, 0, '', '', 231, 0, 0);
 INSERT INTO `propiedad` VALUES (221, 1, '123123', '12312', '', 3000, 2000, 1, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 1, NULL, NULL, 2, 0.00, '', 1, 0.00, 0, 0, 0, '', '', 232, 0, 0);
 INSERT INTO `propiedad` VALUES (222, 1, 'asdfasd', 'asdfadf', '', 2000, 1000, 1, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 1, NULL, NULL, 2, 0.00, '', 1, 0.00, 0, 0, 0, '', '', 233, 0, 0);
+INSERT INTO `propiedad` VALUES (223, 1, '111', 'P111', 'U01', 2000, 1000, 1, 1.00, 2.00, 1.00, 2.00, 3.00, '2019-11-01', '2019-11-01', '2019-11-02', '2019-11-02', NULL, '2019-11-05', '2019-11-01', '2019-11-04', '2019-11-03', '#REF111', 1, NULL, NULL, 2, 3.00, 'Dato de Adjudicacion', 1, 4.00, 1, 1, 1, 'Comentarios', 'Anotaciones', 234, 1, 1);
+INSERT INTO `propiedad` VALUES (224, 1, 'asdf', 'asdf', '', 2000, 1000, 1, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'asdf', 1, NULL, NULL, 2, 0.00, '', 1, 0.00, 0, 0, 0, '', '', 235, 0, 0);
+INSERT INTO `propiedad` VALUES (225, 1, 'foliop', 'planop', '94d', 2000, 1000, 1, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '#ref', 1, 18, NULL, 2, 0.00, '', 1, 0.00, 0, 0, 0, '', '', 236, 0, 0);
+INSERT INTO `propiedad` VALUES (226, 1, 'asdf', 'asdf', 'aa', 2000, 299, 1, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 1, NULL, NULL, 2, 0.00, '', 1, 0.00, 0, 0, 0, '', '', 237, 0, 0);
+INSERT INTO `propiedad` VALUES (227, 1, 'asdf', 'asdf', '20i', 2000, 299, 1, 1.00, 2.00, 1.00, 2.00, 4.00, '2019-11-03', '2019-11-04', '2019-11-05', '2019-11-03', NULL, '2019-11-09', '2019-11-01', '2019-11-08', '2019-11-07', '#ref', 1, 19, NULL, 2, 3.00, 'dato', 1, 6.00, 1, 1, 1, 'Comentario', 'Ano', 238, 0, 1);
+INSERT INTO `propiedad` VALUES (228, 1, '1231', '111', 'unidad22', 1000, 200, 1, 100000.00, 120000.00, 12000.00, 300000.00, 90000.00, '2019-12-10', '2019-12-01', '2019-12-03', '2019-12-02', NULL, NULL, '2019-12-01', NULL, NULL, 'REf123', 1, NULL, NULL, 2, 12.00, 'Datos', 1, 123123.00, 1, 0, 1, 'Comentarios', 'anotaciones', 239, 1, 0);
+INSERT INTO `propiedad` VALUES (229, 1, '120', '120', '', 2000, 123, 1, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dre', 1, NULL, NULL, 2, 0.00, '', 1, 0.00, 0, 0, 0, '', '', 240, 0, 0);
+INSERT INTO `propiedad` VALUES (230, 1, 'qweq', 'qwe', '', 1000, 123, 1, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 1, NULL, NULL, 2, 0.00, '', 1, 0.00, 0, 0, 0, '', '', 241, 0, 0);
+INSERT INTO `propiedad` VALUES (231, 1, '23k', '12312k', '', 1000, 200, 1, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, '2019-12-01', NULL, NULL, NULL, NULL, '', 3, NULL, NULL, 3, 0.00, '', 1, 0.00, 0, 0, 0, '', '', 242, 0, 0);
+INSERT INTO `propiedad` VALUES (232, 1, '1213', '123123', '', 1000, 123, 1, 0.00, 0.00, 0.00, 0.00, 0.00, NULL, NULL, NULL, NULL, '2019-12-01', NULL, NULL, NULL, NULL, '', 1, NULL, NULL, 1, 0.00, '', 1, 0.00, 0, 0, 0, '', '', 243, 0, 0);
+INSERT INTO `propiedad` VALUES (233, 1, '23424', '234234', '', 1001, 200, 1, 1000.00, 600000.00, 0.00, 0.00, 2000000.00, '2019-12-02', NULL, NULL, NULL, '2019-12-02', NULL, NULL, NULL, '2019-12-04', '', 2, 22, NULL, 5, 0.00, '', 5, 0.00, 0, 0, 1, '', '', 244, 1, 1);
+INSERT INTO `propiedad` VALUES (234, 1, 'adsf', 'asdfasdf', '', 2000, 120, 1, 0.00, 0.00, 0.00, 0.00, 1000000.00, NULL, NULL, NULL, '2019-12-10', '2019-12-02', '2019-12-11', '2019-12-03', '2019-12-03', '2019-12-03', '', 1, 23, NULL, 6, 0.00, '', 1, 0.00, 1, 0, 1, '', '', 245, 1, 1);
 COMMIT;
 
 -- ----------------------------
@@ -1947,6 +1981,7 @@ CREATE TABLE `vehiculo` (
   `detalle` varchar(255) DEFAULT NULL,
   `comentarios` varchar(255) DEFAULT NULL,
   `vehiculo_transmision_id` int(11) NOT NULL,
+  `fecha_cambio_estado` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_carro_sociedad_idx` (`sociedad_id`),
   KEY `fk_vehiculo_vehiculo_marca1_idx` (`vehiculo_marca_id`),
@@ -1966,106 +2001,106 @@ CREATE TABLE `vehiculo` (
 -- Records of vehiculo
 -- ----------------------------
 BEGIN;
-INSERT INTO `vehiculo` VALUES (1, 1, NULL, 'u937n05e1', '', '500366', NULL, 19, 9, NULL, 'rfv7493140407950673', 'ute4732x12624067659', 2004, 1786, 'blanco', ' 7 personas', 64057378, 73207599, 9353226, 6912844, '1991-09-08', '1970-10-28', 3, 7, 1258, 1, 1, 2, 0, NULL, NULL, '1975-11-22', 'Doloremque sunt cupiditate ut et quibusdam delectus nesciunt minima aut temporibus adipisci consequuntur reprehenderit.', 'Voluptatem qui perspiciatis nisi tempore sint nihil et et est ut consequuntur aut iure officiis porro quia.', 2);
-INSERT INTO `vehiculo` VALUES (2, 1, NULL, 'y697l54s1', '', '486376', NULL, 54, 9, NULL, 'gju7876609126005559', 'qws1998t95257220766', 2016, 1841, 'rojo', ' 5 personas', 45465210, 80467252, 7637230, 4556288, '2013-11-22', '1999-02-28', 5, 6, 1581, 1, 0, 4, 1, NULL, NULL, '1984-12-02', 'Neque minima aut qui et magnam enim id commodi qui ipsum a sunt.', 'Enim totam temporibus cupiditate delectus nemo eius tenetur rerum consequuntur consectetur eius voluptates quae.', 2);
-INSERT INTO `vehiculo` VALUES (3, 1, NULL, 'p655m26y6', '', '753412', NULL, 32, 14, NULL, 'sce4131167727037798', 'szv8206y61115818159', 2017, 1884, 'verde', ' 5 personas', 43970114, 75085952, 9000917, 5374690, '2013-08-10', '2010-07-10', 7, 6, 1727, 1, 0, 4, 0, NULL, NULL, '1985-02-18', 'Porro ipsam quis autem fugit et sed.', 'Amet tenetur aspernatur sunt alias et et et omnis omnis est eius nihil velit ipsa labore.', 2);
-INSERT INTO `vehiculo` VALUES (4, 1, NULL, 't996d74w4', '', '812283', NULL, 7, 1, NULL, 'uqs3650736263269227', 'tca5384k41168841169', 2018, 1236, 'morado', '4 personas', 85043954, 67601964, 6933023, 5772044, '1984-04-07', '2016-06-11', 6, 7, 1947, 3, 0, 3, 1, NULL, NULL, '1976-05-23', 'Aut cumque natus eaque dicta cum velit omnis eligendi excepturi cupiditate.', 'Molestiae omnis aut nulla et architecto illo ex harum officiis sit nobis commodi nesciunt nostrum eum placeat sapiente delectus rerum.', 1);
-INSERT INTO `vehiculo` VALUES (5, 1, NULL, 'b689p02q8', '', '574990', NULL, 72, 6, NULL, 'fco8978749173712982', 'dfx6446d55128830372', 2004, 1785, 'celeste', ' 8 personas', 46833701, 82577237, 7345618, 1520266, '2016-01-10', '1992-11-11', 4, 4, 1164, 2, 1, 2, 1, NULL, NULL, '1994-10-31', 'Dolor vel inventore est saepe dolores soluta cum incidunt doloremque.', 'Ut a ducimus aliquid delectus est voluptatum et consequatur ducimus consequatur quasi laborum qui alias.', 1);
-INSERT INTO `vehiculo` VALUES (6, 1, NULL, 'u090z61m7', '', '909473', NULL, 64, 5, NULL, 'drq4571766321829172', 'qyi4788z37071905276', 2011, 1413, 'celeste', '4 personas', 93461284, 20567875, 5860419, 4184876, '1979-06-19', '1996-10-09', 4, 6, 1844, 1, 0, 4, 0, NULL, NULL, '1979-04-25', 'Voluptas consectetur vero illum aut veniam impedit est expedita quisquam laborum quod dicta eligendi.', 'Et sit perspiciatis commodi quibusdam voluptate ut eum voluptatem asperiores rerum ut fuga velit labore.', 1);
-INSERT INTO `vehiculo` VALUES (7, 1, NULL, 'c885p00u4', '', '243609', NULL, 67, 1, NULL, 'yek0208625188021698', 'ofy3299m04823081577', 2001, 1953, 'amarillo', '4 personas', 31151861, 96791647, 8889028, 5567029, '1991-05-20', '1989-01-18', 4, 7, 1382, 3, 1, 2, 0, NULL, NULL, '1975-05-20', 'Non reiciendis ipsa vel consectetur doloremque hic vitae soluta tenetur vel quae fuga.', 'Ex corrupti autem tempora voluptas libero veritatis aliquid necessitatibus dolore.', 1);
-INSERT INTO `vehiculo` VALUES (8, 1, NULL, 'x926o54n5', '', '402228', NULL, 26, 9, NULL, 'nsg5139120248847878', 'zau9167v84360425402', 2018, 1435, 'celeste', ' 8 personas', 10593513, 59157533, 9581030, 4554573, '1982-07-13', '2000-01-16', 3, 5, 1709, 1, 0, 2, 0, NULL, NULL, '1987-05-19', 'Nobis ducimus ut sit saepe eveniet est inventore.', 'Facere voluptas est tempore debitis iusto nihil officia animi officia voluptatum nisi.', 2);
-INSERT INTO `vehiculo` VALUES (9, 1, NULL, 'f357r64l1', '', '235855', NULL, 30, 3, NULL, 'rof9505421492033402', 'ifh0900t04454221981', 2000, 1454, 'rojo', ' 5 personas', 44121691, 11082284, 4774258, 8572036, '2017-08-18', '1984-02-24', 3, 4, 1868, 1, 1, 4, 0, NULL, NULL, '1974-08-21', 'Minus velit sit quis est necessitatibus odio.', 'Voluptates reiciendis reiciendis sint est autem iusto sunt quasi et culpa asperiores possimus ipsam.', 2);
-INSERT INTO `vehiculo` VALUES (10, 1, NULL, 'n715x13t4', '', '580997', NULL, 21, 6, NULL, 'vup2076465789511220', 'ftm6354k74114322736', 2012, 1852, 'verde', ' 8 personas', 98101496, 73815546, 5307450, 7147344, '2007-07-06', '2002-05-26', 5, 5, 1880, 1, 1, 3, 0, NULL, NULL, '1989-11-17', 'Cumque optio sapiente beatae nulla rem quos placeat perferendis dolores saepe fugiat dolores.', 'Est ut et officiis mollitia aut perferendis temporibus provident necessitatibus veniam porro molestiae sunt qui sed voluptatem magni mollitia id odit est.', 1);
-INSERT INTO `vehiculo` VALUES (11, 1, NULL, 'y721w21c2', '', '474264', NULL, 14, 4, NULL, 'jtr1825594593551544', 'hvs3412m05739876825', 2009, 1783, 'blanco', '4 personas', 24564658, 16678729, 2862581, 8815777, '1998-03-03', '1985-11-18', 4, 6, 1420, 2, 0, 4, 0, NULL, NULL, '1986-04-08', 'Explicabo fugiat magnam et a minima voluptas iste ut sit.', 'Dolores velit est quo sed ipsum enim qui harum asperiores qui repudiandae et natus in beatae sapiente blanditiis itaque.', 2);
-INSERT INTO `vehiculo` VALUES (12, 1, NULL, 'l028y62o1', '', '640669', NULL, 24, 7, NULL, 'any0606381161119260', 'bua6400b11774249642', 2001, 1517, 'celeste', ' 5 personas', 92778078, 13486204, 6026242, 2185148, '1993-11-09', '1999-05-26', 7, 4, 1224, 2, 1, 4, 0, NULL, NULL, '1988-05-25', 'Non voluptatem asperiores eaque quo laborum ad qui corporis assumenda id.', 'Cum autem molestias aut provident impedit sit maxime nam architecto omnis facilis corrupti culpa eos sint totam temporibus.', 1);
-INSERT INTO `vehiculo` VALUES (13, 1, NULL, 'y371f38t1', '', '869228', NULL, 84, 2, NULL, 'chy9887935729413887', 'kgo7858o30874996008', 2017, 1634, 'azul', ' 5 personas', 15293637, 25645980, 9509117, 3893026, '1978-09-06', '1998-06-13', 1, 6, 1198, 2, 1, 2, 0, NULL, NULL, '1996-03-06', 'Provident hic earum animi quia et voluptatem et commodi adipisci saepe.', 'Non consequuntur consequatur optio dolores et quas esse et ipsum quia sed consequuntur.', 2);
-INSERT INTO `vehiculo` VALUES (14, 1, NULL, 'l268d99t1', '', '472525', NULL, 98, 4, NULL, 'wpj6869270797068566', 'ejk0662r35082865906', 2010, 1914, 'celeste', ' 8 personas', 26415337, 48570082, 7315860, 7052919, '1973-06-29', '2011-08-02', 8, 7, 1775, 4, 1, 2, 1, NULL, NULL, '1992-01-17', 'Perspiciatis quia dolorem velit ducimus ea aut ut optio labore vitae.', 'Et nobis qui qui aut sint et assumenda fugiat suscipit consequatur magnam eum ratione eos ab.', 1);
-INSERT INTO `vehiculo` VALUES (15, 1, NULL, 'p255g13x2', '', '476923', NULL, 15, 5, NULL, 'mlf5561093421067537', 'qqg7254h50283082485', 2011, 1547, 'celeste', '4 personas', 11946038, 64867414, 8421085, 9081947, '1979-09-01', '2003-11-07', 2, 5, 1392, 1, 1, 4, 1, NULL, NULL, '1996-12-19', 'Nulla quis voluptatem voluptas voluptatem ab maxime iusto iste non deserunt.', 'Nam quis quidem aliquam incidunt velit sint aut repellat at molestiae ut repudiandae fugit excepturi dolorem.', 2);
-INSERT INTO `vehiculo` VALUES (16, 1, NULL, 'o882b12j3', '', '283464', NULL, 53, 1, NULL, 'fha9254091904944868', 'mbe6154a77274161646', 2011, 1806, 'amarillo', ' 7 personas', 64306229, 99686875, 2103595, 7690689, '1970-10-07', '1975-03-08', 1, 7, 1529, 4, 0, 2, 0, NULL, NULL, '2002-02-04', 'Perspiciatis id mollitia maxime sit at fugiat magnam alias odio maiores asperiores et.', 'Numquam eos ut consequatur accusamus molestiae quidem facere ipsa omnis cumque aut velit dignissimos id et voluptas est assumenda et.', 1);
-INSERT INTO `vehiculo` VALUES (17, 1, NULL, 's897s34q7', '', '462941', NULL, 56, 12, NULL, 'swy6094145027268365', 'ysb1954s56711325831', 2010, 1644, 'azul', '4 personas', 97872467, 64289877, 7287441, 8463030, '1992-08-26', '2002-05-29', 6, 6, 1715, 2, 1, 4, 1, NULL, NULL, '1972-04-25', 'Quidem voluptatem quo totam fugit commodi dicta neque.', 'Consequuntur dolorum vel hic facilis autem beatae quasi id eos consequatur non possimus unde ut veritatis iure aliquid eos nisi.', 2);
-INSERT INTO `vehiculo` VALUES (18, 1, NULL, 'b291q72w6', '', '915124', NULL, 115, 2, NULL, 'xhm5481536440489205', 'xaq0341q10236481835', 2004, 1880, 'negro', ' 8 personas', 42658071, 34366965, 6661687, 7601467, '1995-05-26', '1974-02-22', 8, 4, 1056, 4, 0, 3, 0, NULL, NULL, '1997-12-07', 'Rerum libero ut fuga est blanditiis quas.', 'Quod repudiandae quidem provident ratione ut corrupti sed sint iusto consequatur ut.', 2);
-INSERT INTO `vehiculo` VALUES (19, 1, NULL, 'r597v30s3', '', '391776', NULL, 88, 2, NULL, 'nca6018270291082299', 'vvi4442o52204325012', 2017, 1738, 'morado', ' 5 personas', 78340395, 48994079, 9039790, 8984799, '1976-06-10', '1980-03-16', 5, 4, 1226, 3, 1, 4, 1, NULL, NULL, '2018-09-15', 'Aspernatur eos beatae sunt perspiciatis voluptate ex in suscipit doloribus animi atque error.', 'Praesentium doloribus accusantium iure ratione doloribus animi natus doloribus voluptas reprehenderit quae.', 1);
-INSERT INTO `vehiculo` VALUES (20, 1, NULL, 'h088k13n8', '', '618043', NULL, 99, 5, NULL, 'vnw6626581593767267', 'pkg4789k97758110538', 2012, 1686, 'verde', ' 7 personas', 71201646, 53623398, 1814403, 6463506, '1988-11-11', '1975-08-11', 1, 8, 1750, 2, 1, 4, 0, NULL, NULL, '2002-08-30', 'Et ea amet amet quisquam voluptate enim culpa natus doloribus.', 'Autem omnis et eos asperiores labore qui rem vel minus sequi sequi maxime et quibusdam ut explicabo ut nihil a aperiam.', 2);
-INSERT INTO `vehiculo` VALUES (21, 1, NULL, 'i109p59b9', '', '762468', NULL, 95, 8, NULL, 'gll5448505917234233', 'egi0861x45779806644', 2002, 1725, 'blanco', ' 8 personas', 87823561, 81855990, 7427384, 8375244, '1991-07-28', '1999-11-05', 1, 7, 1830, 4, 1, 2, 0, NULL, NULL, '1989-12-29', 'Ducimus quae occaecati ab quia similique occaecati accusantium aut accusantium.', 'Expedita odit dolore deleniti et assumenda omnis quia sint enim cum.', 2);
-INSERT INTO `vehiculo` VALUES (22, 1, NULL, 'l462y13j9', '', '711173', NULL, 44, 9, NULL, 'ibg3843639853103486', 'ayh0414h63569294344', 2014, 1415, 'negro', ' 5 personas', 21691490, 52740540, 2437694, 9666005, '1973-06-19', '1997-05-13', 1, 4, 1626, 4, 0, 2, 0, NULL, NULL, '2013-07-29', 'Qui laboriosam sit fuga eos illum totam aliquid quisquam et voluptatem ut ea.', 'Dolores veritatis fugiat aut aspernatur quia cumque et in occaecati unde facere ipsum sint laboriosam.', 1);
-INSERT INTO `vehiculo` VALUES (23, 1, NULL, 'p299q75n0', '', '128985', NULL, 98, 15, NULL, 'qve5652056213615775', 'aff3749r72332403518', 2017, 1278, 'negro', ' 7 personas', 64175496, 23275518, 2272877, 6127641, '1980-03-07', '2009-03-31', 4, 6, 1189, 4, 1, 2, 0, NULL, NULL, '1976-03-28', 'Saepe id culpa quasi velit aut ullam aut.', 'Ut vel architecto minus nihil non labore autem minima sed necessitatibus porro error cupiditate qui sunt corrupti perferendis voluptatem voluptas corporis aliquid repellendus.', 1);
-INSERT INTO `vehiculo` VALUES (24, 1, NULL, 'g529k76c8', '', '685464', NULL, 57, 10, NULL, 'caq5476199062019091', 'hsg7928j95740117450', 2009, 1298, 'azul', ' 7 personas', 12437591, 71748324, 1453575, 9338220, '1985-04-18', '2019-07-29', 4, 5, 1091, 1, 1, 2, 0, NULL, NULL, '2008-04-30', 'Voluptatem quos fugiat omnis dolor non architecto repellendus exercitationem nam et omnis et sed.', 'Reiciendis excepturi aspernatur natus provident vitae fugiat consequatur consequatur et laboriosam consequatur dolorem in ut minus.', 1);
-INSERT INTO `vehiculo` VALUES (25, 1, NULL, 'g351b52k5', '', '856244', NULL, 46, 13, NULL, 'lac3319073977800158', 'gcc6027i09427720748', 2012, 1707, 'amarillo', ' 5 personas', 89340308, 63604590, 9876697, 7515187, '1996-07-30', '1982-12-18', 8, 7, 1941, 2, 0, 2, 0, NULL, NULL, '1988-10-30', 'Ad modi voluptates cum dolorem inventore itaque aperiam.', 'Nisi et eligendi unde ipsam quo cumque nesciunt dolores est sunt sint nulla.', 1);
-INSERT INTO `vehiculo` VALUES (26, 1, NULL, 'r337l96g1', '', '849062', NULL, 96, 9, NULL, 'bdh1195551016287935', 'fay3867x89423107814', 2000, 1529, 'negro', ' 7 personas', 70936198, 14972491, 7217544, 7025245, '2018-08-04', '2009-11-26', 6, 4, 1289, 1, 0, 4, 0, NULL, NULL, '1998-02-01', 'Natus quia sed distinctio tenetur molestiae illum occaecati quia ullam.', 'Nemo aut et voluptates delectus et ut rerum officiis magni mollitia consequuntur in officia.', 1);
-INSERT INTO `vehiculo` VALUES (27, 1, NULL, 'z666z13x4', '', '616846', NULL, 107, 13, NULL, 'pqh0913543962186094', 'sfw2557w63645492801', 2016, 1238, 'blanco', '4 personas', 91198894, 39576927, 2376788, 3096862, '1976-03-22', '2009-06-12', 5, 4, 1663, 4, 1, 4, 1, NULL, NULL, '1971-01-19', 'Culpa numquam in quos qui in vel itaque.', 'Eveniet deleniti sit delectus voluptatem aliquid culpa odit voluptatem repudiandae quia doloremque nobis magni quasi consequuntur reprehenderit dicta.', 2);
-INSERT INTO `vehiculo` VALUES (28, 1, NULL, 'g172s42p7', '', '193421', NULL, 13, 13, NULL, 'due7223451534350074', 'xfl1861d31049382261', 2001, 1406, 'verde', ' 7 personas', 12656374, 49050506, 4232282, 2103805, '1994-12-22', '2001-07-02', 5, 7, 1233, 4, 1, 4, 1, NULL, NULL, '1997-09-05', 'Quis nulla itaque deserunt non mollitia doloribus maxime eos veniam ipsum quis.', 'Eos enim velit odio nam molestias sed repellat distinctio ut nisi doloremque ipsum in magnam dolorem facere aliquid.', 1);
-INSERT INTO `vehiculo` VALUES (29, 1, NULL, 'f567d96r6', '', '919188', NULL, 104, 9, NULL, 'jsr9804803863786428', 'nhb6078x05452835762', 2003, 1311, 'rojo', ' 8 personas', 84742928, 85673362, 4196354, 9067705, '2017-04-30', '1996-10-01', 7, 5, 1010, 3, 1, 4, 1, NULL, NULL, '1974-06-22', 'Expedita sit repellat nisi molestias ut molestiae et vel iste ad veniam delectus.', 'Possimus eos repellendus magni aperiam officia maxime iusto omnis exercitationem sed harum dolorem.', 1);
-INSERT INTO `vehiculo` VALUES (30, 1, NULL, 's286y95c5', '', '178486', NULL, 43, 2, NULL, 'zbz2071790290752974', 'iui9879c97412602177', 2001, 1410, 'amarillo', '4 personas', 60580862, 11852678, 9469460, 2047060, '1977-07-30', '1983-08-13', 4, 5, 1863, 1, 0, 4, 1, NULL, NULL, '1990-11-19', 'Debitis quis laudantium non enim odit eaque modi vero.', 'Quia quis sunt sint cum dolorem corporis sed neque officia repellendus autem voluptatem voluptatibus.', 1);
-INSERT INTO `vehiculo` VALUES (31, 1, NULL, 'a115m03m3', '', '035961', NULL, 39, 3, NULL, 'osv0844902439989733', 'kge8517s61334093126', 2011, 1779, 'azul', '4 personas', 49192510, 29554497, 6424626, 8659494, '2003-03-28', '1983-08-28', 3, 7, 1734, 2, 0, 3, 1, NULL, NULL, '2012-08-28', 'Dolor quam omnis necessitatibus nemo similique est accusamus officiis voluptate harum est repellendus.', 'Iste et ratione quos cumque est ducimus ut qui consequatur eligendi quo nemo soluta laborum sed expedita numquam debitis est aut quasi nihil.', 1);
-INSERT INTO `vehiculo` VALUES (32, 1, NULL, 'p144c96z8', '', '636161', NULL, 92, 9, NULL, 'izf5137893377472198', 'uiv0364j00467574949', 2012, 1807, 'rojo', ' 8 personas', 89494578, 15394688, 5285661, 5019484, '2015-03-25', '2003-10-12', 7, 5, 1689, 2, 0, 4, 0, NULL, NULL, '2001-07-20', 'Rerum magnam enim dolore qui quis quas laudantium nulla.', 'Ipsam dolorem rem voluptas iste praesentium qui quasi dolorem at dolorem tempora at et tempora modi.', 1);
-INSERT INTO `vehiculo` VALUES (33, 1, NULL, 'f980i11u1', '', '104198', NULL, 97, 13, NULL, 'zto5446591181894481', 'elu2553x63402083592', 2018, 1312, 'rojo', ' 7 personas', 72298381, 80758421, 5220785, 5502930, '1979-07-01', '1978-04-12', 7, 5, 1111, 1, 0, 4, 1, NULL, NULL, '2009-05-10', 'Sapiente esse quibusdam fuga facere accusamus eaque eligendi velit assumenda ut libero maxime laudantium.', 'Explicabo quia ipsa consequatur error est sequi qui voluptas aut eius est laboriosam eaque ut temporibus aut rerum voluptatem fugiat recusandae.', 1);
-INSERT INTO `vehiculo` VALUES (34, 1, NULL, 'k035i28m9', '', '906442', NULL, 116, 12, NULL, 'ncz9385706186283632', 'nqk9624k92714813116', 2019, 1468, 'azul', ' 5 personas', 64576772, 56365841, 2746382, 8165539, '1985-03-14', '1977-01-24', 6, 7, 1262, 3, 0, 2, 0, NULL, NULL, '1994-04-24', 'Ad at aut dignissimos quos eum et.', 'Numquam molestiae magnam aut sunt dolore facilis eligendi enim ratione.', 2);
-INSERT INTO `vehiculo` VALUES (35, 1, NULL, 'n041g18j5', '', '999068', NULL, 10, 10, NULL, 'ulb8475578229493646', 'yrn4929h92027151466', 2013, 1389, 'rojo', ' 5 personas', 51113178, 53938700, 7031856, 4164412, '2003-08-08', '1991-11-07', 4, 5, 1925, 2, 1, 4, 1, NULL, NULL, '2005-05-30', 'Vel eum sunt quis autem omnis quibusdam est odio quia voluptates vel velit id.', 'Qui ea quidem necessitatibus ut officiis voluptatibus eos porro eaque quo voluptates suscipit iure sapiente sunt.', 2);
-INSERT INTO `vehiculo` VALUES (36, 1, NULL, 'h022w90g2', '', '896996', NULL, 92, 4, NULL, 'fas4045224051805655', 'yrb1069o30920139533', 2011, 1699, 'verde', '4 personas', 92018565, 54715342, 1974647, 7555478, '2002-03-14', '1989-05-25', 7, 8, 1458, 3, 0, 4, 1, NULL, NULL, '2015-06-02', 'Alias laudantium quibusdam suscipit voluptatem quo et facilis minus perferendis doloribus.', 'Molestias vero aliquam est incidunt modi quo veritatis nulla laborum consequatur.', 1);
-INSERT INTO `vehiculo` VALUES (37, 1, NULL, 'z684u55q9', '', '127192', NULL, 20, 7, NULL, 'ynx6404817470060447', 'ppa9682m77845348653', 2008, 1652, 'amarillo', ' 7 personas', 41012488, 14448386, 9270992, 6274637, '1987-10-30', '1996-10-24', 2, 6, 1160, 2, 1, 4, 1, NULL, NULL, '1991-04-28', 'Corrupti quia odio incidunt quae rem sit consequatur ab officia.', 'Eum asperiores dolores quibusdam quibusdam voluptas rerum inventore numquam ab nesciunt.', 2);
-INSERT INTO `vehiculo` VALUES (38, 1, NULL, 'l177v01o1', '', '229911', NULL, 6, 11, NULL, 'skf1654637938022396', 'ule3571a73730074938', 2004, 1373, 'rojo', ' 8 personas', 98939590, 15416946, 9533886, 3839965, '1991-11-19', '1992-02-07', 3, 6, 1213, 4, 1, 3, 0, NULL, NULL, '2017-01-09', 'Eius dolores recusandae impedit nihil quisquam asperiores sed.', 'Qui voluptas accusamus vitae dolores ducimus sapiente ea necessitatibus et numquam facilis molestiae accusamus quam eum vero sed nemo.', 2);
-INSERT INTO `vehiculo` VALUES (39, 1, NULL, 'a390m37f1', '', '455768', NULL, 27, 2, NULL, 'uol2505589848772556', 'qsm1064e84681537632', 2017, 1402, 'amarillo', ' 8 personas', 62842527, 98699830, 8505494, 5917646, '1993-08-04', '1994-10-29', 3, 5, 1196, 4, 0, 2, 1, NULL, NULL, '1981-11-20', 'Architecto rerum deleniti laborum delectus cum velit rem aliquid sit.', 'Ut quis vel est voluptatem repellat provident sit id numquam ut sunt dolorum accusamus sapiente accusamus rem reprehenderit.', 1);
-INSERT INTO `vehiculo` VALUES (40, 1, NULL, 'u470d00x2', '', '097171', NULL, 68, 11, NULL, 'rlu6422051238621807', 'ode4330z97746463912', 2002, 1555, 'verde', '4 personas', 75744932, 10937904, 2348276, 5707057, '1976-10-16', '1991-11-24', 5, 4, 1334, 1, 1, 4, 0, NULL, NULL, '1991-07-01', 'Sed sunt earum iste ab aut voluptatem est ut autem modi animi.', 'Molestias possimus ipsam ut magnam qui sequi at quis aut sunt voluptate officia odit illum dolores nihil.', 2);
-INSERT INTO `vehiculo` VALUES (41, 1, NULL, 't094n76c7', '', '522336', NULL, 73, 2, NULL, 'xjv0145299800547534', 'akj2988f50437888150', 2015, 1873, 'azul', ' 5 personas', 71539498, 36336708, 1390844, 9463754, '1985-06-30', '1971-10-25', 7, 6, 1974, 4, 0, 3, 1, NULL, NULL, '2011-12-02', 'Beatae ut dolores doloribus quod dolorum doloremque similique cum aperiam dicta.', 'Autem excepturi nihil voluptatibus ut dolorum est distinctio voluptas voluptas aut velit occaecati.', 1);
-INSERT INTO `vehiculo` VALUES (42, 1, NULL, 'x086i19v5', '', '504787', NULL, 104, 9, NULL, 'blt5910185891165469', 'eqs7834b27327081025', 2011, 1645, 'verde', ' 8 personas', 60283780, 57273879, 8968311, 4254914, '2005-06-01', '2018-11-28', 1, 6, 1952, 4, 0, 4, 0, NULL, NULL, '1999-05-24', 'At dolorum doloribus qui sequi aspernatur enim libero necessitatibus nostrum.', 'Culpa autem temporibus sit velit optio qui autem autem qui explicabo temporibus eligendi sint sit error neque.', 1);
-INSERT INTO `vehiculo` VALUES (43, 1, NULL, 'y865k54y1', '', '136103', NULL, 51, 2, NULL, 'hmt5272038224045173', 'peu0172i56193949879', 2004, 1776, 'verde', '4 personas', 43515589, 29848712, 7878037, 1665735, '2011-04-16', '1990-10-21', 1, 6, 1655, 4, 1, 3, 1, NULL, NULL, '2003-12-20', 'Distinctio ut reprehenderit et odit provident ratione.', 'Sint consequatur quis quod inventore fugit excepturi qui qui facilis laborum ratione numquam error et.', 1);
-INSERT INTO `vehiculo` VALUES (44, 1, NULL, 'z919z18e6', '', '950978', NULL, 113, 6, NULL, 'itz2273267994971713', 'ant4391x65435114844', 2002, 1747, 'blanco', ' 8 personas', 98281745, 39470874, 6104348, 1808435, '2010-03-23', '2009-04-17', 5, 7, 1646, 1, 1, 2, 1, NULL, NULL, '1984-06-25', 'Qui at illo reprehenderit ut culpa quia amet quisquam sunt illum et.', 'Et tenetur eveniet commodi qui id ea sint cum eos ut a voluptatem.', 2);
-INSERT INTO `vehiculo` VALUES (45, 1, NULL, 's555p28m9', '', '369284', NULL, 79, 6, NULL, 'vxg0157008000880670', 'bwy5082w69208725133', 2015, 1744, 'morado', ' 8 personas', 43096489, 88598467, 3187768, 4422592, '2004-08-18', '2008-10-27', 8, 6, 1044, 3, 1, 3, 1, NULL, NULL, '2013-05-26', 'Explicabo commodi nesciunt ipsum dolor culpa assumenda dignissimos deleniti.', 'Odio debitis placeat rerum praesentium quidem exercitationem et soluta eos sit et.', 2);
-INSERT INTO `vehiculo` VALUES (46, 1, NULL, 'l039z81m0', '', '524769', NULL, 18, 15, NULL, 'fxj1099191402875905', 'rpy5863h70833444433', 2001, 1330, 'blanco', '4 personas', 21058659, 62434323, 4655714, 3307677, '2016-08-22', '1991-05-05', 6, 8, 1571, 4, 0, 4, 0, NULL, NULL, '2005-07-27', 'In recusandae accusantium autem vel aut debitis quibusdam sed.', 'Voluptatem ea nihil explicabo totam deleniti et sed sed ipsum vel odit atque ratione molestiae.', 2);
-INSERT INTO `vehiculo` VALUES (47, 1, NULL, 'r341j48u4', '', '223647', NULL, 28, 2, NULL, 'xym4598646060120137', 'jum7703k49101688279', 2006, 1904, 'amarillo', ' 5 personas', 64335827, 87696481, 8915072, 6597799, '2008-09-07', '1970-05-13', 6, 7, 1172, 2, 1, 3, 1, NULL, NULL, '1989-01-06', 'Atque et omnis laudantium consequuntur odio est quaerat.', 'Minima fugit nesciunt non reprehenderit voluptatem eligendi doloribus porro ea dicta aliquid omnis nihil perferendis autem.', 2);
-INSERT INTO `vehiculo` VALUES (48, 1, NULL, 'u416t69f4', '', '188199', NULL, 107, 8, NULL, 'egh0203901012899356', 'fcz1398w28677474017', 2001, 1740, 'celeste', ' 5 personas', 66884098, 75588711, 6340386, 9831025, '1996-05-19', '2005-10-08', 6, 4, 1502, 1, 0, 4, 0, NULL, NULL, '2013-04-16', 'Et libero aliquam qui ea dolorum esse in.', 'Accusamus eum dicta eos eum hic ducimus harum rerum modi velit consequatur.', 1);
-INSERT INTO `vehiculo` VALUES (49, 1, NULL, 'g661v04r5', '', '236990', NULL, 23, 11, NULL, 'gvq4821930113860329', 'uyh6410z44559040749', 2013, 1242, 'celeste', ' 8 personas', 50948128, 83962394, 8604219, 7006869, '1989-01-04', '1992-05-04', 4, 6, 1583, 1, 1, 3, 1, NULL, NULL, '1984-12-30', 'Nihil minima voluptatem pariatur quasi fugit distinctio possimus a est culpa quia debitis ut.', 'Quod quia mollitia quis tenetur aut est numquam hic dolore.', 2);
-INSERT INTO `vehiculo` VALUES (50, 1, NULL, 'i721f52a0', '', '704580', NULL, 64, 12, NULL, 'icn0357965737860886', 'vdg8848r53954213566', 2013, 1326, 'blanco', ' 5 personas', 10799212, 33163088, 4381800, 1231598, '2004-04-13', '2007-12-30', 1, 7, 1818, 1, 1, 2, 0, NULL, NULL, '1987-11-16', 'Quia quam fuga quod perferendis quam delectus quo cupiditate aut dicta natus.', 'Ut sed dolorem voluptates enim quo odio laudantium totam in est occaecati dicta quia eveniet saepe facilis recusandae consequatur quibusdam sunt nam.', 2);
-INSERT INTO `vehiculo` VALUES (51, 1, NULL, 's930k24f2', '', '386354', NULL, 16, 11, NULL, 'yjs3363446743312726', 'axa7677g34161156188', 2013, 1527, 'celeste', ' 7 personas', 51255758, 19270485, 8527676, 8422104, '1988-09-01', '1994-05-06', 5, 6, 1662, 1, 1, 4, 0, NULL, NULL, '1983-09-06', 'Qui animi qui numquam aut nihil quis eius at voluptas quaerat quia dolores consequatur.', 'Cum sed veniam at iusto blanditiis veritatis perspiciatis ex quia molestiae quia dicta voluptate debitis est iure sequi architecto.', 1);
-INSERT INTO `vehiculo` VALUES (52, 1, NULL, 'r519w52m2', '', '849502', NULL, 42, 9, NULL, 'pwe4894653483318607', 'khx3536f40420751281', 2006, 1992, 'rojo', ' 8 personas', 45174089, 23486319, 5142928, 3338921, '2011-03-23', '2007-11-06', 5, 6, 1156, 4, 0, 3, 1, NULL, NULL, '2002-11-22', 'Nam ipsum delectus sequi inventore accusantium eos officiis animi quos eaque consectetur incidunt.', 'Facere repudiandae quisquam inventore iure ut minus ut et minima omnis quidem culpa tempora debitis amet dolor.', 1);
-INSERT INTO `vehiculo` VALUES (53, 1, NULL, 'c221h51q9', '', '268692', NULL, 92, 15, NULL, 'nuq8456870080751380', 'yhw9197i89621189240', 2018, 1292, 'celeste', ' 7 personas', 77173551, 45522683, 4980775, 9239004, '1994-08-24', '1993-08-06', 1, 5, 1385, 3, 1, 3, 0, NULL, NULL, '1989-12-02', 'Doloribus voluptatem voluptate nesciunt voluptas aut impedit maiores hic reiciendis est quasi.', 'Qui maiores qui omnis qui qui consectetur adipisci nostrum eos dolorem dolorem delectus libero ea et sed dolorem tempore ipsa ut quisquam.', 2);
-INSERT INTO `vehiculo` VALUES (54, 1, NULL, 'x000n54j2', '', '977971', NULL, 95, 6, NULL, 'mad1654144119856538', 'gch6051z13740915297', 2017, 1699, 'morado', ' 5 personas', 26663581, 21393846, 7808806, 7613225, '1991-03-11', '1990-05-12', 1, 4, 1158, 2, 0, 4, 1, NULL, NULL, '2009-07-29', 'Deserunt illo et quis saepe sed cupiditate necessitatibus explicabo repudiandae.', 'Corporis et autem qui illo deserunt nihil ex ut sint voluptatem.', 1);
-INSERT INTO `vehiculo` VALUES (55, 1, NULL, 'o370z97g4', '', '075448', NULL, 97, 15, NULL, 'dxa8793107671077488', 'feu1197z93913880927', 2003, 1260, 'verde', ' 5 personas', 97086917, 84696731, 9461799, 6837875, '1998-12-08', '2016-03-28', 1, 6, 1253, 3, 1, 3, 1, NULL, NULL, '1983-05-18', 'Praesentium est dicta deserunt illo harum non dolores incidunt illo.', 'Ratione corporis maiores est odit ut facilis aut vel accusamus minima similique eos iste est tempora veritatis tempore consequatur molestias quia.', 1);
-INSERT INTO `vehiculo` VALUES (56, 1, NULL, 'g818v39s3', '', '461803', NULL, 50, 2, NULL, 'hpd7095646213062284', 'wfq8213t55919671585', 2018, 1895, 'azul', '4 personas', 80735343, 67342994, 7043584, 8664392, '2002-10-27', '1973-06-30', 1, 8, 1837, 3, 1, 3, 1, NULL, NULL, '2005-04-13', 'Est enim debitis alias repellendus accusamus quis autem rerum accusantium dolor.', 'Consequuntur dolor optio ut tenetur temporibus id distinctio ut libero velit expedita omnis amet sint amet voluptatem sed dolorem.', 1);
-INSERT INTO `vehiculo` VALUES (57, 1, NULL, 's585i83x0', '', '890571', NULL, 38, 9, NULL, 'dny3258531458971466', 'nqs3697b01297381931', 2006, 1613, 'celeste', ' 5 personas', 87147122, 29523432, 5287437, 4877564, '1975-04-15', '1995-06-04', 8, 5, 1630, 1, 0, 3, 0, NULL, NULL, '1987-10-02', 'Corrupti sit at minima ut placeat sint et.', 'Qui fuga ut perferendis earum omnis iste facilis aliquid nesciunt enim.', 2);
-INSERT INTO `vehiculo` VALUES (58, 1, NULL, 'm322e65f2', '', '129644', NULL, 94, 1, NULL, 'qjn5961131855116032', 'xwl7157m38220454711', 2000, 1630, 'morado', ' 5 personas', 36035846, 19698908, 3749304, 2178394, '1978-10-23', '1981-01-04', 8, 8, 1730, 2, 0, 3, 1, NULL, NULL, '2013-03-03', 'Vero quia doloremque numquam ea perferendis consectetur enim repellat accusamus hic deleniti.', 'Molestiae illum aut qui tempore sequi qui perferendis pariatur quo.', 1);
-INSERT INTO `vehiculo` VALUES (59, 1, NULL, 'u035m88v0', '', '849499', NULL, 96, 1, NULL, 'giw6198968601741329', 'rvb2332j40964305237', 2006, 1589, 'verde', ' 5 personas', 47748729, 62109514, 4069896, 3699617, '1981-01-28', '1998-11-26', 1, 4, 1592, 1, 0, 4, 1, NULL, NULL, '1982-01-03', 'Veniam nulla culpa modi veniam laudantium fugiat sequi cupiditate incidunt accusamus dicta eius fugit.', 'Unde quaerat unde consequuntur et cupiditate natus quam magnam nihil aliquid rerum aut repudiandae perferendis.', 1);
-INSERT INTO `vehiculo` VALUES (60, 1, NULL, 'q468k85l3', '', '188243', NULL, 19, 14, NULL, 'pes6231485478646310', 'iub9711f37224588364', 2001, 1800, 'verde', ' 5 personas', 31009820, 85956085, 3637897, 8090575, '2012-05-08', '1997-02-27', 2, 8, 1570, 2, 0, 3, 0, NULL, NULL, '1978-09-09', 'Consequatur necessitatibus voluptatibus sit consequatur illo sapiente reprehenderit praesentium dolores rerum nam excepturi optio dolor.', 'Velit expedita pariatur similique nesciunt consequatur delectus voluptas laudantium doloremque necessitatibus iure.', 2);
-INSERT INTO `vehiculo` VALUES (61, 1, NULL, 'k166j40w9', '', '984906', NULL, 20, 10, NULL, 'nod8266792254420846', 'jjt0920u74917230325', 2001, 1687, 'azul', ' 7 personas', 13351810, 53412389, 8810217, 9778004, '2011-07-17', '1976-04-29', 8, 8, 1866, 1, 0, 2, 0, NULL, NULL, '2013-04-28', 'Non facere vel sit velit quos nulla odit maxime facere optio dolore ipsa ullam natus.', 'Vitae sequi delectus et est nostrum eaque doloremque repellat est veritatis distinctio quas.', 1);
-INSERT INTO `vehiculo` VALUES (62, 1, NULL, 'w454a31r1', '', '152321', NULL, 85, 1, NULL, 'ntb1275159541418878', 'vas8489z00674218566', 2004, 1368, 'negro', '4 personas', 69727580, 60618835, 1009772, 6713067, '2010-12-26', '1990-05-24', 8, 8, 1280, 1, 0, 4, 0, NULL, NULL, '1993-12-13', 'Nihil maxime excepturi non ipsa animi unde.', 'Ut sed officiis delectus qui eveniet est sequi nesciunt earum ipsam possimus cumque ut expedita eius sint non eum animi amet culpa.', 1);
-INSERT INTO `vehiculo` VALUES (63, 1, NULL, 'y224c98d8', '', '508405', NULL, 114, 13, NULL, 'xtq4273921198425542', 'tix0980u22367887520', 2004, 1443, 'verde', ' 8 personas', 33758658, 54438639, 8451325, 3442039, '1979-11-01', '2015-02-06', 3, 4, 1695, 3, 0, 3, 0, NULL, NULL, '1973-11-23', 'Minus pariatur qui recusandae est eum rerum molestias aut nobis dolores.', 'Voluptas rerum sed sint temporibus alias consectetur ipsum eos porro qui suscipit nisi voluptate expedita et assumenda optio et impedit.', 1);
-INSERT INTO `vehiculo` VALUES (64, 1, NULL, 'l590q08z5', '', '618898', NULL, 103, 3, NULL, 'hea1293845881523550', 'dho1811u04735424435', 2016, 1623, 'amarillo', ' 7 personas', 25445776, 94678562, 9605753, 8154907, '1971-08-16', '1978-12-26', 4, 4, 1311, 3, 0, 3, 1, NULL, NULL, '2018-12-14', 'Non culpa et est recusandae veniam tempore.', 'Dolores id fugiat enim voluptatum quam quia consectetur impedit aliquid voluptas blanditiis quae tempore sint est atque sint alias molestiae expedita.', 1);
-INSERT INTO `vehiculo` VALUES (65, 1, NULL, 'r584o57g1', '', '863353', NULL, 79, 1, NULL, 'hhq4338570460258948', 'hfy6871h14480886500', 2017, 1727, 'rojo', ' 8 personas', 45253738, 25102115, 1049382, 1686958, '2014-03-13', '1985-06-19', 3, 4, 1374, 4, 1, 2, 0, NULL, NULL, '1977-08-20', 'Itaque qui placeat odit autem iste ullam voluptatem vitae animi voluptatem.', 'Sed ratione ab totam velit non unde unde et ipsa perferendis qui asperiores et a dolorem et inventore ut blanditiis et et iusto.', 2);
-INSERT INTO `vehiculo` VALUES (66, 1, NULL, 'b773p83y8', '', '216925', NULL, 61, 3, NULL, 'muk1471341318096029', 'ynx7418l28438887734', 2015, 1623, 'blanco', ' 7 personas', 75893011, 25742625, 7131500, 2501532, '2009-04-18', '1974-06-24', 3, 5, 1827, 3, 1, 3, 1, NULL, NULL, '1970-06-09', 'Ut voluptate voluptatem eum architecto et aliquam sed repellendus iusto ut.', 'Provident placeat incidunt consequatur est incidunt nesciunt expedita accusamus vitae qui cupiditate saepe veritatis dolorem.', 1);
-INSERT INTO `vehiculo` VALUES (67, 1, NULL, 'r058g91w2', '', '628673', NULL, 43, 15, NULL, 'ytb8915514043052932', 'xwr0669v71028012396', 2009, 1775, 'amarillo', ' 7 personas', 79667073, 25263510, 3615077, 1767002, '2006-03-20', '1980-04-22', 7, 8, 1479, 4, 1, 4, 1, NULL, NULL, '1994-03-30', 'Soluta minus voluptatibus consequatur vel aperiam blanditiis sint.', 'Quas eligendi reprehenderit perferendis et ipsa quaerat aliquid eos consequatur unde qui voluptatibus aut.', 1);
-INSERT INTO `vehiculo` VALUES (68, 1, NULL, 'g935j81w4', '', '275401', NULL, 56, 4, NULL, 'ivx7994961700748413', 'wuw4091t84128004525', 2012, 1784, 'morado', ' 7 personas', 69494998, 84754760, 1646744, 3909640, '1980-04-15', '2012-12-13', 5, 8, 1978, 1, 1, 4, 0, NULL, NULL, '1991-01-22', 'Maxime voluptatem inventore neque quo autem provident et provident quos praesentium possimus.', 'Facere aut voluptatem sit occaecati saepe sunt veniam minus nihil.', 2);
-INSERT INTO `vehiculo` VALUES (69, 1, NULL, 'k269c73g7', '', '417218', NULL, 61, 13, NULL, 'afv9527658133526388', 'azl8569g52547780188', 2018, 1820, 'rojo', ' 7 personas', 47501140, 26336263, 2073249, 2809774, '1987-08-30', '1998-05-03', 1, 6, 1026, 4, 0, 3, 0, NULL, NULL, '2019-01-03', 'Voluptas in sapiente est sint dolorem porro totam omnis nisi nihil cumque vel.', 'Consectetur repellat modi soluta ducimus hic qui nisi incidunt et.', 2);
-INSERT INTO `vehiculo` VALUES (70, 1, NULL, 'z750b56v4', '', '261659', NULL, 7, 13, NULL, 'jaj9836572578034078', 'wpf8534z78456174503', 2010, 1295, 'negro', '4 personas', 57359022, 92900857, 5487622, 7744668, '1970-06-27', '2007-12-02', 6, 7, 1106, 4, 1, 3, 1, NULL, NULL, '2000-01-02', 'Quo eligendi tempore doloribus molestias mollitia ducimus ea ut facere reiciendis est est.', 'Repellat et quia ex odit at id nisi quis consequuntur in ut qui quia dolor excepturi animi.', 2);
-INSERT INTO `vehiculo` VALUES (71, 1, NULL, 'k615b22s6', '', '567668', NULL, 7, 7, NULL, 'zgp2047993950904530', 'cbq2288v79026785898', 2013, 1234, 'celeste', ' 8 personas', 21627443, 50705455, 8522579, 8708878, '1991-05-23', '1998-04-17', 4, 8, 1337, 3, 1, 2, 0, NULL, NULL, '1995-06-09', 'Vel deserunt totam error veniam et deleniti et temporibus odio sit.', 'Iusto omnis necessitatibus consequatur mollitia error sunt neque explicabo eum quas mollitia suscipit dignissimos.', 2);
-INSERT INTO `vehiculo` VALUES (72, 1, NULL, 'o845y54u0', '', '818366', NULL, 30, 12, NULL, 'kvk4391495440685518', 'heg7873c69183605412', 2016, 1848, 'amarillo', ' 8 personas', 83478605, 87429488, 1277748, 9904434, '1988-02-10', '1985-12-28', 3, 4, 1073, 2, 1, 3, 1, NULL, NULL, '1970-11-09', 'Architecto et natus quas sit unde facere quia et dolores voluptatem.', 'Molestiae recusandae repudiandae ullam consequatur quia error sunt tenetur quod voluptas debitis qui quidem qui velit ea a neque culpa expedita quidem velit.', 1);
-INSERT INTO `vehiculo` VALUES (73, 1, NULL, 'q500w17b1', '', '420077', NULL, 102, 1, NULL, 'dwk2072921891529987', 'qsj2452x83254261175', 2015, 1599, 'negro', '4 personas', 77683747, 34250221, 2189369, 3733406, '1970-11-10', '1970-03-18', 7, 7, 1103, 1, 0, 4, 0, NULL, NULL, '2018-05-27', 'Nobis sint delectus non eveniet dolorum harum quod.', 'Non quia voluptatum odio similique pariatur ullam culpa aliquam perferendis non nam.', 1);
-INSERT INTO `vehiculo` VALUES (74, 1, NULL, 'g240i67u0', '', '753722', NULL, 98, 10, NULL, 'ycr3957598306513495', 'ssr7266c96923920175', 2011, 1224, 'azul', ' 8 personas', 98553252, 25014924, 6150329, 7064240, '1994-12-08', '1971-06-09', 5, 5, 1441, 3, 1, 4, 0, NULL, NULL, '1971-05-26', 'Et voluptatem alias reiciendis ratione eos velit voluptatem saepe sunt et voluptate sequi eum cumque.', 'Placeat aliquam rerum dolores nihil error perferendis rem similique enim itaque enim omnis incidunt rem sint qui.', 1);
-INSERT INTO `vehiculo` VALUES (75, 1, NULL, 'r388s49g2', '', '503529', NULL, 112, 2, NULL, 'ygh5516132819198393', 'cin3911d77321285565', 2007, 1551, 'negro', '4 personas', 18770707, 30554398, 1483693, 9714424, '1976-11-25', '1977-11-16', 4, 6, 1953, 2, 1, 3, 1, NULL, NULL, '2000-08-01', 'Dolore est voluptas quasi quia blanditiis blanditiis dolores iure.', 'Dolor sunt qui cumque quia voluptas quasi et corrupti mollitia nihil eaque sapiente.', 1);
-INSERT INTO `vehiculo` VALUES (76, 1, NULL, 'x138k27s0', '', '641888', NULL, 38, 14, NULL, 'urh0768934836152739', 'peo6654d84825635194', 2001, 1944, 'blanco', '4 personas', 81497582, 61242931, 5745494, 3279536, '2004-01-22', '1994-05-01', 4, 5, 1105, 3, 1, 3, 1, NULL, NULL, '1981-12-18', 'Ut odit tenetur sapiente sed sint aut non odio.', 'Quam officia eius eum est vero consectetur voluptatem omnis accusantium repudiandae libero eaque.', 2);
-INSERT INTO `vehiculo` VALUES (77, 1, NULL, 'g331a52e4', '', '499170', NULL, 104, 8, NULL, 'ugw7845686006856268', 'emv5593r87205307625', 2013, 1919, 'azul', ' 5 personas', 71866518, 71368664, 6403682, 5013442, '2003-10-17', '2017-11-06', 1, 6, 1423, 3, 1, 2, 1, NULL, NULL, '1985-09-16', 'Et ut nisi accusamus optio molestias nam beatae vel delectus quia.', 'Architecto eum consectetur adipisci id aut tenetur ipsum voluptatem labore ut ipsam mollitia facilis nam iste consequuntur.', 2);
-INSERT INTO `vehiculo` VALUES (78, 1, NULL, 'u603v60r1', '', '058750', NULL, 30, 13, NULL, 'bpm6356694310753499', 'mcl4571q85158948468', 2002, 1400, 'blanco', ' 8 personas', 96131503, 47820093, 9804499, 6449425, '2004-03-11', '1997-10-22', 7, 8, 1081, 4, 1, 3, 1, NULL, NULL, '2018-11-16', 'Et tenetur dolorem autem et aliquam eaque repudiandae rerum similique minus necessitatibus.', 'Doloremque qui error voluptatem nostrum mollitia omnis optio nihil ut et quia minus sed architecto.', 1);
-INSERT INTO `vehiculo` VALUES (79, 1, NULL, 'h989w73h9', '', '842456', NULL, 104, 13, NULL, 'xrf6287169132144886', 'sou5560g13995908653', 2008, 1289, 'azul', ' 7 personas', 68591277, 76227264, 1293639, 8990141, '1999-12-17', '1989-04-04', 2, 7, 1238, 1, 1, 2, 0, NULL, NULL, '1990-09-24', 'In nihil nobis beatae quas ullam cupiditate harum dolores.', 'Vitae assumenda qui iste sunt aut nihil sed necessitatibus est asperiores vel iure placeat.', 2);
-INSERT INTO `vehiculo` VALUES (80, 1, NULL, 'r142n89y5', '', '927944', NULL, 96, 11, NULL, 'hkh0379749315372717', 'kxc5746k89778756600', 2003, 1355, 'morado', ' 5 personas', 82314225, 27653767, 7364088, 7811114, '1978-06-03', '2006-12-18', 8, 5, 1014, 2, 0, 3, 0, NULL, NULL, '1985-12-15', 'In harum saepe ut sequi non voluptatem.', 'Velit modi sed error quod ut ut perspiciatis atque non molestiae error corrupti maxime aliquam facilis vitae expedita recusandae.', 2);
-INSERT INTO `vehiculo` VALUES (81, 1, NULL, 'n605k36n4', '', '875317', NULL, 93, 15, NULL, 'yie8461027632373336', 'btr3339g43184156317', 2008, 1890, 'morado', ' 5 personas', 45811320, 73868056, 5810961, 4257316, '1992-06-15', '1996-02-21', 4, 5, 1001, 2, 1, 3, 1, NULL, NULL, '1970-02-12', 'Cum sint quidem dolore accusamus soluta necessitatibus maxime molestias eaque esse maxime.', 'Necessitatibus maiores quod eum possimus aut debitis omnis est veniam vero sit itaque enim aliquam praesentium officiis dolorem cumque.', 2);
-INSERT INTO `vehiculo` VALUES (82, 1, NULL, 'r164c90c1', '', '280236', NULL, 10, 13, NULL, 'vcc2654880330599062', 'zdv9324g10429234810', 2006, 1767, 'rojo', ' 7 personas', 27107312, 77299650, 4771157, 6627502, '1992-02-06', '1971-12-13', 1, 6, 1930, 1, 0, 4, 1, NULL, NULL, '1974-01-25', 'Labore aut quos tenetur quas commodi voluptates hic inventore impedit.', 'Voluptatem aut provident quis nihil exercitationem voluptate doloribus voluptatem in quam sunt ipsam sint modi accusantium illo totam voluptatem molestiae non quasi accusantium.', 2);
-INSERT INTO `vehiculo` VALUES (83, 1, NULL, 'p607h63s9', '', '254121', NULL, 84, 6, NULL, 'mvy9098662512331558', 'uqu3482i81848314863', 2009, 1357, 'azul', ' 8 personas', 80735367, 35615692, 8527721, 3619905, '1972-10-31', '1984-05-24', 1, 6, 1510, 4, 1, 4, 0, NULL, NULL, '2014-08-26', 'Et natus in nisi est hic eos eius ut et eos qui dolor.', 'Et qui aliquam rem ut eveniet minima officiis minima nisi aliquam nisi cupiditate quas totam.', 1);
-INSERT INTO `vehiculo` VALUES (84, 1, NULL, 'v474m34r4', '', '468549', NULL, 10, 2, NULL, 'qbh9374836885516252', 'pei3890g79718137195', 2000, 1771, 'negro', ' 8 personas', 62407767, 12162351, 3793348, 3034657, '1972-01-03', '1983-07-04', 1, 4, 1114, 2, 0, 4, 0, NULL, NULL, '2001-06-13', 'Molestiae laboriosam neque libero magni dolore rerum maiores consequatur qui vel autem.', 'Nemo esse autem fugit ratione quam impedit quis molestiae ipsa similique officia omnis sit animi placeat.', 2);
-INSERT INTO `vehiculo` VALUES (85, 1, NULL, 'w161f71j1', '', '748027', NULL, 76, 6, NULL, 'gxp7964056013489073', 'qtb2959i05413584521', 2008, 1281, 'amarillo', '4 personas', 56849970, 66209013, 8063032, 1031005, '1974-12-12', '2012-10-23', 2, 5, 1035, 2, 1, 2, 0, NULL, NULL, '2007-12-04', 'Consequatur natus autem a maxime sed corrupti laboriosam in nulla.', 'Non consequatur vel minima saepe aut ut qui doloremque culpa consequatur laboriosam repellat recusandae.', 1);
-INSERT INTO `vehiculo` VALUES (86, 1, NULL, 'z852h09l9', '', '608439', NULL, 23, 14, NULL, 'tdy5742035091638695', 'wiz5253y93190199102', 2013, 1906, 'blanco', '4 personas', 52109873, 93189350, 2056436, 8080491, '2016-11-17', '2001-07-26', 2, 8, 1301, 4, 0, 3, 0, NULL, NULL, '1972-10-31', 'Rerum doloribus non sit dicta expedita porro libero.', 'Et aliquam perspiciatis possimus qui tenetur qui quia incidunt praesentium delectus incidunt facilis ut eum eius quisquam.', 1);
-INSERT INTO `vehiculo` VALUES (87, 1, NULL, 'y092h94p5', '', '271982', NULL, 98, 12, NULL, 'une7898170560194507', 'jqe8943s71511931042', 2019, 1893, 'celeste', ' 8 personas', 51093866, 80545340, 6791306, 8880565, '2008-05-08', '1974-01-10', 7, 8, 1844, 4, 1, 2, 1, NULL, NULL, '1996-03-16', 'Rem voluptatum omnis repellat et fuga animi earum.', 'Qui magni animi tempore voluptas quia voluptatibus voluptatem rem quia neque similique est atque eos temporibus eum nihil hic reiciendis aut laudantium nemo.', 1);
-INSERT INTO `vehiculo` VALUES (88, 1, NULL, 'd498v94d4', '', '242886', NULL, 40, 4, NULL, 'vdf7358075359478632', 'fbk1795j71938734132', 2016, 1509, 'verde', ' 5 personas', 88527742, 32210738, 6554261, 2857884, '1984-11-17', '1978-12-28', 1, 8, 1970, 3, 0, 2, 1, NULL, NULL, '2003-11-24', 'Nulla molestiae nihil aut qui blanditiis qui magnam quia quasi.', 'Doloribus consectetur iure doloribus quas voluptatem voluptas ut consequuntur blanditiis amet reiciendis aut sequi ea et doloribus magnam reiciendis quia veritatis.', 2);
-INSERT INTO `vehiculo` VALUES (89, 1, NULL, 'r855g88t4', '', '244013', NULL, 116, 5, NULL, 'fdl3277064989798137', 'dlh3755u07532971851', 2004, 1483, 'blanco', '4 personas', 50136907, 55932579, 2208908, 4548702, '2003-01-28', '1977-12-14', 7, 7, 1622, 2, 1, 3, 0, NULL, NULL, '1973-05-01', 'Sint voluptas reiciendis consequatur excepturi voluptate consequatur.', 'Voluptas aut vel perferendis necessitatibus earum ab eum molestiae dolorum molestiae voluptatibus porro nesciunt est ratione aliquam molestiae quaerat sed nobis error.', 1);
-INSERT INTO `vehiculo` VALUES (90, 1, NULL, 'm091w61u2', '', '717997', NULL, 100, 1, NULL, 'run8683798831546559', 'leg0373r13981042093', 2013, 1659, 'rojo', '4 personas', 81470642, 51056256, 8703574, 1776697, '1976-01-12', '1996-09-23', 8, 4, 1682, 3, 1, 4, 1, NULL, NULL, '1974-11-05', 'Repudiandae quas vel laudantium et et sint laboriosam tempora sint architecto ipsam.', 'Repellendus voluptas qui magni et enim aliquid id maiores inventore vel accusamus nulla magni.', 2);
-INSERT INTO `vehiculo` VALUES (91, 1, NULL, 'd903i67o4', '', '063076', NULL, 53, 11, NULL, 'cin0763187865070548', 'jvy0056v43468131447', 2010, 1816, 'morado', ' 8 personas', 92622178, 45409837, 7538825, 9657277, '1973-04-19', '1970-06-04', 8, 7, 1106, 3, 1, 2, 1, NULL, NULL, '2003-06-30', 'Est sequi veniam occaecati aut quidem et dolor.', 'Autem sint maiores aperiam harum voluptatem praesentium quidem hic tempora et facere possimus accusantium ut fugiat.', 2);
-INSERT INTO `vehiculo` VALUES (92, 1, NULL, 'l327x29y5', '', '525678', NULL, 114, 3, NULL, 'ylu9923064196237742', 'qic2843u01469525982', 2004, 1268, 'amarillo', '4 personas', 10339010, 53012103, 8431435, 3431562, '1984-07-29', '2005-11-20', 6, 5, 1342, 3, 0, 2, 1, NULL, NULL, '1996-09-18', 'Fugiat laborum sunt amet ut commodi voluptatem sit.', 'Quas voluptas rerum qui modi est qui id tenetur eius ut debitis debitis aut voluptatem sunt placeat dolorem a labore sed laudantium dolorem.', 2);
-INSERT INTO `vehiculo` VALUES (93, 1, NULL, 'g586z17j6', '', '173207', NULL, 108, 13, NULL, 'xxr4535338334015349', 'ejy4553w00008500255', 2008, 1353, 'verde', ' 7 personas', 54650720, 73098927, 4129856, 7236909, '1998-12-25', '1978-05-14', 2, 5, 1162, 2, 0, 2, 0, NULL, NULL, '1986-12-07', 'Expedita atque dicta qui distinctio modi commodi in non iusto reprehenderit.', 'Dolore et vel aut eaque dolorum a aspernatur ullam et eos doloribus et omnis cum cumque non quidem molestiae doloribus aut velit.', 2);
-INSERT INTO `vehiculo` VALUES (94, 1, NULL, 'v800o56t3', '', '798133', NULL, 49, 1, NULL, 'ukw5441588166100417', 'fnn2169d20890554088', 2006, 1891, 'amarillo', '4 personas', 13770423, 85330124, 1019801, 1282234, '1986-01-10', '2001-01-12', 2, 6, 1386, 3, 0, 4, 0, NULL, NULL, '1999-05-03', 'Est est assumenda nobis animi veniam labore voluptate beatae.', 'Delectus voluptate ducimus cupiditate aut odio ea neque doloremque sed placeat consequatur.', 1);
-INSERT INTO `vehiculo` VALUES (95, 1, NULL, 'p000o46s7', '', '101963', NULL, 76, 13, NULL, 'qhy4134940937378031', 'zmx5852p18242688792', 2019, 1889, 'morado', ' 8 personas', 94568300, 67518555, 4150610, 4877587, '1996-11-26', '1979-04-12', 3, 6, 1230, 2, 1, 2, 1, NULL, NULL, '1991-11-10', 'Facilis aut et fugit ab omnis et odit et velit velit quo dicta.', 'Et ducimus impedit veritatis unde et ut magni nobis accusantium quam placeat autem aut.', 1);
-INSERT INTO `vehiculo` VALUES (96, 1, NULL, 'e409g80r5', '', '539778', NULL, 67, 12, NULL, 'jqc0795500767262754', 'xwq4877o34575678036', 2006, 1291, 'rojo', ' 5 personas', 43392029, 70323591, 7815035, 3624229, '2009-10-07', '1974-06-18', 3, 4, 1785, 1, 0, 2, 0, NULL, NULL, '2011-06-11', 'Natus sed sit natus ratione placeat id quo alias magnam dolorum rerum qui libero.', 'Vel tempora reprehenderit magnam et voluptates rerum in et omnis et magnam id labore quis occaecati ut natus accusamus quisquam voluptatem est.', 2);
-INSERT INTO `vehiculo` VALUES (97, 1, NULL, 'c922t21h2', '', '554255', NULL, 29, 5, NULL, 'tlg0051079873215091', 'xlm5608u78267751239', 2000, 1303, 'blanco', ' 5 personas', 74340972, 33769559, 1874496, 4680299, '2005-09-18', '1973-03-30', 8, 6, 1543, 1, 0, 3, 1, NULL, NULL, '2011-04-01', 'Eum quod fugit nesciunt numquam rem asperiores sunt vel omnis.', 'Molestiae quam ea ad rerum quaerat aut omnis eligendi rerum numquam fugiat et nemo aliquam asperiores et excepturi officia et.', 1);
-INSERT INTO `vehiculo` VALUES (98, 1, NULL, 'x584n89h5', '', '448718', NULL, 114, 12, NULL, 'opu7366806202914835', 'rry5178u07842929766', 2012, 1468, 'amarillo', ' 8 personas', 67754276, 88678359, 1051348, 2794332, '1987-04-18', '2014-03-22', 2, 7, 1568, 3, 0, 2, 1, NULL, NULL, '2016-11-12', 'Ut dolor nihil id molestiae illo ex illo amet.', 'Enim et consequatur alias fuga accusantium velit deserunt reiciendis totam dicta at alias voluptate voluptatem veritatis quis nisi ea omnis.', 2);
-INSERT INTO `vehiculo` VALUES (99, 1, NULL, 'h400o40p4', '', '207224', NULL, 68, 1, NULL, 'awh2476822335278524', 'fkt3572s75221959116', 2009, 1735, 'morado', ' 8 personas', 87593147, 35660417, 2036793, 3099611, '1987-11-14', '1984-01-06', 3, 7, 1663, 4, 1, 4, 0, NULL, NULL, '1997-10-15', 'Alias nam magni sed earum corporis omnis suscipit non perferendis nemo consectetur ad.', 'Enim inventore blanditiis ea doloribus autem ullam natus dolorem quibusdam unde minima voluptas non.', 1);
-INSERT INTO `vehiculo` VALUES (100, 1, NULL, 'k714o52v5', '', '639525', NULL, 89, 2, NULL, 'hcw7553343472559765', 'mch4350d56726861290', 2013, 1404, 'blanco', '4 personas', 14878904, 79638896, 4054632, 6251105, '2000-01-03', '2009-07-07', 1, 4, 1303, 3, 0, 2, 0, NULL, NULL, '1999-05-12', 'Eos consequatur et sit suscipit est sequi nulla sed cupiditate assumenda rerum dolore expedita.', 'Omnis perferendis deserunt assumenda quisquam quibusdam similique molestiae at accusantium est dolorum nesciunt cum ut.', 1);
+INSERT INTO `vehiculo` VALUES (1, 1, NULL, 'u937n05e1', '', '500366', NULL, 19, 9, NULL, 'rfv7493140407950673', 'ute4732x12624067659', 2004, 1786, 'blanco', ' 7 personas', 64057378, 73207599, 9353226, 6912844, '1991-09-08', '1970-10-28', 3, 7, 1258, 1, 1, 2, 0, NULL, NULL, '1975-11-22', 'Doloremque sunt cupiditate ut et quibusdam delectus nesciunt minima aut temporibus adipisci consequuntur reprehenderit.', 'Voluptatem qui perspiciatis nisi tempore sint nihil et et est ut consequuntur aut iure officiis porro quia.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (2, 1, NULL, 'y697l54s1', '', '486376', NULL, 54, 9, NULL, 'gju7876609126005559', 'qws1998t95257220766', 2016, 1841, 'rojo', ' 5 personas', 45465210, 80467252, 7637230, 4556288, '2013-11-22', '1999-02-28', 5, 6, 1581, 1, 0, 4, 1, NULL, NULL, '1984-12-02', 'Neque minima aut qui et magnam enim id commodi qui ipsum a sunt.', 'Enim totam temporibus cupiditate delectus nemo eius tenetur rerum consequuntur consectetur eius voluptates quae.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (3, 1, NULL, 'p655m26y6', '', '753412', NULL, 32, 14, NULL, 'sce4131167727037798', 'szv8206y61115818159', 2017, 1884, 'verde', ' 5 personas', 43970114, 75085952, 9000917, 5374690, '2013-08-10', '2010-07-10', 7, 6, 1727, 1, 0, 4, 0, NULL, NULL, '1985-02-18', 'Porro ipsam quis autem fugit et sed.', 'Amet tenetur aspernatur sunt alias et et et omnis omnis est eius nihil velit ipsa labore.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (4, 1, NULL, 't996d74w4', '', '812283', NULL, 7, 1, NULL, 'uqs3650736263269227', 'tca5384k41168841169', 2018, 1236, 'morado', '4 personas', 85043954, 67601964, 6933023, 5772044, '1984-04-07', '2016-06-11', 6, 7, 1947, 3, 0, 3, 1, NULL, NULL, '1976-05-23', 'Aut cumque natus eaque dicta cum velit omnis eligendi excepturi cupiditate.', 'Molestiae omnis aut nulla et architecto illo ex harum officiis sit nobis commodi nesciunt nostrum eum placeat sapiente delectus rerum.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (5, 1, NULL, 'b689p02q8', '', '574990', NULL, 72, 6, NULL, 'fco8978749173712982', 'dfx6446d55128830372', 2004, 1785, 'celeste', ' 8 personas', 46833701, 82577237, 7345618, 1520266, '2016-01-10', '1992-11-11', 4, 4, 1164, 2, 1, 2, 1, NULL, NULL, '1994-10-31', 'Dolor vel inventore est saepe dolores soluta cum incidunt doloremque.', 'Ut a ducimus aliquid delectus est voluptatum et consequatur ducimus consequatur quasi laborum qui alias.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (6, 1, NULL, 'u090z61m7', '', '909473', NULL, 64, 5, NULL, 'drq4571766321829172', 'qyi4788z37071905276', 2011, 1413, 'celeste', '4 personas', 93461284, 20567875, 5860419, 4184876, '1979-06-19', '1996-10-09', 4, 6, 1844, 1, 0, 4, 0, NULL, NULL, '1979-04-25', 'Voluptas consectetur vero illum aut veniam impedit est expedita quisquam laborum quod dicta eligendi.', 'Et sit perspiciatis commodi quibusdam voluptate ut eum voluptatem asperiores rerum ut fuga velit labore.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (7, 1, NULL, 'c885p00u4', '', '243609', NULL, 67, 1, NULL, 'yek0208625188021698', 'ofy3299m04823081577', 2001, 1953, 'amarillo', '4 personas', 31151861, 96791647, 8889028, 5567029, '1991-05-20', '1989-01-18', 4, 7, 1382, 3, 1, 2, 0, NULL, NULL, '1975-05-20', 'Non reiciendis ipsa vel consectetur doloremque hic vitae soluta tenetur vel quae fuga.', 'Ex corrupti autem tempora voluptas libero veritatis aliquid necessitatibus dolore.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (8, 1, NULL, 'x926o54n5', '', '402228', NULL, 26, 9, NULL, 'nsg5139120248847878', 'zau9167v84360425402', 2018, 1435, 'celeste', ' 8 personas', 10593513, 59157533, 9581030, 4554573, '1982-07-13', '2000-01-16', 3, 5, 1709, 1, 0, 2, 0, NULL, NULL, '1987-05-19', 'Nobis ducimus ut sit saepe eveniet est inventore.', 'Facere voluptas est tempore debitis iusto nihil officia animi officia voluptatum nisi.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (9, 1, NULL, 'f357r64l1', '', '235855', NULL, 30, 3, NULL, 'rof9505421492033402', 'ifh0900t04454221981', 2000, 1454, 'rojo', ' 5 personas', 44121691, 11082284, 4774258, 8572036, '2017-08-18', '1984-02-24', 3, 4, 1868, 1, 1, 4, 0, NULL, NULL, '1974-08-21', 'Minus velit sit quis est necessitatibus odio.', 'Voluptates reiciendis reiciendis sint est autem iusto sunt quasi et culpa asperiores possimus ipsam.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (10, 1, NULL, 'n715x13t4', '', '580997', NULL, 21, 6, NULL, 'vup2076465789511220', 'ftm6354k74114322736', 2012, 1852, 'verde', ' 8 personas', 98101496, 73815546, 5307450, 7147344, '2007-07-06', '2002-05-26', 5, 5, 1880, 1, 1, 3, 0, NULL, NULL, '1989-11-17', 'Cumque optio sapiente beatae nulla rem quos placeat perferendis dolores saepe fugiat dolores.', 'Est ut et officiis mollitia aut perferendis temporibus provident necessitatibus veniam porro molestiae sunt qui sed voluptatem magni mollitia id odit est.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (11, 1, NULL, 'y721w21c2', '', '474264', NULL, 14, 4, NULL, 'jtr1825594593551544', 'hvs3412m05739876825', 2009, 1783, 'blanco', '4 personas', 24564658, 16678729, 2862581, 8815777, '1998-03-03', '1985-11-18', 4, 6, 1420, 2, 0, 4, 0, NULL, NULL, '1986-04-08', 'Explicabo fugiat magnam et a minima voluptas iste ut sit.', 'Dolores velit est quo sed ipsum enim qui harum asperiores qui repudiandae et natus in beatae sapiente blanditiis itaque.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (12, 1, NULL, 'l028y62o1', '', '640669', NULL, 24, 7, NULL, 'any0606381161119260', 'bua6400b11774249642', 2001, 1517, 'celeste', ' 5 personas', 92778078, 13486204, 6026242, 2185148, '1993-11-09', '1999-05-26', 7, 4, 1224, 2, 1, 4, 0, NULL, NULL, '1988-05-25', 'Non voluptatem asperiores eaque quo laborum ad qui corporis assumenda id.', 'Cum autem molestias aut provident impedit sit maxime nam architecto omnis facilis corrupti culpa eos sint totam temporibus.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (13, 1, NULL, 'y371f38t1', '', '869228', NULL, 84, 2, NULL, 'chy9887935729413887', 'kgo7858o30874996008', 2017, 1634, 'azul', ' 5 personas', 15293637, 25645980, 9509117, 3893026, '1978-09-06', '1998-06-13', 1, 6, 1198, 2, 1, 2, 0, NULL, NULL, '1996-03-06', 'Provident hic earum animi quia et voluptatem et commodi adipisci saepe.', 'Non consequuntur consequatur optio dolores et quas esse et ipsum quia sed consequuntur.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (14, 1, NULL, 'l268d99t1', '', '472525', NULL, 98, 4, NULL, 'wpj6869270797068566', 'ejk0662r35082865906', 2010, 1914, 'celeste', ' 8 personas', 26415337, 48570082, 7315860, 7052919, '1973-06-29', '2011-08-02', 8, 7, 1775, 4, 1, 2, 1, NULL, NULL, '1992-01-17', 'Perspiciatis quia dolorem velit ducimus ea aut ut optio labore vitae.', 'Et nobis qui qui aut sint et assumenda fugiat suscipit consequatur magnam eum ratione eos ab.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (15, 1, NULL, 'p255g13x2', '', '476923', NULL, 15, 5, NULL, 'mlf5561093421067537', 'qqg7254h50283082485', 2011, 1547, 'celeste', '4 personas', 11946038, 64867414, 8421085, 9081947, '1979-09-01', '2003-11-07', 2, 5, 1392, 1, 1, 4, 1, NULL, NULL, '1996-12-19', 'Nulla quis voluptatem voluptas voluptatem ab maxime iusto iste non deserunt.', 'Nam quis quidem aliquam incidunt velit sint aut repellat at molestiae ut repudiandae fugit excepturi dolorem.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (16, 1, NULL, 'o882b12j3', '', '283464', NULL, 53, 1, NULL, 'fha9254091904944868', 'mbe6154a77274161646', 2011, 1806, 'amarillo', ' 7 personas', 64306229, 99686875, 2103595, 7690689, '1970-10-07', '1975-03-08', 1, 7, 1529, 4, 0, 2, 0, NULL, NULL, '2002-02-04', 'Perspiciatis id mollitia maxime sit at fugiat magnam alias odio maiores asperiores et.', 'Numquam eos ut consequatur accusamus molestiae quidem facere ipsa omnis cumque aut velit dignissimos id et voluptas est assumenda et.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (17, 1, NULL, 's897s34q7', '', '462941', NULL, 56, 12, NULL, 'swy6094145027268365', 'ysb1954s56711325831', 2010, 1644, 'azul', '4 personas', 97872467, 64289877, 7287441, 8463030, '1992-08-26', '2002-05-29', 6, 6, 1715, 2, 1, 4, 1, NULL, NULL, '1972-04-25', 'Quidem voluptatem quo totam fugit commodi dicta neque.', 'Consequuntur dolorum vel hic facilis autem beatae quasi id eos consequatur non possimus unde ut veritatis iure aliquid eos nisi.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (18, 1, NULL, 'b291q72w6', '', '915124', NULL, 115, 2, NULL, 'xhm5481536440489205', 'xaq0341q10236481835', 2004, 1880, 'negro', ' 8 personas', 42658071, 34366965, 6661687, 7601467, '1995-05-26', '1974-02-22', 8, 4, 1056, 4, 0, 3, 0, NULL, NULL, '1997-12-07', 'Rerum libero ut fuga est blanditiis quas.', 'Quod repudiandae quidem provident ratione ut corrupti sed sint iusto consequatur ut.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (19, 1, NULL, 'r597v30s3', '', '391776', NULL, 88, 2, NULL, 'nca6018270291082299', 'vvi4442o52204325012', 2017, 1738, 'morado', ' 5 personas', 78340395, 48994079, 9039790, 8984799, '1976-06-10', '1980-03-16', 5, 4, 1226, 3, 1, 4, 1, NULL, NULL, '2018-09-15', 'Aspernatur eos beatae sunt perspiciatis voluptate ex in suscipit doloribus animi atque error.', 'Praesentium doloribus accusantium iure ratione doloribus animi natus doloribus voluptas reprehenderit quae.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (20, 1, NULL, 'h088k13n8', '', '618043', NULL, 99, 5, NULL, 'vnw6626581593767267', 'pkg4789k97758110538', 2012, 1686, 'verde', ' 7 personas', 71201646, 53623398, 1814403, 6463506, '1988-11-11', '1975-08-11', 1, 8, 1750, 2, 1, 4, 0, NULL, NULL, '2002-08-30', 'Et ea amet amet quisquam voluptate enim culpa natus doloribus.', 'Autem omnis et eos asperiores labore qui rem vel minus sequi sequi maxime et quibusdam ut explicabo ut nihil a aperiam.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (21, 1, NULL, 'i109p59b9', '', '762468', NULL, 95, 8, NULL, 'gll5448505917234233', 'egi0861x45779806644', 2002, 1725, 'blanco', ' 8 personas', 87823561, 81855990, 7427384, 8375244, '1991-07-28', '1999-11-05', 1, 7, 1830, 4, 1, 2, 0, NULL, NULL, '1989-12-29', 'Ducimus quae occaecati ab quia similique occaecati accusantium aut accusantium.', 'Expedita odit dolore deleniti et assumenda omnis quia sint enim cum.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (22, 1, NULL, 'l462y13j9', '', '711173', NULL, 44, 9, NULL, 'ibg3843639853103486', 'ayh0414h63569294344', 2014, 1415, 'negro', ' 5 personas', 21691490, 52740540, 2437694, 9666005, '1973-06-19', '1997-05-13', 1, 4, 1626, 4, 0, 2, 0, NULL, NULL, '2013-07-29', 'Qui laboriosam sit fuga eos illum totam aliquid quisquam et voluptatem ut ea.', 'Dolores veritatis fugiat aut aspernatur quia cumque et in occaecati unde facere ipsum sint laboriosam.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (23, 1, NULL, 'p299q75n0', '', '128985', NULL, 98, 15, NULL, 'qve5652056213615775', 'aff3749r72332403518', 2017, 1278, 'negro', ' 7 personas', 64175496, 23275518, 2272877, 6127641, '1980-03-07', '2009-03-31', 4, 6, 1189, 4, 1, 2, 0, NULL, NULL, '1976-03-28', 'Saepe id culpa quasi velit aut ullam aut.', 'Ut vel architecto minus nihil non labore autem minima sed necessitatibus porro error cupiditate qui sunt corrupti perferendis voluptatem voluptas corporis aliquid repellendus.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (24, 1, NULL, 'g529k76c8', '', '685464', NULL, 57, 10, NULL, 'caq5476199062019091', 'hsg7928j95740117450', 2009, 1298, 'azul', ' 7 personas', 12437591, 71748324, 1453575, 9338220, '1985-04-18', '2019-07-29', 4, 5, 1091, 1, 1, 2, 0, NULL, NULL, '2008-04-30', 'Voluptatem quos fugiat omnis dolor non architecto repellendus exercitationem nam et omnis et sed.', 'Reiciendis excepturi aspernatur natus provident vitae fugiat consequatur consequatur et laboriosam consequatur dolorem in ut minus.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (25, 1, NULL, 'g351b52k5', '', '856244', NULL, 46, 13, NULL, 'lac3319073977800158', 'gcc6027i09427720748', 2012, 1707, 'amarillo', ' 5 personas', 89340308, 63604590, 9876697, 7515187, '1996-07-30', '1982-12-18', 8, 7, 1941, 2, 0, 2, 0, NULL, NULL, '1988-10-30', 'Ad modi voluptates cum dolorem inventore itaque aperiam.', 'Nisi et eligendi unde ipsam quo cumque nesciunt dolores est sunt sint nulla.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (26, 1, NULL, 'r337l96g1', '', '849062', NULL, 96, 9, NULL, 'bdh1195551016287935', 'fay3867x89423107814', 2000, 1529, 'negro', ' 7 personas', 70936198, 14972491, 7217544, 7025245, '2018-08-04', '2009-11-26', 6, 4, 1289, 1, 0, 4, 0, NULL, NULL, '1998-02-01', 'Natus quia sed distinctio tenetur molestiae illum occaecati quia ullam.', 'Nemo aut et voluptates delectus et ut rerum officiis magni mollitia consequuntur in officia.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (27, 1, NULL, 'z666z13x4', '', '616846', NULL, 107, 13, NULL, 'pqh0913543962186094', 'sfw2557w63645492801', 2016, 1238, 'blanco', '4 personas', 91198894, 39576927, 2376788, 3096862, '1976-03-22', '2009-06-12', 5, 4, 1663, 4, 1, 4, 1, NULL, NULL, '1971-01-19', 'Culpa numquam in quos qui in vel itaque.', 'Eveniet deleniti sit delectus voluptatem aliquid culpa odit voluptatem repudiandae quia doloremque nobis magni quasi consequuntur reprehenderit dicta.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (28, 1, NULL, 'g172s42p7', '', '193421', NULL, 13, 13, NULL, 'due7223451534350074', 'xfl1861d31049382261', 2001, 1406, 'verde', ' 7 personas', 12656374, 49050506, 4232282, 2103805, '1994-12-22', '2001-07-02', 5, 7, 1233, 4, 1, 4, 1, NULL, NULL, '1997-09-05', 'Quis nulla itaque deserunt non mollitia doloribus maxime eos veniam ipsum quis.', 'Eos enim velit odio nam molestias sed repellat distinctio ut nisi doloremque ipsum in magnam dolorem facere aliquid.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (29, 1, NULL, 'f567d96r6', '', '919188', NULL, 104, 9, NULL, 'jsr9804803863786428', 'nhb6078x05452835762', 2003, 1311, 'rojo', ' 8 personas', 84742928, 85673362, 4196354, 9067705, '2017-04-30', '1996-10-01', 7, 5, 1010, 3, 1, 4, 1, NULL, NULL, '1974-06-22', 'Expedita sit repellat nisi molestias ut molestiae et vel iste ad veniam delectus.', 'Possimus eos repellendus magni aperiam officia maxime iusto omnis exercitationem sed harum dolorem.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (30, 1, NULL, 's286y95c5', '', '178486', NULL, 43, 2, NULL, 'zbz2071790290752974', 'iui9879c97412602177', 2001, 1410, 'amarillo', '4 personas', 60580862, 11852678, 9469460, 2047060, '1977-07-30', '1983-08-13', 4, 5, 1863, 1, 0, 4, 1, NULL, NULL, '1990-11-19', 'Debitis quis laudantium non enim odit eaque modi vero.', 'Quia quis sunt sint cum dolorem corporis sed neque officia repellendus autem voluptatem voluptatibus.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (31, 1, NULL, 'a115m03m3', '', '035961', NULL, 39, 3, NULL, 'osv0844902439989733', 'kge8517s61334093126', 2011, 1779, 'azul', '4 personas', 49192510, 29554497, 6424626, 8659494, '2003-03-28', '1983-08-28', 3, 7, 1734, 2, 0, 3, 1, NULL, NULL, '2012-08-28', 'Dolor quam omnis necessitatibus nemo similique est accusamus officiis voluptate harum est repellendus.', 'Iste et ratione quos cumque est ducimus ut qui consequatur eligendi quo nemo soluta laborum sed expedita numquam debitis est aut quasi nihil.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (32, 1, NULL, 'p144c96z8', '', '636161', NULL, 92, 9, NULL, 'izf5137893377472198', 'uiv0364j00467574949', 2012, 1807, 'rojo', ' 8 personas', 89494578, 15394688, 5285661, 5019484, '2015-03-25', '2003-10-12', 7, 5, 1689, 2, 0, 4, 0, NULL, NULL, '2001-07-20', 'Rerum magnam enim dolore qui quis quas laudantium nulla.', 'Ipsam dolorem rem voluptas iste praesentium qui quasi dolorem at dolorem tempora at et tempora modi.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (33, 1, NULL, 'f980i11u1', '', '104198', NULL, 97, 13, NULL, 'zto5446591181894481', 'elu2553x63402083592', 2018, 1312, 'rojo', ' 7 personas', 72298381, 80758421, 5220785, 5502930, '1979-07-01', '1978-04-12', 7, 5, 1111, 1, 0, 4, 1, NULL, NULL, '2009-05-10', 'Sapiente esse quibusdam fuga facere accusamus eaque eligendi velit assumenda ut libero maxime laudantium.', 'Explicabo quia ipsa consequatur error est sequi qui voluptas aut eius est laboriosam eaque ut temporibus aut rerum voluptatem fugiat recusandae.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (34, 1, NULL, 'k035i28m9', '', '906442', NULL, 116, 12, NULL, 'ncz9385706186283632', 'nqk9624k92714813116', 2019, 1468, 'azul', ' 5 personas', 64576772, 56365841, 2746382, 8165539, '1985-03-14', '1977-01-24', 6, 7, 1262, 3, 0, 2, 0, NULL, NULL, '1994-04-24', 'Ad at aut dignissimos quos eum et.', 'Numquam molestiae magnam aut sunt dolore facilis eligendi enim ratione.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (35, 1, NULL, 'n041g18j5', '', '999068', NULL, 10, 10, NULL, 'ulb8475578229493646', 'yrn4929h92027151466', 2013, 1389, 'rojo', ' 5 personas', 51113178, 53938700, 7031856, 4164412, '2003-08-08', '1991-11-07', 4, 5, 1925, 2, 1, 4, 1, NULL, NULL, '2005-05-30', 'Vel eum sunt quis autem omnis quibusdam est odio quia voluptates vel velit id.', 'Qui ea quidem necessitatibus ut officiis voluptatibus eos porro eaque quo voluptates suscipit iure sapiente sunt.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (36, 1, NULL, 'h022w90g2', '', '896996', NULL, 92, 4, NULL, 'fas4045224051805655', 'yrb1069o30920139533', 2011, 1699, 'verde', '4 personas', 92018565, 54715342, 1974647, 7555478, '2002-03-14', '1989-05-25', 7, 8, 1458, 3, 0, 4, 1, NULL, NULL, '2015-06-02', 'Alias laudantium quibusdam suscipit voluptatem quo et facilis minus perferendis doloribus.', 'Molestias vero aliquam est incidunt modi quo veritatis nulla laborum consequatur.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (37, 1, NULL, 'z684u55q9', '', '127192', NULL, 20, 7, NULL, 'ynx6404817470060447', 'ppa9682m77845348653', 2008, 1652, 'amarillo', ' 7 personas', 41012488, 14448386, 9270992, 6274637, '1987-10-30', '1996-10-24', 2, 6, 1160, 2, 1, 4, 1, NULL, NULL, '1991-04-28', 'Corrupti quia odio incidunt quae rem sit consequatur ab officia.', 'Eum asperiores dolores quibusdam quibusdam voluptas rerum inventore numquam ab nesciunt.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (38, 1, NULL, 'l177v01o1', '', '229911', NULL, 6, 11, NULL, 'skf1654637938022396', 'ule3571a73730074938', 2004, 1373, 'rojo', ' 8 personas', 98939590, 15416946, 9533886, 3839965, '1991-11-19', '1992-02-07', 3, 6, 1213, 4, 1, 3, 0, NULL, NULL, '2017-01-09', 'Eius dolores recusandae impedit nihil quisquam asperiores sed.', 'Qui voluptas accusamus vitae dolores ducimus sapiente ea necessitatibus et numquam facilis molestiae accusamus quam eum vero sed nemo.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (39, 1, NULL, 'a390m37f1', '', '455768', NULL, 27, 2, NULL, 'uol2505589848772556', 'qsm1064e84681537632', 2017, 1402, 'amarillo', ' 8 personas', 62842527, 98699830, 8505494, 5917646, '1993-08-04', '1994-10-29', 3, 5, 1196, 4, 0, 2, 1, NULL, NULL, '1981-11-20', 'Architecto rerum deleniti laborum delectus cum velit rem aliquid sit.', 'Ut quis vel est voluptatem repellat provident sit id numquam ut sunt dolorum accusamus sapiente accusamus rem reprehenderit.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (40, 1, NULL, 'u470d00x2', '', '097171', NULL, 68, 11, NULL, 'rlu6422051238621807', 'ode4330z97746463912', 2002, 1555, 'verde', '4 personas', 75744932, 10937904, 2348276, 5707057, '1976-10-16', '1991-11-24', 5, 4, 1334, 1, 1, 4, 0, NULL, NULL, '1991-07-01', 'Sed sunt earum iste ab aut voluptatem est ut autem modi animi.', 'Molestias possimus ipsam ut magnam qui sequi at quis aut sunt voluptate officia odit illum dolores nihil.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (41, 1, NULL, 't094n76c7', '', '522336', NULL, 73, 2, NULL, 'xjv0145299800547534', 'akj2988f50437888150', 2015, 1873, 'azul', ' 5 personas', 71539498, 36336708, 1390844, 9463754, '1985-06-30', '1971-10-25', 7, 6, 1974, 4, 0, 3, 1, NULL, NULL, '2011-12-02', 'Beatae ut dolores doloribus quod dolorum doloremque similique cum aperiam dicta.', 'Autem excepturi nihil voluptatibus ut dolorum est distinctio voluptas voluptas aut velit occaecati.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (42, 1, NULL, 'x086i19v5', '', '504787', NULL, 104, 9, NULL, 'blt5910185891165469', 'eqs7834b27327081025', 2011, 1645, 'verde', ' 8 personas', 60283780, 57273879, 8968311, 4254914, '2005-06-01', '2018-11-28', 1, 6, 1952, 4, 0, 4, 0, NULL, NULL, '1999-05-24', 'At dolorum doloribus qui sequi aspernatur enim libero necessitatibus nostrum.', 'Culpa autem temporibus sit velit optio qui autem autem qui explicabo temporibus eligendi sint sit error neque.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (43, 1, NULL, 'y865k54y1', '', '136103', NULL, 51, 2, NULL, 'hmt5272038224045173', 'peu0172i56193949879', 2004, 1776, 'verde', '4 personas', 43515589, 29848712, 7878037, 1665735, '2011-04-16', '1990-10-21', 1, 6, 1655, 4, 1, 3, 1, NULL, NULL, '2003-12-20', 'Distinctio ut reprehenderit et odit provident ratione.', 'Sint consequatur quis quod inventore fugit excepturi qui qui facilis laborum ratione numquam error et.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (44, 1, NULL, 'z919z18e6', '', '950978', NULL, 113, 6, NULL, 'itz2273267994971713', 'ant4391x65435114844', 2002, 1747, 'blanco', ' 8 personas', 98281745, 39470874, 6104348, 1808435, '2010-03-23', '2009-04-17', 5, 7, 1646, 1, 1, 2, 1, NULL, NULL, '1984-06-25', 'Qui at illo reprehenderit ut culpa quia amet quisquam sunt illum et.', 'Et tenetur eveniet commodi qui id ea sint cum eos ut a voluptatem.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (45, 1, NULL, 's555p28m9', '', '369284', NULL, 79, 6, NULL, 'vxg0157008000880670', 'bwy5082w69208725133', 2015, 1744, 'morado', ' 8 personas', 43096489, 88598467, 3187768, 4422592, '2004-08-18', '2008-10-27', 8, 6, 1044, 3, 1, 3, 1, NULL, NULL, '2013-05-26', 'Explicabo commodi nesciunt ipsum dolor culpa assumenda dignissimos deleniti.', 'Odio debitis placeat rerum praesentium quidem exercitationem et soluta eos sit et.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (46, 1, NULL, 'l039z81m0', '', '524769', NULL, 18, 15, NULL, 'fxj1099191402875905', 'rpy5863h70833444433', 2001, 1330, 'blanco', '4 personas', 21058659, 62434323, 4655714, 3307677, '2016-08-22', '1991-05-05', 6, 8, 1571, 4, 0, 4, 0, NULL, NULL, '2005-07-27', 'In recusandae accusantium autem vel aut debitis quibusdam sed.', 'Voluptatem ea nihil explicabo totam deleniti et sed sed ipsum vel odit atque ratione molestiae.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (47, 1, NULL, 'r341j48u4', '', '223647', NULL, 28, 2, NULL, 'xym4598646060120137', 'jum7703k49101688279', 2006, 1904, 'amarillo', ' 5 personas', 64335827, 87696481, 8915072, 6597799, '2008-09-07', '1970-05-13', 6, 7, 1172, 2, 1, 3, 1, NULL, NULL, '1989-01-06', 'Atque et omnis laudantium consequuntur odio est quaerat.', 'Minima fugit nesciunt non reprehenderit voluptatem eligendi doloribus porro ea dicta aliquid omnis nihil perferendis autem.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (48, 1, NULL, 'u416t69f4', '', '188199', NULL, 107, 8, NULL, 'egh0203901012899356', 'fcz1398w28677474017', 2001, 1740, 'celeste', ' 5 personas', 66884098, 75588711, 6340386, 9831025, '1996-05-19', '2005-10-08', 6, 4, 1502, 1, 0, 4, 0, NULL, NULL, '2013-04-16', 'Et libero aliquam qui ea dolorum esse in.', 'Accusamus eum dicta eos eum hic ducimus harum rerum modi velit consequatur.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (49, 1, NULL, 'g661v04r5', '', '236990', NULL, 23, 11, NULL, 'gvq4821930113860329', 'uyh6410z44559040749', 2013, 1242, 'celeste', ' 8 personas', 50948128, 83962394, 8604219, 7006869, '1989-01-04', '1992-05-04', 4, 6, 1583, 1, 1, 3, 1, NULL, NULL, '1984-12-30', 'Nihil minima voluptatem pariatur quasi fugit distinctio possimus a est culpa quia debitis ut.', 'Quod quia mollitia quis tenetur aut est numquam hic dolore.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (50, 1, NULL, 'i721f52a0', '', '704580', NULL, 64, 12, NULL, 'icn0357965737860886', 'vdg8848r53954213566', 2013, 1326, 'blanco', ' 5 personas', 10799212, 33163088, 4381800, 1231598, '2004-04-13', '2007-12-30', 1, 7, 1818, 1, 1, 2, 0, NULL, NULL, '1987-11-16', 'Quia quam fuga quod perferendis quam delectus quo cupiditate aut dicta natus.', 'Ut sed dolorem voluptates enim quo odio laudantium totam in est occaecati dicta quia eveniet saepe facilis recusandae consequatur quibusdam sunt nam.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (51, 1, NULL, 's930k24f2', '', '386354', NULL, 16, 11, NULL, 'yjs3363446743312726', 'axa7677g34161156188', 2013, 1527, 'celeste', ' 7 personas', 51255758, 19270485, 8527676, 8422104, '1988-09-01', '1994-05-06', 5, 6, 1662, 1, 1, 4, 0, NULL, NULL, '1983-09-06', 'Qui animi qui numquam aut nihil quis eius at voluptas quaerat quia dolores consequatur.', 'Cum sed veniam at iusto blanditiis veritatis perspiciatis ex quia molestiae quia dicta voluptate debitis est iure sequi architecto.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (52, 1, NULL, 'r519w52m2', '', '849502', NULL, 42, 9, NULL, 'pwe4894653483318607', 'khx3536f40420751281', 2006, 1992, 'rojo', ' 8 personas', 45174089, 23486319, 5142928, 3338921, '2011-03-23', '2007-11-06', 5, 6, 1156, 4, 0, 3, 1, NULL, NULL, '2002-11-22', 'Nam ipsum delectus sequi inventore accusantium eos officiis animi quos eaque consectetur incidunt.', 'Facere repudiandae quisquam inventore iure ut minus ut et minima omnis quidem culpa tempora debitis amet dolor.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (53, 1, NULL, 'c221h51q9', '', '268692', NULL, 92, 15, NULL, 'nuq8456870080751380', 'yhw9197i89621189240', 2018, 1292, 'celeste', ' 7 personas', 77173551, 45522683, 4980775, 9239004, '1994-08-24', '1993-08-06', 1, 5, 1385, 3, 1, 3, 0, NULL, NULL, '1989-12-02', 'Doloribus voluptatem voluptate nesciunt voluptas aut impedit maiores hic reiciendis est quasi.', 'Qui maiores qui omnis qui qui consectetur adipisci nostrum eos dolorem dolorem delectus libero ea et sed dolorem tempore ipsa ut quisquam.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (54, 1, NULL, 'x000n54j2', '', '977971', NULL, 95, 6, NULL, 'mad1654144119856538', 'gch6051z13740915297', 2017, 1699, 'morado', ' 5 personas', 26663581, 21393846, 7808806, 7613225, '1991-03-11', '1990-05-12', 1, 4, 1158, 2, 0, 4, 1, NULL, NULL, '2009-07-29', 'Deserunt illo et quis saepe sed cupiditate necessitatibus explicabo repudiandae.', 'Corporis et autem qui illo deserunt nihil ex ut sint voluptatem.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (55, 1, NULL, 'o370z97g4', '', '075448', NULL, 97, 15, NULL, 'dxa8793107671077488', 'feu1197z93913880927', 2003, 1260, 'verde', ' 5 personas', 97086917, 84696731, 9461799, 6837875, '1998-12-08', '2016-03-28', 1, 6, 1253, 3, 1, 3, 1, NULL, NULL, '1983-05-18', 'Praesentium est dicta deserunt illo harum non dolores incidunt illo.', 'Ratione corporis maiores est odit ut facilis aut vel accusamus minima similique eos iste est tempora veritatis tempore consequatur molestias quia.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (56, 1, NULL, 'g818v39s3', '', '461803', NULL, 50, 2, NULL, 'hpd7095646213062284', 'wfq8213t55919671585', 2018, 1895, 'azul', '4 personas', 80735343, 67342994, 7043584, 8664392, '2002-10-27', '1973-06-30', 1, 8, 1837, 3, 1, 3, 1, NULL, NULL, '2005-04-13', 'Est enim debitis alias repellendus accusamus quis autem rerum accusantium dolor.', 'Consequuntur dolor optio ut tenetur temporibus id distinctio ut libero velit expedita omnis amet sint amet voluptatem sed dolorem.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (57, 1, NULL, 's585i83x0', '', '890571', NULL, 38, 9, NULL, 'dny3258531458971466', 'nqs3697b01297381931', 2006, 1613, 'celeste', ' 5 personas', 87147122, 29523432, 5287437, 4877564, '1975-04-15', '1995-06-04', 8, 5, 1630, 1, 0, 3, 0, NULL, NULL, '1987-10-02', 'Corrupti sit at minima ut placeat sint et.', 'Qui fuga ut perferendis earum omnis iste facilis aliquid nesciunt enim.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (58, 1, NULL, 'm322e65f2', '', '129644', NULL, 94, 1, NULL, 'qjn5961131855116032', 'xwl7157m38220454711', 2000, 1630, 'morado', ' 5 personas', 36035846, 19698908, 3749304, 2178394, '1978-10-23', '1981-01-04', 8, 8, 1730, 2, 0, 3, 1, NULL, NULL, '2013-03-03', 'Vero quia doloremque numquam ea perferendis consectetur enim repellat accusamus hic deleniti.', 'Molestiae illum aut qui tempore sequi qui perferendis pariatur quo.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (59, 1, NULL, 'u035m88v0', '', '849499', NULL, 96, 1, NULL, 'giw6198968601741329', 'rvb2332j40964305237', 2006, 1589, 'verde', ' 5 personas', 47748729, 62109514, 4069896, 3699617, '1981-01-28', '1998-11-26', 1, 4, 1592, 1, 0, 4, 1, NULL, NULL, '1982-01-03', 'Veniam nulla culpa modi veniam laudantium fugiat sequi cupiditate incidunt accusamus dicta eius fugit.', 'Unde quaerat unde consequuntur et cupiditate natus quam magnam nihil aliquid rerum aut repudiandae perferendis.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (60, 1, NULL, 'q468k85l3', '', '188243', NULL, 19, 14, NULL, 'pes6231485478646310', 'iub9711f37224588364', 2001, 1800, 'verde', ' 5 personas', 31009820, 85956085, 3637897, 8090575, '2012-05-08', '1997-02-27', 2, 8, 1570, 2, 0, 3, 0, NULL, NULL, '1978-09-09', 'Consequatur necessitatibus voluptatibus sit consequatur illo sapiente reprehenderit praesentium dolores rerum nam excepturi optio dolor.', 'Velit expedita pariatur similique nesciunt consequatur delectus voluptas laudantium doloremque necessitatibus iure.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (61, 1, NULL, 'k166j40w9', '', '984906', NULL, 20, 10, NULL, 'nod8266792254420846', 'jjt0920u74917230325', 2001, 1687, 'azul', ' 7 personas', 13351810, 53412389, 8810217, 9778004, '2011-07-17', '1976-04-29', 8, 8, 1866, 1, 0, 2, 0, NULL, NULL, '2013-04-28', 'Non facere vel sit velit quos nulla odit maxime facere optio dolore ipsa ullam natus.', 'Vitae sequi delectus et est nostrum eaque doloremque repellat est veritatis distinctio quas.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (62, 1, NULL, 'w454a31r1', '', '152321', NULL, 85, 1, NULL, 'ntb1275159541418878', 'vas8489z00674218566', 2004, 1368, 'negro', '4 personas', 69727580, 60618835, 1009772, 6713067, '2010-12-26', '1990-05-24', 8, 8, 1280, 1, 0, 4, 0, NULL, NULL, '1993-12-13', 'Nihil maxime excepturi non ipsa animi unde.', 'Ut sed officiis delectus qui eveniet est sequi nesciunt earum ipsam possimus cumque ut expedita eius sint non eum animi amet culpa.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (63, 1, NULL, 'y224c98d8', '', '508405', NULL, 114, 13, NULL, 'xtq4273921198425542', 'tix0980u22367887520', 2004, 1443, 'verde', ' 8 personas', 33758658, 54438639, 8451325, 3442039, '1979-11-01', '2015-02-06', 3, 4, 1695, 3, 0, 3, 0, NULL, NULL, '1973-11-23', 'Minus pariatur qui recusandae est eum rerum molestias aut nobis dolores.', 'Voluptas rerum sed sint temporibus alias consectetur ipsum eos porro qui suscipit nisi voluptate expedita et assumenda optio et impedit.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (64, 1, NULL, 'l590q08z5', '', '618898', NULL, 103, 3, NULL, 'hea1293845881523550', 'dho1811u04735424435', 2016, 1623, 'amarillo', ' 7 personas', 25445776, 94678562, 9605753, 8154907, '1971-08-16', '1978-12-26', 4, 4, 1311, 3, 0, 3, 1, NULL, NULL, '2018-12-14', 'Non culpa et est recusandae veniam tempore.', 'Dolores id fugiat enim voluptatum quam quia consectetur impedit aliquid voluptas blanditiis quae tempore sint est atque sint alias molestiae expedita.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (65, 1, NULL, 'r584o57g1', '', '863353', NULL, 79, 1, NULL, 'hhq4338570460258948', 'hfy6871h14480886500', 2017, 1727, 'rojo', ' 8 personas', 45253738, 25102115, 1049382, 1686958, '2014-03-13', '1985-06-19', 3, 4, 1374, 4, 1, 2, 0, NULL, NULL, '1977-08-20', 'Itaque qui placeat odit autem iste ullam voluptatem vitae animi voluptatem.', 'Sed ratione ab totam velit non unde unde et ipsa perferendis qui asperiores et a dolorem et inventore ut blanditiis et et iusto.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (66, 1, NULL, 'b773p83y8', '', '216925', NULL, 61, 3, NULL, 'muk1471341318096029', 'ynx7418l28438887734', 2015, 1623, 'blanco', ' 7 personas', 75893011, 25742625, 7131500, 2501532, '2009-04-18', '1974-06-24', 3, 5, 1827, 3, 1, 3, 1, NULL, NULL, '1970-06-09', 'Ut voluptate voluptatem eum architecto et aliquam sed repellendus iusto ut.', 'Provident placeat incidunt consequatur est incidunt nesciunt expedita accusamus vitae qui cupiditate saepe veritatis dolorem.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (67, 1, NULL, 'r058g91w2', '', '628673', NULL, 43, 15, NULL, 'ytb8915514043052932', 'xwr0669v71028012396', 2009, 1775, 'amarillo', ' 7 personas', 79667073, 25263510, 3615077, 1767002, '2006-03-20', '1980-04-22', 7, 8, 1479, 4, 1, 4, 1, NULL, NULL, '1994-03-30', 'Soluta minus voluptatibus consequatur vel aperiam blanditiis sint.', 'Quas eligendi reprehenderit perferendis et ipsa quaerat aliquid eos consequatur unde qui voluptatibus aut.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (68, 1, NULL, 'g935j81w4', '', '275401', NULL, 56, 4, NULL, 'ivx7994961700748413', 'wuw4091t84128004525', 2012, 1784, 'morado', ' 7 personas', 69494998, 84754760, 1646744, 3909640, '1980-04-15', '2012-12-13', 5, 8, 1978, 1, 1, 4, 0, NULL, NULL, '1991-01-22', 'Maxime voluptatem inventore neque quo autem provident et provident quos praesentium possimus.', 'Facere aut voluptatem sit occaecati saepe sunt veniam minus nihil.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (69, 1, NULL, 'k269c73g7', '', '417218', NULL, 61, 13, NULL, 'afv9527658133526388', 'azl8569g52547780188', 2018, 1820, 'rojo', ' 7 personas', 47501140, 26336263, 2073249, 2809774, '1987-08-30', '1998-05-03', 1, 6, 1026, 4, 0, 3, 0, NULL, NULL, '2019-01-03', 'Voluptas in sapiente est sint dolorem porro totam omnis nisi nihil cumque vel.', 'Consectetur repellat modi soluta ducimus hic qui nisi incidunt et.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (70, 1, NULL, 'z750b56v4', '', '261659', NULL, 7, 13, NULL, 'jaj9836572578034078', 'wpf8534z78456174503', 2010, 1295, 'negro', '4 personas', 57359022, 92900857, 5487622, 7744668, '1970-06-27', '2007-12-02', 6, 7, 1106, 4, 1, 3, 1, NULL, NULL, '2000-01-02', 'Quo eligendi tempore doloribus molestias mollitia ducimus ea ut facere reiciendis est est.', 'Repellat et quia ex odit at id nisi quis consequuntur in ut qui quia dolor excepturi animi.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (71, 1, NULL, 'k615b22s6', '', '567668', NULL, 7, 7, NULL, 'zgp2047993950904530', 'cbq2288v79026785898', 2013, 1234, 'celeste', ' 8 personas', 21627443, 50705455, 8522579, 8708878, '1991-05-23', '1998-04-17', 4, 8, 1337, 3, 1, 2, 0, NULL, NULL, '1995-06-09', 'Vel deserunt totam error veniam et deleniti et temporibus odio sit.', 'Iusto omnis necessitatibus consequatur mollitia error sunt neque explicabo eum quas mollitia suscipit dignissimos.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (72, 1, NULL, 'o845y54u0', '', '818366', NULL, 30, 12, NULL, 'kvk4391495440685518', 'heg7873c69183605412', 2016, 1848, 'amarillo', ' 8 personas', 83478605, 87429488, 1277748, 9904434, '1988-02-10', '1985-12-28', 3, 4, 1073, 2, 1, 3, 1, NULL, NULL, '1970-11-09', 'Architecto et natus quas sit unde facere quia et dolores voluptatem.', 'Molestiae recusandae repudiandae ullam consequatur quia error sunt tenetur quod voluptas debitis qui quidem qui velit ea a neque culpa expedita quidem velit.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (73, 1, NULL, 'q500w17b1', '', '420077', NULL, 102, 1, NULL, 'dwk2072921891529987', 'qsj2452x83254261175', 2015, 1599, 'negro', '4 personas', 77683747, 34250221, 2189369, 3733406, '1970-11-10', '1970-03-18', 7, 7, 1103, 1, 0, 4, 0, NULL, NULL, '2018-05-27', 'Nobis sint delectus non eveniet dolorum harum quod.', 'Non quia voluptatum odio similique pariatur ullam culpa aliquam perferendis non nam.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (74, 1, NULL, 'g240i67u0', '', '753722', NULL, 98, 10, NULL, 'ycr3957598306513495', 'ssr7266c96923920175', 2011, 1224, 'azul', ' 8 personas', 98553252, 25014924, 6150329, 7064240, '1994-12-08', '1971-06-09', 5, 5, 1441, 3, 1, 4, 0, NULL, NULL, '1971-05-26', 'Et voluptatem alias reiciendis ratione eos velit voluptatem saepe sunt et voluptate sequi eum cumque.', 'Placeat aliquam rerum dolores nihil error perferendis rem similique enim itaque enim omnis incidunt rem sint qui.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (75, 1, NULL, 'r388s49g2', '', '503529', NULL, 112, 2, NULL, 'ygh5516132819198393', 'cin3911d77321285565', 2007, 1551, 'negro', '4 personas', 18770707, 30554398, 1483693, 9714424, '1976-11-25', '1977-11-16', 4, 6, 1953, 2, 1, 3, 1, NULL, NULL, '2000-08-01', 'Dolore est voluptas quasi quia blanditiis blanditiis dolores iure.', 'Dolor sunt qui cumque quia voluptas quasi et corrupti mollitia nihil eaque sapiente.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (76, 1, NULL, 'x138k27s0', '', '641888', NULL, 38, 14, NULL, 'urh0768934836152739', 'peo6654d84825635194', 2001, 1944, 'blanco', '4 personas', 81497582, 61242931, 5745494, 3279536, '2004-01-22', '1994-05-01', 4, 5, 1105, 3, 1, 3, 1, NULL, NULL, '1981-12-18', 'Ut odit tenetur sapiente sed sint aut non odio.', 'Quam officia eius eum est vero consectetur voluptatem omnis accusantium repudiandae libero eaque.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (77, 1, NULL, 'g331a52e4', '', '499170', NULL, 104, 8, NULL, 'ugw7845686006856268', 'emv5593r87205307625', 2013, 1919, 'azul', ' 5 personas', 71866518, 71368664, 6403682, 5013442, '2003-10-17', '2017-11-06', 1, 6, 1423, 3, 1, 2, 1, NULL, NULL, '1985-09-16', 'Et ut nisi accusamus optio molestias nam beatae vel delectus quia.', 'Architecto eum consectetur adipisci id aut tenetur ipsum voluptatem labore ut ipsam mollitia facilis nam iste consequuntur.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (78, 1, NULL, 'u603v60r1', '', '058750', NULL, 30, 13, NULL, 'bpm6356694310753499', 'mcl4571q85158948468', 2002, 1400, 'blanco', ' 8 personas', 96131503, 47820093, 9804499, 6449425, '2004-03-11', '1997-10-22', 7, 8, 1081, 4, 1, 3, 1, NULL, NULL, '2018-11-16', 'Et tenetur dolorem autem et aliquam eaque repudiandae rerum similique minus necessitatibus.', 'Doloremque qui error voluptatem nostrum mollitia omnis optio nihil ut et quia minus sed architecto.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (79, 1, NULL, 'h989w73h9', '', '842456', NULL, 104, 13, NULL, 'xrf6287169132144886', 'sou5560g13995908653', 2008, 1289, 'azul', ' 7 personas', 68591277, 76227264, 1293639, 8990141, '1999-12-17', '1989-04-04', 2, 7, 1238, 1, 1, 2, 0, NULL, NULL, '1990-09-24', 'In nihil nobis beatae quas ullam cupiditate harum dolores.', 'Vitae assumenda qui iste sunt aut nihil sed necessitatibus est asperiores vel iure placeat.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (80, 1, NULL, 'r142n89y5', '', '927944', NULL, 96, 11, NULL, 'hkh0379749315372717', 'kxc5746k89778756600', 2003, 1355, 'morado', ' 5 personas', 82314225, 27653767, 7364088, 7811114, '1978-06-03', '2006-12-18', 8, 5, 1014, 2, 0, 3, 0, NULL, NULL, '1985-12-15', 'In harum saepe ut sequi non voluptatem.', 'Velit modi sed error quod ut ut perspiciatis atque non molestiae error corrupti maxime aliquam facilis vitae expedita recusandae.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (81, 1, NULL, 'n605k36n4', '', '875317', NULL, 93, 15, NULL, 'yie8461027632373336', 'btr3339g43184156317', 2008, 1890, 'morado', ' 5 personas', 45811320, 73868056, 5810961, 4257316, '1992-06-15', '1996-02-21', 4, 5, 1001, 2, 1, 3, 1, NULL, NULL, '1970-02-12', 'Cum sint quidem dolore accusamus soluta necessitatibus maxime molestias eaque esse maxime.', 'Necessitatibus maiores quod eum possimus aut debitis omnis est veniam vero sit itaque enim aliquam praesentium officiis dolorem cumque.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (82, 1, NULL, 'r164c90c1', '', '280236', NULL, 10, 13, NULL, 'vcc2654880330599062', 'zdv9324g10429234810', 2006, 1767, 'rojo', ' 7 personas', 27107312, 77299650, 4771157, 6627502, '1992-02-06', '1971-12-13', 1, 6, 1930, 1, 0, 4, 1, NULL, NULL, '1974-01-25', 'Labore aut quos tenetur quas commodi voluptates hic inventore impedit.', 'Voluptatem aut provident quis nihil exercitationem voluptate doloribus voluptatem in quam sunt ipsam sint modi accusantium illo totam voluptatem molestiae non quasi accusantium.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (83, 1, NULL, 'p607h63s9', '', '254121', NULL, 84, 6, NULL, 'mvy9098662512331558', 'uqu3482i81848314863', 2009, 1357, 'azul', ' 8 personas', 80735367, 35615692, 8527721, 3619905, '1972-10-31', '1984-05-24', 1, 6, 1510, 4, 1, 4, 0, NULL, NULL, '2014-08-26', 'Et natus in nisi est hic eos eius ut et eos qui dolor.', 'Et qui aliquam rem ut eveniet minima officiis minima nisi aliquam nisi cupiditate quas totam.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (84, 1, NULL, 'v474m34r4', '', '468549', NULL, 10, 2, NULL, 'qbh9374836885516252', 'pei3890g79718137195', 2000, 1771, 'negro', ' 8 personas', 62407767, 12162351, 3793348, 3034657, '1972-01-03', '1983-07-04', 1, 4, 1114, 2, 0, 4, 0, NULL, NULL, '2001-06-13', 'Molestiae laboriosam neque libero magni dolore rerum maiores consequatur qui vel autem.', 'Nemo esse autem fugit ratione quam impedit quis molestiae ipsa similique officia omnis sit animi placeat.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (85, 1, NULL, 'w161f71j1', '', '748027', NULL, 76, 6, NULL, 'gxp7964056013489073', 'qtb2959i05413584521', 2008, 1281, 'amarillo', '4 personas', 56849970, 66209013, 8063032, 1031005, '1974-12-12', '2012-10-23', 2, 5, 1035, 2, 1, 2, 0, NULL, NULL, '2007-12-04', 'Consequatur natus autem a maxime sed corrupti laboriosam in nulla.', 'Non consequatur vel minima saepe aut ut qui doloremque culpa consequatur laboriosam repellat recusandae.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (86, 1, NULL, 'z852h09l9', '', '608439', NULL, 23, 14, NULL, 'tdy5742035091638695', 'wiz5253y93190199102', 2013, 1906, 'blanco', '4 personas', 52109873, 93189350, 2056436, 8080491, '2016-11-17', '2001-07-26', 2, 8, 1301, 4, 0, 3, 0, NULL, NULL, '1972-10-31', 'Rerum doloribus non sit dicta expedita porro libero.', 'Et aliquam perspiciatis possimus qui tenetur qui quia incidunt praesentium delectus incidunt facilis ut eum eius quisquam.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (87, 1, NULL, 'y092h94p5', '', '271982', NULL, 98, 12, NULL, 'une7898170560194507', 'jqe8943s71511931042', 2019, 1893, 'celeste', ' 8 personas', 51093866, 80545340, 6791306, 8880565, '2008-05-08', '1974-01-10', 7, 8, 1844, 4, 1, 2, 1, NULL, NULL, '1996-03-16', 'Rem voluptatum omnis repellat et fuga animi earum.', 'Qui magni animi tempore voluptas quia voluptatibus voluptatem rem quia neque similique est atque eos temporibus eum nihil hic reiciendis aut laudantium nemo.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (88, 1, NULL, 'd498v94d4', '', '242886', NULL, 40, 4, NULL, 'vdf7358075359478632', 'fbk1795j71938734132', 2016, 1509, 'verde', ' 5 personas', 88527742, 32210738, 6554261, 2857884, '1984-11-17', '1978-12-28', 1, 8, 1970, 3, 0, 2, 1, NULL, NULL, '2003-11-24', 'Nulla molestiae nihil aut qui blanditiis qui magnam quia quasi.', 'Doloribus consectetur iure doloribus quas voluptatem voluptas ut consequuntur blanditiis amet reiciendis aut sequi ea et doloribus magnam reiciendis quia veritatis.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (89, 1, NULL, 'r855g88t4', '', '244013', NULL, 116, 5, NULL, 'fdl3277064989798137', 'dlh3755u07532971851', 2004, 1483, 'blanco', '4 personas', 50136907, 55932579, 2208908, 4548702, '2003-01-28', '1977-12-14', 7, 7, 1622, 2, 1, 3, 0, NULL, NULL, '1973-05-01', 'Sint voluptas reiciendis consequatur excepturi voluptate consequatur.', 'Voluptas aut vel perferendis necessitatibus earum ab eum molestiae dolorum molestiae voluptatibus porro nesciunt est ratione aliquam molestiae quaerat sed nobis error.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (90, 1, NULL, 'm091w61u2', '', '717997', NULL, 100, 1, NULL, 'run8683798831546559', 'leg0373r13981042093', 2013, 1659, 'rojo', '4 personas', 81470642, 51056256, 8703574, 1776697, '1976-01-12', '1996-09-23', 8, 4, 1682, 3, 1, 4, 1, NULL, NULL, '1974-11-05', 'Repudiandae quas vel laudantium et et sint laboriosam tempora sint architecto ipsam.', 'Repellendus voluptas qui magni et enim aliquid id maiores inventore vel accusamus nulla magni.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (91, 1, NULL, 'd903i67o4', '', '063076', NULL, 53, 11, NULL, 'cin0763187865070548', 'jvy0056v43468131447', 2010, 1816, 'morado', ' 8 personas', 92622178, 45409837, 7538825, 9657277, '1973-04-19', '1970-06-04', 8, 7, 1106, 3, 1, 2, 1, NULL, NULL, '2003-06-30', 'Est sequi veniam occaecati aut quidem et dolor.', 'Autem sint maiores aperiam harum voluptatem praesentium quidem hic tempora et facere possimus accusantium ut fugiat.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (92, 1, NULL, 'l327x29y5', '', '525678', NULL, 114, 3, NULL, 'ylu9923064196237742', 'qic2843u01469525982', 2004, 1268, 'amarillo', '4 personas', 10339010, 53012103, 8431435, 3431562, '1984-07-29', '2005-11-20', 6, 5, 1342, 3, 0, 2, 1, NULL, NULL, '1996-09-18', 'Fugiat laborum sunt amet ut commodi voluptatem sit.', 'Quas voluptas rerum qui modi est qui id tenetur eius ut debitis debitis aut voluptatem sunt placeat dolorem a labore sed laudantium dolorem.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (93, 1, NULL, 'g586z17j6', '', '173207', NULL, 108, 13, NULL, 'xxr4535338334015349', 'ejy4553w00008500255', 2008, 1353, 'verde', ' 7 personas', 54650720, 73098927, 4129856, 7236909, '1998-12-25', '1978-05-14', 2, 5, 1162, 2, 0, 2, 0, NULL, NULL, '1986-12-07', 'Expedita atque dicta qui distinctio modi commodi in non iusto reprehenderit.', 'Dolore et vel aut eaque dolorum a aspernatur ullam et eos doloribus et omnis cum cumque non quidem molestiae doloribus aut velit.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (94, 1, NULL, 'v800o56t3', '', '798133', NULL, 49, 1, NULL, 'ukw5441588166100417', 'fnn2169d20890554088', 2006, 1891, 'amarillo', '4 personas', 13770423, 85330124, 1019801, 1282234, '1986-01-10', '2001-01-12', 2, 6, 1386, 3, 0, 4, 0, NULL, NULL, '1999-05-03', 'Est est assumenda nobis animi veniam labore voluptate beatae.', 'Delectus voluptate ducimus cupiditate aut odio ea neque doloremque sed placeat consequatur.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (95, 1, NULL, 'p000o46s7', '', '101963', NULL, 76, 13, NULL, 'qhy4134940937378031', 'zmx5852p18242688792', 2019, 1889, 'morado', ' 8 personas', 94568300, 67518555, 4150610, 4877587, '1996-11-26', '1979-04-12', 3, 6, 1230, 2, 1, 2, 1, NULL, NULL, '1991-11-10', 'Facilis aut et fugit ab omnis et odit et velit velit quo dicta.', 'Et ducimus impedit veritatis unde et ut magni nobis accusantium quam placeat autem aut.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (96, 1, NULL, 'e409g80r5', '', '539778', NULL, 67, 12, NULL, 'jqc0795500767262754', 'xwq4877o34575678036', 2006, 1291, 'rojo', ' 5 personas', 43392029, 70323591, 7815035, 3624229, '2009-10-07', '1974-06-18', 3, 4, 1785, 1, 0, 2, 0, NULL, NULL, '2011-06-11', 'Natus sed sit natus ratione placeat id quo alias magnam dolorum rerum qui libero.', 'Vel tempora reprehenderit magnam et voluptates rerum in et omnis et magnam id labore quis occaecati ut natus accusamus quisquam voluptatem est.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (97, 1, NULL, 'c922t21h2', '', '554255', NULL, 29, 5, NULL, 'tlg0051079873215091', 'xlm5608u78267751239', 2000, 1303, 'blanco', ' 5 personas', 74340972, 33769559, 1874496, 4680299, '2005-09-18', '1973-03-30', 8, 6, 1543, 1, 0, 3, 1, NULL, NULL, '2011-04-01', 'Eum quod fugit nesciunt numquam rem asperiores sunt vel omnis.', 'Molestiae quam ea ad rerum quaerat aut omnis eligendi rerum numquam fugiat et nemo aliquam asperiores et excepturi officia et.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (98, 1, NULL, 'x584n89h5', '', '448718', NULL, 114, 12, NULL, 'opu7366806202914835', 'rry5178u07842929766', 2012, 1468, 'amarillo', ' 8 personas', 67754276, 88678359, 1051348, 2794332, '1987-04-18', '2014-03-22', 2, 7, 1568, 3, 0, 2, 1, NULL, NULL, '2016-11-12', 'Ut dolor nihil id molestiae illo ex illo amet.', 'Enim et consequatur alias fuga accusantium velit deserunt reiciendis totam dicta at alias voluptate voluptatem veritatis quis nisi ea omnis.', 2, NULL);
+INSERT INTO `vehiculo` VALUES (99, 1, NULL, 'h400o40p4', '', '207224', NULL, 68, 1, NULL, 'awh2476822335278524', 'fkt3572s75221959116', 2009, 1735, 'morado', ' 8 personas', 87593147, 35660417, 2036793, 3099611, '1987-11-14', '1984-01-06', 3, 7, 1663, 4, 1, 4, 0, NULL, NULL, '1997-10-15', 'Alias nam magni sed earum corporis omnis suscipit non perferendis nemo consectetur ad.', 'Enim inventore blanditiis ea doloribus autem ullam natus dolorem quibusdam unde minima voluptas non.', 1, NULL);
+INSERT INTO `vehiculo` VALUES (100, 1, NULL, 'k714o52v5', '', '639525', NULL, 89, 2, NULL, 'hcw7553343472559765', 'mch4350d56726861290', 2013, 1404, 'blanco', '4 personas', 14878904, 79638896, 4054632, 6251105, '2000-01-03', '2009-07-07', 1, 4, 1303, 3, 0, 2, 0, NULL, NULL, '1999-05-12', 'Eos consequatur et sit suscipit est sequi nulla sed cupiditate assumenda rerum dolore expedita.', 'Omnis perferendis deserunt assumenda quisquam quibusdam similique molestiae at accusantium est dolorum nesciunt cum ut.', 1, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -2099,7 +2134,7 @@ CREATE TABLE `vehiculo_estilo` (
   PRIMARY KEY (`id`),
   KEY `fk_vehiculo_estilo_vehiculo_tipo1_idx` (`vehiculo_tipo_id`),
   CONSTRAINT `fk_vehiculo_estilo_vehiculo_tipo1` FOREIGN KEY (`vehiculo_tipo_id`) REFERENCES `vehiculo_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of vehiculo_estilo
@@ -2120,6 +2155,11 @@ INSERT INTO `vehiculo_estilo` VALUES (12, 'Comercial 4.0-4.5 Ton.', 1);
 INSERT INTO `vehiculo_estilo` VALUES (13, 'Comercial 5.0-7.5 Ton.', 1);
 INSERT INTO `vehiculo_estilo` VALUES (14, 'Comercial 8.0-9.5 Ton.', 1);
 INSERT INTO `vehiculo_estilo` VALUES (15, 'Comercial 10.0+ Ton.', 1);
+INSERT INTO `vehiculo_estilo` VALUES (16, 'Cuadraciclo Sport 4x2', 2);
+INSERT INTO `vehiculo_estilo` VALUES (17, 'Cuadraciclo Utilitario 4x4', 2);
+INSERT INTO `vehiculo_estilo` VALUES (18, 'MotoCarro', 2);
+INSERT INTO `vehiculo_estilo` VALUES (19, 'Motocicleta', 2);
+INSERT INTO `vehiculo_estilo` VALUES (20, 'Mulas (Side by Side)', 2);
 COMMIT;
 
 -- ----------------------------
@@ -2129,126 +2169,222 @@ DROP TABLE IF EXISTS `vehiculo_marca`;
 CREATE TABLE `vehiculo_marca` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8;
+  `vehiculo_tipo_id` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `fk_vehiculo_marca_vehiculo_tipo1_idx` (`vehiculo_tipo_id`),
+  CONSTRAINT `fk_vehiculo_marca_vehiculo_tipo1` FOREIGN KEY (`vehiculo_tipo_id`) REFERENCES `vehiculo_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=210 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of vehiculo_marca
 -- ----------------------------
 BEGIN;
-INSERT INTO `vehiculo_marca` VALUES (4, 'Alfa Romeo');
-INSERT INTO `vehiculo_marca` VALUES (5, 'AMC');
-INSERT INTO `vehiculo_marca` VALUES (6, 'Aro');
-INSERT INTO `vehiculo_marca` VALUES (7, 'Asia');
-INSERT INTO `vehiculo_marca` VALUES (8, 'Aston Martin');
-INSERT INTO `vehiculo_marca` VALUES (9, 'Audi');
-INSERT INTO `vehiculo_marca` VALUES (10, 'Austin');
-INSERT INTO `vehiculo_marca` VALUES (11, 'Baw');
-INSERT INTO `vehiculo_marca` VALUES (12, 'Bentley');
-INSERT INTO `vehiculo_marca` VALUES (13, 'Bluebird');
-INSERT INTO `vehiculo_marca` VALUES (14, 'BMW');
-INSERT INTO `vehiculo_marca` VALUES (15, 'Brilliance');
-INSERT INTO `vehiculo_marca` VALUES (16, 'Buick');
-INSERT INTO `vehiculo_marca` VALUES (17, 'BYD');
-INSERT INTO `vehiculo_marca` VALUES (18, 'Cadillac');
-INSERT INTO `vehiculo_marca` VALUES (19, 'Chana');
-INSERT INTO `vehiculo_marca` VALUES (20, 'Changan');
-INSERT INTO `vehiculo_marca` VALUES (21, 'Chery');
-INSERT INTO `vehiculo_marca` VALUES (22, 'Chevrolet');
-INSERT INTO `vehiculo_marca` VALUES (23, 'Chrysler');
-INSERT INTO `vehiculo_marca` VALUES (24, 'Citroen');
-INSERT INTO `vehiculo_marca` VALUES (25, 'Dacia');
-INSERT INTO `vehiculo_marca` VALUES (26, 'Daewoo');
-INSERT INTO `vehiculo_marca` VALUES (27, 'Daihatsu');
-INSERT INTO `vehiculo_marca` VALUES (28, 'Datsun');
-INSERT INTO `vehiculo_marca` VALUES (29, 'Dodge/RAM');
-INSERT INTO `vehiculo_marca` VALUES (30, 'Donfeng (ZNA)');
-INSERT INTO `vehiculo_marca` VALUES (31, 'Eagle');
-INSERT INTO `vehiculo_marca` VALUES (32, 'Faw');
-INSERT INTO `vehiculo_marca` VALUES (33, 'Ferrari');
-INSERT INTO `vehiculo_marca` VALUES (34, 'Fiat');
-INSERT INTO `vehiculo_marca` VALUES (35, 'Ford');
-INSERT INTO `vehiculo_marca` VALUES (36, 'Foton');
-INSERT INTO `vehiculo_marca` VALUES (37, 'Freightliner');
-INSERT INTO `vehiculo_marca` VALUES (38, 'Geely');
-INSERT INTO `vehiculo_marca` VALUES (39, 'Genesis');
-INSERT INTO `vehiculo_marca` VALUES (40, 'Geo');
-INSERT INTO `vehiculo_marca` VALUES (41, 'GMC');
-INSERT INTO `vehiculo_marca` VALUES (42, 'Gonow');
-INSERT INTO `vehiculo_marca` VALUES (43, 'Great Wall');
-INSERT INTO `vehiculo_marca` VALUES (44, 'Hafei');
-INSERT INTO `vehiculo_marca` VALUES (45, 'Haima');
-INSERT INTO `vehiculo_marca` VALUES (46, 'Heibao');
-INSERT INTO `vehiculo_marca` VALUES (47, 'Higer');
-INSERT INTO `vehiculo_marca` VALUES (48, 'Hino');
-INSERT INTO `vehiculo_marca` VALUES (49, 'Honda');
-INSERT INTO `vehiculo_marca` VALUES (50, 'Hummer');
-INSERT INTO `vehiculo_marca` VALUES (51, 'Hyundai');
-INSERT INTO `vehiculo_marca` VALUES (52, 'Infiniti');
-INSERT INTO `vehiculo_marca` VALUES (53, 'International');
-INSERT INTO `vehiculo_marca` VALUES (54, 'Isuzu');
-INSERT INTO `vehiculo_marca` VALUES (55, 'Iveco');
-INSERT INTO `vehiculo_marca` VALUES (56, 'JAC');
-INSERT INTO `vehiculo_marca` VALUES (57, 'Jaguar');
-INSERT INTO `vehiculo_marca` VALUES (58, 'Jeep');
-INSERT INTO `vehiculo_marca` VALUES (59, 'Jinbei');
-INSERT INTO `vehiculo_marca` VALUES (60, 'JMC');
-INSERT INTO `vehiculo_marca` VALUES (61, 'Jonway');
-INSERT INTO `vehiculo_marca` VALUES (62, 'Kenworth');
-INSERT INTO `vehiculo_marca` VALUES (63, 'Kia');
-INSERT INTO `vehiculo_marca` VALUES (64, 'Lada');
-INSERT INTO `vehiculo_marca` VALUES (65, 'Lamborghini');
-INSERT INTO `vehiculo_marca` VALUES (66, 'Lancia');
-INSERT INTO `vehiculo_marca` VALUES (67, 'Land Rover');
-INSERT INTO `vehiculo_marca` VALUES (68, 'Lexus');
-INSERT INTO `vehiculo_marca` VALUES (69, 'Lifan');
-INSERT INTO `vehiculo_marca` VALUES (70, 'Lincoln');
-INSERT INTO `vehiculo_marca` VALUES (71, 'Lotus');
-INSERT INTO `vehiculo_marca` VALUES (72, 'Mack');
-INSERT INTO `vehiculo_marca` VALUES (73, 'Magiruz');
-INSERT INTO `vehiculo_marca` VALUES (74, 'Mahindra');
-INSERT INTO `vehiculo_marca` VALUES (75, 'Maserati');
-INSERT INTO `vehiculo_marca` VALUES (76, 'Mazda');
-INSERT INTO `vehiculo_marca` VALUES (77, 'Mercedes Benz');
-INSERT INTO `vehiculo_marca` VALUES (78, 'Mercury');
-INSERT INTO `vehiculo_marca` VALUES (79, 'MG');
-INSERT INTO `vehiculo_marca` VALUES (80, 'Mini');
-INSERT INTO `vehiculo_marca` VALUES (81, 'Mitsubishi');
-INSERT INTO `vehiculo_marca` VALUES (82, 'Nissan');
-INSERT INTO `vehiculo_marca` VALUES (83, 'Oldsmobile');
-INSERT INTO `vehiculo_marca` VALUES (84, 'Opel');
-INSERT INTO `vehiculo_marca` VALUES (85, 'Peterbilt');
-INSERT INTO `vehiculo_marca` VALUES (86, 'Peugeot');
-INSERT INTO `vehiculo_marca` VALUES (87, 'Plymouth');
-INSERT INTO `vehiculo_marca` VALUES (88, 'Polarsun');
-INSERT INTO `vehiculo_marca` VALUES (89, 'Pontiac');
-INSERT INTO `vehiculo_marca` VALUES (90, 'Porsche');
-INSERT INTO `vehiculo_marca` VALUES (91, 'Proton');
-INSERT INTO `vehiculo_marca` VALUES (92, 'Rambler');
-INSERT INTO `vehiculo_marca` VALUES (93, 'Renault');
-INSERT INTO `vehiculo_marca` VALUES (94, 'Reva');
-INSERT INTO `vehiculo_marca` VALUES (95, 'Rolls Royce');
-INSERT INTO `vehiculo_marca` VALUES (96, 'Rover');
-INSERT INTO `vehiculo_marca` VALUES (97, 'Saab');
-INSERT INTO `vehiculo_marca` VALUES (98, 'Samsung');
-INSERT INTO `vehiculo_marca` VALUES (99, 'Saturn');
-INSERT INTO `vehiculo_marca` VALUES (100, 'Scania');
-INSERT INTO `vehiculo_marca` VALUES (101, 'Scion');
-INSERT INTO `vehiculo_marca` VALUES (102, 'Seat');
-INSERT INTO `vehiculo_marca` VALUES (103, 'Skoda');
-INSERT INTO `vehiculo_marca` VALUES (104, 'Smart');
-INSERT INTO `vehiculo_marca` VALUES (105, 'Soueast');
-INSERT INTO `vehiculo_marca` VALUES (106, 'Ssang Yong');
-INSERT INTO `vehiculo_marca` VALUES (107, 'Subaru');
-INSERT INTO `vehiculo_marca` VALUES (108, 'Suzuki');
-INSERT INTO `vehiculo_marca` VALUES (109, 'Tianma');
-INSERT INTO `vehiculo_marca` VALUES (110, 'Tiger Truck');
-INSERT INTO `vehiculo_marca` VALUES (111, 'Toyota');
-INSERT INTO `vehiculo_marca` VALUES (112, 'Volkswagen');
-INSERT INTO `vehiculo_marca` VALUES (113, 'Volvo');
-INSERT INTO `vehiculo_marca` VALUES (114, 'Western Star');
-INSERT INTO `vehiculo_marca` VALUES (115, 'Yugo');
-INSERT INTO `vehiculo_marca` VALUES (116, 'Zotye');
+INSERT INTO `vehiculo_marca` VALUES (4, 'Alfa Romeo', 1);
+INSERT INTO `vehiculo_marca` VALUES (5, 'AMC', 1);
+INSERT INTO `vehiculo_marca` VALUES (6, 'Aro', 1);
+INSERT INTO `vehiculo_marca` VALUES (7, 'Asia', 1);
+INSERT INTO `vehiculo_marca` VALUES (8, 'Aston Martin', 1);
+INSERT INTO `vehiculo_marca` VALUES (9, 'Audi', 1);
+INSERT INTO `vehiculo_marca` VALUES (10, 'Austin', 1);
+INSERT INTO `vehiculo_marca` VALUES (11, 'Baw', 1);
+INSERT INTO `vehiculo_marca` VALUES (12, 'Bentley', 1);
+INSERT INTO `vehiculo_marca` VALUES (13, 'Bluebird', 1);
+INSERT INTO `vehiculo_marca` VALUES (14, 'BMW', 1);
+INSERT INTO `vehiculo_marca` VALUES (15, 'Brilliance', 1);
+INSERT INTO `vehiculo_marca` VALUES (16, 'Buick', 1);
+INSERT INTO `vehiculo_marca` VALUES (17, 'BYD', 1);
+INSERT INTO `vehiculo_marca` VALUES (18, 'Cadillac', 1);
+INSERT INTO `vehiculo_marca` VALUES (19, 'Chana', 1);
+INSERT INTO `vehiculo_marca` VALUES (20, 'Changan', 1);
+INSERT INTO `vehiculo_marca` VALUES (21, 'Chery', 1);
+INSERT INTO `vehiculo_marca` VALUES (22, 'Chevrolet', 1);
+INSERT INTO `vehiculo_marca` VALUES (23, 'Chrysler', 1);
+INSERT INTO `vehiculo_marca` VALUES (24, 'Citroen', 1);
+INSERT INTO `vehiculo_marca` VALUES (25, 'Dacia', 1);
+INSERT INTO `vehiculo_marca` VALUES (26, 'Daewoo', 1);
+INSERT INTO `vehiculo_marca` VALUES (27, 'Daihatsu', 1);
+INSERT INTO `vehiculo_marca` VALUES (28, 'Datsun', 1);
+INSERT INTO `vehiculo_marca` VALUES (29, 'Dodge/RAM', 1);
+INSERT INTO `vehiculo_marca` VALUES (30, 'Donfeng (ZNA)', 1);
+INSERT INTO `vehiculo_marca` VALUES (31, 'Eagle', 1);
+INSERT INTO `vehiculo_marca` VALUES (32, 'Faw', 1);
+INSERT INTO `vehiculo_marca` VALUES (33, 'Ferrari', 1);
+INSERT INTO `vehiculo_marca` VALUES (34, 'Fiat', 1);
+INSERT INTO `vehiculo_marca` VALUES (35, 'Ford', 1);
+INSERT INTO `vehiculo_marca` VALUES (36, 'Foton', 1);
+INSERT INTO `vehiculo_marca` VALUES (37, 'Freightliner', 1);
+INSERT INTO `vehiculo_marca` VALUES (38, 'Geely', 1);
+INSERT INTO `vehiculo_marca` VALUES (39, 'Genesis', 1);
+INSERT INTO `vehiculo_marca` VALUES (40, 'Geo', 1);
+INSERT INTO `vehiculo_marca` VALUES (41, 'GMC', 1);
+INSERT INTO `vehiculo_marca` VALUES (42, 'Gonow', 1);
+INSERT INTO `vehiculo_marca` VALUES (43, 'Great Wall', 1);
+INSERT INTO `vehiculo_marca` VALUES (44, 'Hafei', 1);
+INSERT INTO `vehiculo_marca` VALUES (45, 'Haima', 1);
+INSERT INTO `vehiculo_marca` VALUES (46, 'Heibao', 1);
+INSERT INTO `vehiculo_marca` VALUES (47, 'Higer', 1);
+INSERT INTO `vehiculo_marca` VALUES (48, 'Hino', 1);
+INSERT INTO `vehiculo_marca` VALUES (49, 'Honda', 1);
+INSERT INTO `vehiculo_marca` VALUES (50, 'Hummer', 1);
+INSERT INTO `vehiculo_marca` VALUES (51, 'Hyundai', 1);
+INSERT INTO `vehiculo_marca` VALUES (52, 'Infiniti', 1);
+INSERT INTO `vehiculo_marca` VALUES (53, 'International', 1);
+INSERT INTO `vehiculo_marca` VALUES (54, 'Isuzu', 1);
+INSERT INTO `vehiculo_marca` VALUES (55, 'Iveco', 1);
+INSERT INTO `vehiculo_marca` VALUES (56, 'JAC', 1);
+INSERT INTO `vehiculo_marca` VALUES (57, 'Jaguar', 1);
+INSERT INTO `vehiculo_marca` VALUES (58, 'Jeep', 1);
+INSERT INTO `vehiculo_marca` VALUES (59, 'Jinbei', 1);
+INSERT INTO `vehiculo_marca` VALUES (60, 'JMC', 1);
+INSERT INTO `vehiculo_marca` VALUES (61, 'Jonway', 1);
+INSERT INTO `vehiculo_marca` VALUES (62, 'Kenworth', 1);
+INSERT INTO `vehiculo_marca` VALUES (63, 'Kia', 1);
+INSERT INTO `vehiculo_marca` VALUES (64, 'Lada', 1);
+INSERT INTO `vehiculo_marca` VALUES (65, 'Lamborghini', 1);
+INSERT INTO `vehiculo_marca` VALUES (66, 'Lancia', 1);
+INSERT INTO `vehiculo_marca` VALUES (67, 'Land Rover', 1);
+INSERT INTO `vehiculo_marca` VALUES (68, 'Lexus', 1);
+INSERT INTO `vehiculo_marca` VALUES (69, 'Lifan', 1);
+INSERT INTO `vehiculo_marca` VALUES (70, 'Lincoln', 1);
+INSERT INTO `vehiculo_marca` VALUES (71, 'Lotus', 1);
+INSERT INTO `vehiculo_marca` VALUES (72, 'Mack', 1);
+INSERT INTO `vehiculo_marca` VALUES (73, 'Magiruz', 1);
+INSERT INTO `vehiculo_marca` VALUES (74, 'Mahindra', 1);
+INSERT INTO `vehiculo_marca` VALUES (75, 'Maserati', 1);
+INSERT INTO `vehiculo_marca` VALUES (76, 'Mazda', 1);
+INSERT INTO `vehiculo_marca` VALUES (77, 'Mercedes Benz', 1);
+INSERT INTO `vehiculo_marca` VALUES (78, 'Mercury', 1);
+INSERT INTO `vehiculo_marca` VALUES (79, 'MG', 1);
+INSERT INTO `vehiculo_marca` VALUES (80, 'Mini', 1);
+INSERT INTO `vehiculo_marca` VALUES (81, 'Mitsubishi', 1);
+INSERT INTO `vehiculo_marca` VALUES (82, 'Nissan', 1);
+INSERT INTO `vehiculo_marca` VALUES (83, 'Oldsmobile', 1);
+INSERT INTO `vehiculo_marca` VALUES (84, 'Opel', 1);
+INSERT INTO `vehiculo_marca` VALUES (85, 'Peterbilt', 1);
+INSERT INTO `vehiculo_marca` VALUES (86, 'Peugeot', 1);
+INSERT INTO `vehiculo_marca` VALUES (87, 'Plymouth', 1);
+INSERT INTO `vehiculo_marca` VALUES (88, 'Polarsun', 1);
+INSERT INTO `vehiculo_marca` VALUES (89, 'Pontiac', 1);
+INSERT INTO `vehiculo_marca` VALUES (90, 'Porsche', 1);
+INSERT INTO `vehiculo_marca` VALUES (91, 'Proton', 1);
+INSERT INTO `vehiculo_marca` VALUES (92, 'Rambler', 1);
+INSERT INTO `vehiculo_marca` VALUES (93, 'Renault', 1);
+INSERT INTO `vehiculo_marca` VALUES (94, 'Reva', 1);
+INSERT INTO `vehiculo_marca` VALUES (95, 'Rolls Royce', 1);
+INSERT INTO `vehiculo_marca` VALUES (96, 'Rover', 1);
+INSERT INTO `vehiculo_marca` VALUES (97, 'Saab', 1);
+INSERT INTO `vehiculo_marca` VALUES (98, 'Samsung', 1);
+INSERT INTO `vehiculo_marca` VALUES (99, 'Saturn', 1);
+INSERT INTO `vehiculo_marca` VALUES (100, 'Scania', 1);
+INSERT INTO `vehiculo_marca` VALUES (101, 'Scion', 1);
+INSERT INTO `vehiculo_marca` VALUES (102, 'Seat', 1);
+INSERT INTO `vehiculo_marca` VALUES (103, 'Skoda', 1);
+INSERT INTO `vehiculo_marca` VALUES (104, 'Smart', 1);
+INSERT INTO `vehiculo_marca` VALUES (105, 'Soueast', 1);
+INSERT INTO `vehiculo_marca` VALUES (106, 'Ssang Yong', 1);
+INSERT INTO `vehiculo_marca` VALUES (107, 'Subaru', 1);
+INSERT INTO `vehiculo_marca` VALUES (108, 'Suzuki', 1);
+INSERT INTO `vehiculo_marca` VALUES (109, 'Tianma', 1);
+INSERT INTO `vehiculo_marca` VALUES (110, 'Tiger Truck', 1);
+INSERT INTO `vehiculo_marca` VALUES (111, 'Toyota', 1);
+INSERT INTO `vehiculo_marca` VALUES (112, 'Volkswagen', 1);
+INSERT INTO `vehiculo_marca` VALUES (113, 'Volvo', 1);
+INSERT INTO `vehiculo_marca` VALUES (114, 'Western Star', 1);
+INSERT INTO `vehiculo_marca` VALUES (115, 'Yugo', 1);
+INSERT INTO `vehiculo_marca` VALUES (116, 'Zotye', 1);
+INSERT INTO `vehiculo_marca` VALUES (117, 'AHM', 2);
+INSERT INTO `vehiculo_marca` VALUES (118, 'AKT', 2);
+INSERT INTO `vehiculo_marca` VALUES (119, 'Aprilia', 2);
+INSERT INTO `vehiculo_marca` VALUES (120, 'Argo', 2);
+INSERT INTO `vehiculo_marca` VALUES (121, 'Artic Cat', 2);
+INSERT INTO `vehiculo_marca` VALUES (122, 'BMW', 2);
+INSERT INTO `vehiculo_marca` VALUES (123, 'BSA', 2);
+INSERT INTO `vehiculo_marca` VALUES (124, 'Bajaj', 2);
+INSERT INTO `vehiculo_marca` VALUES (125, 'Benelli', 2);
+INSERT INTO `vehiculo_marca` VALUES (126, 'Bombardier', 2);
+INSERT INTO `vehiculo_marca` VALUES (127, 'Buell', 2);
+INSERT INTO `vehiculo_marca` VALUES (128, 'Bultaco', 2);
+INSERT INTO `vehiculo_marca` VALUES (129, 'CAN - AM', 2);
+INSERT INTO `vehiculo_marca` VALUES (130, 'CFMOTO', 2);
+INSERT INTO `vehiculo_marca` VALUES (131, 'Cagiva', 2);
+INSERT INTO `vehiculo_marca` VALUES (132, 'Cobra', 2);
+INSERT INTO `vehiculo_marca` VALUES (133, 'Daelim', 2);
+INSERT INTO `vehiculo_marca` VALUES (134, 'Dinly', 2);
+INSERT INTO `vehiculo_marca` VALUES (135, 'Ducati', 2);
+INSERT INTO `vehiculo_marca` VALUES (136, 'Electro Bike', 2);
+INSERT INTO `vehiculo_marca` VALUES (137, 'Formula', 2);
+INSERT INTO `vehiculo_marca` VALUES (138, 'Freedom', 2);
+INSERT INTO `vehiculo_marca` VALUES (139, 'Gas Gas', 2);
+INSERT INTO `vehiculo_marca` VALUES (140, 'Geeley', 2);
+INSERT INTO `vehiculo_marca` VALUES (141, 'Genesis', 2);
+INSERT INTO `vehiculo_marca` VALUES (142, 'HISUN', 2);
+INSERT INTO `vehiculo_marca` VALUES (143, 'Haojue', 2);
+INSERT INTO `vehiculo_marca` VALUES (144, 'Harley Davidson', 2);
+INSERT INTO `vehiculo_marca` VALUES (145, 'Hero', 2);
+INSERT INTO `vehiculo_marca` VALUES (146, 'Honda', 2);
+INSERT INTO `vehiculo_marca` VALUES (147, 'Husaberg', 2);
+INSERT INTO `vehiculo_marca` VALUES (148, 'Husqvarna', 2);
+INSERT INTO `vehiculo_marca` VALUES (149, 'Hyosung', 2);
+INSERT INTO `vehiculo_marca` VALUES (150, 'Indian', 2);
+INSERT INTO `vehiculo_marca` VALUES (151, 'Italika', 2);
+INSERT INTO `vehiculo_marca` VALUES (152, 'Jawa', 2);
+INSERT INTO `vehiculo_marca` VALUES (153, 'Jialing', 2);
+INSERT INTO `vehiculo_marca` VALUES (154, 'John Deere', 2);
+INSERT INTO `vehiculo_marca` VALUES (155, 'KTM', 2);
+INSERT INTO `vehiculo_marca` VALUES (156, 'Katana', 2);
+INSERT INTO `vehiculo_marca` VALUES (157, 'Kawasaki', 2);
+INSERT INTO `vehiculo_marca` VALUES (158, 'Keeway', 2);
+INSERT INTO `vehiculo_marca` VALUES (159, 'Kinetic', 2);
+INSERT INTO `vehiculo_marca` VALUES (160, 'Kymco', 2);
+INSERT INTO `vehiculo_marca` VALUES (161, 'LML', 2);
+INSERT INTO `vehiculo_marca` VALUES (162, 'Lifan', 2);
+INSERT INTO `vehiculo_marca` VALUES (163, 'Loncin', 2);
+INSERT INTO `vehiculo_marca` VALUES (164, 'MRT', 2);
+INSERT INTO `vehiculo_marca` VALUES (165, 'MV Agusta', 2);
+INSERT INTO `vehiculo_marca` VALUES (166, 'MZ', 2);
+INSERT INTO `vehiculo_marca` VALUES (167, 'Montesa', 2);
+INSERT INTO `vehiculo_marca` VALUES (168, 'Moto Cruiser', 2);
+INSERT INTO `vehiculo_marca` VALUES (169, 'Moto Guzzi', 2);
+INSERT INTO `vehiculo_marca` VALUES (170, 'Moto Tek', 2);
+INSERT INTO `vehiculo_marca` VALUES (171, 'Motoped', 2);
+INSERT INTO `vehiculo_marca` VALUES (172, 'NSU', 2);
+INSERT INTO `vehiculo_marca` VALUES (173, 'Norton', 2);
+INSERT INTO `vehiculo_marca` VALUES (174, 'Osaka', 2);
+INSERT INTO `vehiculo_marca` VALUES (175, 'Ossa', 2);
+INSERT INTO `vehiculo_marca` VALUES (176, 'Peugeot', 2);
+INSERT INTO `vehiculo_marca` VALUES (177, 'Piaggio', 2);
+INSERT INTO `vehiculo_marca` VALUES (178, 'Pitster Pro', 2);
+INSERT INTO `vehiculo_marca` VALUES (179, 'Polaris', 2);
+INSERT INTO `vehiculo_marca` VALUES (180, 'Qingqui', 2);
+INSERT INTO `vehiculo_marca` VALUES (181, 'Rokk', 2);
+INSERT INTO `vehiculo_marca` VALUES (182, 'Royal Enfield', 2);
+INSERT INTO `vehiculo_marca` VALUES (183, 'SSR', 2);
+INSERT INTO `vehiculo_marca` VALUES (184, 'SWM', 2);
+INSERT INTO `vehiculo_marca` VALUES (185, 'SYM', 2);
+INSERT INTO `vehiculo_marca` VALUES (186, 'Sachs', 2);
+INSERT INTO `vehiculo_marca` VALUES (187, 'Sang Yang', 2);
+INSERT INTO `vehiculo_marca` VALUES (188, 'Senke', 2);
+INSERT INTO `vehiculo_marca` VALUES (189, 'Serpento', 2);
+INSERT INTO `vehiculo_marca` VALUES (190, 'Sherco', 2);
+INSERT INTO `vehiculo_marca` VALUES (191, 'Sinski', 2);
+INSERT INTO `vehiculo_marca` VALUES (192, 'Spazzio', 2);
+INSERT INTO `vehiculo_marca` VALUES (193, 'Sukida', 2);
+INSERT INTO `vehiculo_marca` VALUES (194, 'Suzuki', 2);
+INSERT INTO `vehiculo_marca` VALUES (195, 'TGB', 2);
+INSERT INTO `vehiculo_marca` VALUES (196, 'TVS', 2);
+INSERT INTO `vehiculo_marca` VALUES (197, 'Triumph', 2);
+INSERT INTO `vehiculo_marca` VALUES (198, 'UM', 2);
+INSERT INTO `vehiculo_marca` VALUES (199, 'URAL', 2);
+INSERT INTO `vehiculo_marca` VALUES (200, 'Unico', 2);
+INSERT INTO `vehiculo_marca` VALUES (201, 'Venom', 2);
+INSERT INTO `vehiculo_marca` VALUES (202, 'Vento', 2);
+INSERT INTO `vehiculo_marca` VALUES (203, 'Vespa', 2);
+INSERT INTO `vehiculo_marca` VALUES (204, 'Victory', 2);
+INSERT INTO `vehiculo_marca` VALUES (205, 'Yamaha', 2);
+INSERT INTO `vehiculo_marca` VALUES (206, 'Yumbo', 2);
+INSERT INTO `vehiculo_marca` VALUES (207, 'Zero', 2);
+INSERT INTO `vehiculo_marca` VALUES (208, 'Zongshen', 2);
+INSERT INTO `vehiculo_marca` VALUES (209, 'Zundapp', 2);
 COMMIT;
 
 -- ----------------------------

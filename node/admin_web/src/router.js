@@ -4,6 +4,7 @@ import Login from './views/Login.vue';
 import Dashboard from './views/Dashboard.vue';
 import Properties from './views/Properties.vue';
 import AddProperty from './views/AddProperty.vue';
+import AddVehicle from './views/AddVehicle.vue';
 
 import Vehicles from './views/Vehicles.vue';
 import Companias from './views/Companias.vue';
@@ -62,6 +63,12 @@ let router = new Router({
           component: Vehicles,
           meta: { logued: true },
         },
+        {
+          path: "add-vehicle",
+          name: "Agregar un Vehículo",
+          component: AddVehicle,
+          meta: { logued: true },
+        }
         // {
         //   path: "reports",
         //   name: "Reportes",

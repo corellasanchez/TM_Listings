@@ -2,38 +2,29 @@
     <div class="content">
         <div class="md-layout">
             <div class="md-layout-item md-medium-size-100 md-size-66">
-                <property-details v-bind:data-background-color="headerBackground" v-bind:propiedad="propiedad" v-bind:isUpdating="isUpdating"></property-details>
+                <vehicle-details v-bind:data-background-color="headerBackground" v-bind:vehiculo="vehiculo" v-bind:isUpdating="isUpdating"></vehicle-details>
             </div>
-            <div class="md-layout-item md-medium-size-100 md-size-33">
-                <property-address v-bind:data-background-color="headerBackground" v-bind:direccion="direccion" v-bind:propiedad="propiedad" v-bind:isUpdating="isUpdating"></property-address>
-            </div>
-            <div class="md-layout-item md-medium-size-100 md-size-66">
-                <property-adjudication v-bind:data-background-color="headerBackground" v-bind:propiedad="propiedad"></property-adjudication>
-            </div>
-            <div class="md-layout-item md-medium-size-100 md-size-33">
-                <property-value v-bind:data-background-color="headerBackground" v-bind:propiedad="propiedad"></property-value>
-                <property-client v-bind:data-background-color="headerBackground" v-bind:cliente="cliente" v-bind:propiedad="propiedad"></property-client>
-            </div>
-    
-            <div class="md-layout-item md-medium-size-100 md-size-66">
-                <image-loader title="Fotos de la propiedad" v-bind:data-background-color="headerBackground" v-bind:images="imagenes" v-bind:preUploadedImages="preUploadedImages" v-bind:isUpdating="isUpdating"></image-loader>
-            </div>
-            <div class="md-layout-item md-medium-size-100 md-size-33">
-                <property-save v-bind:data-background-color="headerBackground" v-bind:propiedad="propiedad" @add="addProperty" @update="updateProperty" v-bind:isUpdating="isUpdating"></property-save>
-            </div>
+            <!-- <div class="md-layout-item md-medium-size-100 md-size-33">
+                <vehicle-value v-bind:data-background-color="headerBackground" v-bind:vehiculo="vehiculo"></vehicle-value>
+                <vehicle-client v-bind:data-background-color="headerBackground" v-bind:cliente="cliente" v-bind:vehiculo="vehiculo"></vehicle-client>
+            </div> -->
+            <!-- <div class="md-layout-item md-medium-size-100 md-size-66">
+                <image-loader title="Fotos de la vehiculo" v-bind:data-background-color="headerBackground" v-bind:images="imagenes" v-bind:preUploadedImages="preUploadedImages" v-bind:isUpdating="isUpdating"></image-loader>
+            </div> -->
+            <!-- <div class="md-layout-item md-medium-size-100 md-size-33">
+                <vehicle-save v-bind:data-background-color="headerBackground" v-bind:vehiculo="vehiculo" @add="addProperty" @update="updateProperty" v-bind:isUpdating="isUpdating"></vehicle-save>
+            </div> -->
         </div>
     </div>
 </template>
 
 <script>
 import {
-    PropertyDetails,
-    PropertyAddress,
-    PropertyAdjudication,
-    PropertyValue,
-    PropertyClient,
-    PropertySave
-} from "../components/Layout/Property";
+    VehicleDetails,
+    VehicleValue,
+    VehicleClient,
+    VehicleSave
+} from "../components/Layout/Vehicle";
 
 import { mixins } from "../helpers/mixins";
 import ImageLoader from "../components/ImageLoader/ImageLoader";
@@ -43,23 +34,23 @@ import BaseApiService from "@/services/Base";
 export default {
     data() {
         return {
-            propiedad: {},
+            vehiculo: {},
             cliente: {},
             imagenes: [],
             preUploadedImages: [],
             direccion: {},
-            headerBackground: "red",
-            propiedadService: new BaseApiService("propiedad"),
+            headerBackground: "blue",
+            vehiculoService: new BaseApiService("vehiculo"),
             direccionService: new BaseApiService("direccion"),
             personaService: new BaseApiService("persona"),
-            imagenes_propiedadService: new BaseApiService("imagenes_propiedad"),
+            imagenes_vehiculoService: new BaseApiService("imagenes_vehiculo"),
             isUpdating: false,
             originalPropertyState: 0
         };
     },
     methods: {
         async addProperty() {
-            let propiedad = Object.assign({}, this.propiedad);
+            let vehiculo = Object.assign({}, this.vehiculo);
 
             if (!this.checkRequiredFiles()) {
                 this.showError("Los campos con * son requeridos");
@@ -68,13 +59,13 @@ export default {
 
             if (!this.checkAreas()) {
                 this.showError(
-                    "El area contruida no puede ser mayor a el area de la propiedad"
+                    "El area contruida no puede ser mayor a el area de la vehiculo"
                 );
                 return;
             }
 
             // Change the date format before save the property
-            propiedad = this.formatDates(propiedad);
+            vehiculo = this.formatDates(vehiculo);
 
             // Add the client if exists
             if (
@@ -89,7 +80,7 @@ export default {
                     return;
                 }
                 let resultClient = await this.personaService.add(this.cliente);
-                propiedad.cliente_id = resultClient.data.id;
+                vehiculo.cliente_id = resultClient.data.id;
             }
 
             this.direccion.fecha_creacion = this.getDate();
@@ -98,7 +89,7 @@ export default {
             let resultDireccion = await this.direccionService.add(this.direccion);
 
             if (resultDireccion.data.success) {
-                propiedad.direccion_id = resultDireccion.data.id;
+                vehiculo.direccion_id = resultDireccion.data.id;
             } else {
                 this.showError(
                     "Error al agregar la direccion " + resultDireccion.data.error
@@ -107,23 +98,23 @@ export default {
             }
 
             // Creation date
-            propiedad.fecha_cambio_estado = this.getDate();
+            vehiculo.fecha_cambio_estado = this.getDate();
 
             // Add the property
-            let result = await this.propiedadService.add(propiedad);
+            let result = await this.vehiculoService.add(vehiculo);
 
             if (result.data.success) {
                 let imagenesPropiedad = await this.addImages(result.data.id);
                 this.showInfo("Propiedad agregada con éxito");
                 this.resetProperty();
             } else {
-                this.showError("Error al agregar la propiedad " + result.data.error);
+                this.showError("Error al agregar la vehiculo " + result.data.error);
                 return;
             }
         },
 
         async updateProperty() {
-            let propiedad = Object.assign({}, this.propiedad);
+            let vehiculo = Object.assign({}, this.vehiculo);
 
             if (!this.checkRequiredFiles()) {
                 this.showError("Los campos con * son requeridos");
@@ -132,7 +123,7 @@ export default {
 
             if (!this.checkAreas()) {
                 this.showError(
-                    "El area contruida no puede ser mayor a el area de la propiedad"
+                    "El area contruida no puede ser mayor a el area de la vehiculo"
                 );
                 return;
             }
@@ -150,52 +141,54 @@ export default {
                 }
 
                 // update client data
-                if (propiedad.cliente_id) {
+                if (vehiculo.cliente_id) {
                     // update cliente
                     let resultClient = await this.personaService.update(
-                        propiedad.cliente_id,
+                        vehiculo.cliente_id,
                         this.cliente
                     );
-                    propiedad.cliente_id = resultClient.data.id;
+                    vehiculo.cliente_id = resultClient.data.id;
                 } else {
                     // Add a new client
                     let resultClient = await this.personaService.add(this.cliente);
-                    propiedad.cliente_id = resultClient.data.id;
+                    vehiculo.cliente_id = resultClient.data.id;
                 }
             }
 
             // update address data
-            if (propiedad.direccion_id) {
+            if (vehiculo.direccion_id) {
                 let resultAddress = await this.direccionService.update(
-                    propiedad.direccion_id,
+                    vehiculo.direccion_id,
                     this.direccion
                 );
             }
 
-            if (this.originalPropertyState !== propiedad.propiedad_estado_id) {
-                propiedad.fecha_cambio_estado = this.getDate();
+            if (this.originalPropertyState !== vehiculo.vehiculo_estado_id) {
+                vehiculo.fecha_cambio_estado = this.getDate();
             }
 
             // Change the date format before save the property
-            propiedad = this.formatDates(propiedad);
+            vehiculo = this.formatDates(vehiculo);
 
             // Edit the the property
-            let result = await this.propiedadService.update(propiedad.id, propiedad);
+            let result = await this.vehiculoService.update(vehiculo.id, vehiculo);
 
             if (result.data.success) {
                 this.showInfo("Propiedad actualizada con éxito");
             } else {
-                this.showError("Error al actualizada la propiedad " + result.data.error);
+                this.showError(
+                    "Error al actualizada la vehiculo " + result.data.error
+                );
                 return;
             }
         },
 
         checkRequiredFiles() {
             if (
-                this.propiedad.folio &&
-                this.propiedad.plano &&
-                this.propiedad.area &&
-                this.propiedad.area_construida
+                this.vehiculo.folio &&
+                this.vehiculo.plano &&
+                this.vehiculo.area &&
+                this.vehiculo.area_construida
             ) {
                 return true;
             } else {
@@ -204,17 +197,17 @@ export default {
         },
         checkAreas() {
             return (
-                parseInt(this.propiedad.area_construida) <=
-                parseInt(this.propiedad.area)
+                parseInt(this.vehiculo.area_construida) <=
+                parseInt(this.vehiculo.area)
             );
         },
         initProperty() {
-            this.propiedad = {
+            this.vehiculo = {
                 sociedad_id: 0,
                 mostrar: "1",
-                propiedad_tipo_id: 0,
+                vehiculo_tipo_id: 0,
                 departamento_origen_id: 0,
-                propiedad_estado_id: 0,
+                vehiculo_estado_id: 0,
                 precio_captura: 0,
                 fecha_captura: null,
                 id_interno: "",
@@ -246,32 +239,32 @@ export default {
             };
         },
         resetProperty() {
-            this.propiedad.mostrar = "1";
-            this.propiedad.fecha_captura = null;
-            this.propiedad.id_interno = "";
-            this.propiedad.folio = "";
-            this.propiedad.plano = "";
-            this.propiedad.unidad = "";
-            this.propiedad.fecha_inscripcion_registro_publico = null;
-            this.propiedad.fecha_construccion = null;
-            this.propiedad.area = "";
-            this.propiedad.area_construida = "";
-            this.propiedad.comentarios = "";
-            this.propiedad.precio_prestamo = 0;
-            this.propiedad.fecha_prestamo = null;
-            this.propiedad.provision_regulatoria = 0;
-            this.propiedad.porcentaje_reserva = 0;
-            this.propiedad.expediente_entregados_cobro = 0;
-            this.propiedad.llaves_entregadas = 0;
-            this.propiedad.llaves_tenemos = 0;
-            this.propiedad.fecha_entregados_cobro = null;
-            this.propiedad.fecha_llaves_entregadas = null;
-            this.propiedad.fecha_recibo_expediente = null;
-            this.propiedad.valor_libros = 0;
-            this.propiedad.valor_avaluo = 0;
-            this.propiedad.precio_venta = 0;
-            this.propiedad.dato_adjudicacion = "";
-            this.propiedad.anotaciones_especiales = "";
+            this.vehiculo.mostrar = "1";
+            this.vehiculo.fecha_captura = null;
+            this.vehiculo.id_interno = "";
+            this.vehiculo.folio = "";
+            this.vehiculo.plano = "";
+            this.vehiculo.unidad = "";
+            this.vehiculo.fecha_inscripcion_registro_publico = null;
+            this.vehiculo.fecha_construccion = null;
+            this.vehiculo.area = "";
+            this.vehiculo.area_construida = "";
+            this.vehiculo.comentarios = "";
+            this.vehiculo.precio_prestamo = 0;
+            this.vehiculo.fecha_prestamo = null;
+            this.vehiculo.provision_regulatoria = 0;
+            this.vehiculo.porcentaje_reserva = 0;
+            this.vehiculo.expediente_entregados_cobro = 0;
+            this.vehiculo.llaves_entregadas = 0;
+            this.vehiculo.llaves_tenemos = 0;
+            this.vehiculo.fecha_entregados_cobro = null;
+            this.vehiculo.fecha_llaves_entregadas = null;
+            this.vehiculo.fecha_recibo_expediente = null;
+            this.vehiculo.valor_libros = 0;
+            this.vehiculo.valor_avaluo = 0;
+            this.vehiculo.precio_venta = 0;
+            this.vehiculo.dato_adjudicacion = "";
+            this.vehiculo.anotaciones_especiales = "";
         },
         async loadPropertyData() {
             let params = {
@@ -280,9 +273,9 @@ export default {
                 sortOrder: "asc"
             };
 
-            let propertyData = (await this.propiedadService.find(params)).data[0];
+            let propertyData = (await this.vehiculoService.find(params)).data[0];
 
-            this.originalPropertyState = propertyData.propiedad_estado_id;
+            this.originalPropertyState = propertyData.vehiculo_estado_id;
 
             propertyData.fecha_avaluo = this.tolocalDateFormat(
                 propertyData.fecha_avaluo
@@ -325,19 +318,19 @@ export default {
             propertyData.mostrar = this.booleanToString(propertyData.mostrar);
             propertyData.destacada = this.booleanToString(propertyData.destacada);
 
-            this.propiedad = Object.assign({}, propertyData);
+            this.vehiculo = Object.assign({}, propertyData);
 
             // load client data
-            if (this.propiedad.cliente_id) {
-                this.getClientData(this.propiedad.cliente_id);
+            if (this.vehiculo.cliente_id) {
+                this.getClientData(this.vehiculo.cliente_id);
             }
 
             // load address data
-            if (this.propiedad.direccion_id) {
-                this.getAddressData(this.propiedad.direccion_id);
+            if (this.vehiculo.direccion_id) {
+                this.getAddressData(this.vehiculo.direccion_id);
             }
 
-            this.getPropertyImages(this.propiedad.id);
+            this.getPropertyImages(this.vehiculo.id);
             this.isUpdating = true;
         },
         async getClientData(clientId) {
@@ -362,28 +355,28 @@ export default {
         },
         async getPropertyImages(propertyId) {
             let params = {
-                args: "propiedad_id:" + propertyId,
+                args: "vehiculo_id:" + propertyId,
                 orderBy: "id",
                 sortOrder: "asc"
             };
-            let result = (await this.imagenes_propiedadService.find(params)).data;
+            let result = (await this.imagenes_vehiculoService.find(params)).data;
             if (!result.error) {
                 this.preUploadedImages = result;
             }
         },
         async addImage(image) {
-            return await this.imagenes_propiedadService.add(image);
+            return await this.imagenes_vehiculoService.add(image);
         },
         // removes image from the property
         async removeImage(imageUrl) {
             let params = "url=" + imageUrl;
-            let result = await this.imagenes_propiedadService.delete(params);
+            let result = await this.imagenes_vehiculoService.delete(params);
         },
         async addImages(propertyId) {
             const results = [];
             let propertyImage = {};
             this.imagenes.forEach(imagen => {
-                propertyImage.propiedad_id = propertyId;
+                propertyImage.vehiculo_id = propertyId;
                 propertyImage.url = imagen.serverName;
                 propertyImage.size = imagen.fileSize;
                 results.push(this.addImage(propertyImage));
@@ -392,10 +385,10 @@ export default {
         },
         async linkImage(filename, size) {
             let image = {};
-            image.propiedad_id = this.propiedad.id;
+            image.vehiculo_id = this.vehiculo.id;
             image.url = filename;
             image.size = size;
-            let result = await this.imagenes_propiedadService.add(image);
+            let result = await this.imagenes_vehiculoService.add(image);
         }
     },
     async mounted() {
@@ -407,13 +400,11 @@ export default {
         }
     },
     components: {
-        PropertyDetails,
-        PropertyAddress,
-        PropertyAdjudication,
-        PropertyValue,
-        PropertyClient,
-        PropertySave,
-        ImageLoader
+        VehicleDetails,
+        VehicleValue,
+        VehicleClient,
+        VehicleSave,
+        //ImageLoader
     },
     mixins: [mixins]
 };

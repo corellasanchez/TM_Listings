@@ -23,6 +23,10 @@ const direccionRoutes = require('./direccion');
 const vehiculoMarcaRoutes = require('./vehiculo_marca');
 const vehiculoTipoRoutes = require('./vehiculo_tipo');
 const vehiculoEstiloRoutes = require('./vehiculo_estilo');
+const vehiculoCombustibleRoutes = require('./vehiculo_combustible');
+const vehiculoTransmisionRoutes = require('./vehiculo_transmision');
+
+
 
 router.get('/', function (req, res, next) {
   res.sendFile(path.join(__dirname + '/home/index.html'));
@@ -47,6 +51,8 @@ router.use('/direccion', direccionRoutes);
 router.use('/vehiculo_marca',vehiculoMarcaRoutes);
 router.use('/vehiculo_tipo',vehiculoTipoRoutes);
 router.use('/vehiculo_estilo',vehiculoEstiloRoutes);
+router.use('/vehiculo_combustible',vehiculoCombustibleRoutes);
+router.use('/vehiculo_transmision',vehiculoTransmisionRoutes);
 
 router.use(errorHandler);
 
