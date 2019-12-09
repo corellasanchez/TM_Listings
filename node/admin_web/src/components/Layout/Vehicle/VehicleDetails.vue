@@ -239,7 +239,7 @@ export default {
                 pageSize: 100,
                 currentPage: 1,
                 orderBy: "nombre",
-                sortOrder: "desc"
+                sortOrder: "asc"
             };
             let combustibles = await this.combustiblesService.list(params);
             this.combustibles = combustibles.data.data;
@@ -253,7 +253,7 @@ export default {
                 pageSize: 100,
                 currentPage: 1,
                 orderBy: "nombre",
-                sortOrder: "desc"
+                sortOrder: "asc"
             };
             let transmisiones = await this.transmisionesService.list(params);
             this.transmisiones = transmisiones.data.data;
