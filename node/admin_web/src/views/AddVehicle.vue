@@ -3,18 +3,22 @@
         <div class="md-layout">
             <div class="md-layout-item md-medium-size-100 md-size-66">
                 <vehicle-details v-bind:data-background-color="headerBackground" v-bind:vehiculo="vehiculo" v-bind:isUpdating="isUpdating"></vehicle-details>
-            </div>
-            <!-- <div class="md-layout-item md-medium-size-100 md-size-33">
                 <vehicle-value v-bind:data-background-color="headerBackground" v-bind:vehiculo="vehiculo"></vehicle-value>
-                <vehicle-client v-bind:data-background-color="headerBackground" v-bind:cliente="cliente" v-bind:vehiculo="vehiculo"></vehicle-client>
-            </div> -->
-            <!-- <div class="md-layout-item md-medium-size-100 md-size-66">
+            </div>
+            <div class="md-layout-item md-medium-size-100 md-size-33">
+                <vehicle-adjudication v-bind:data-background-color="headerBackground" v-bind:vehiculo="vehiculo"></vehicle-adjudication>
+                <vehicle-client v-bind:data-background-color="headerBackground" v-bind:cliente="cliente"></vehicle-client>
+            </div>
+    
+            <div class="md-layout-item md-medium-size-100 md-size-66">
                 <image-loader title="Fotos de la vehiculo" v-bind:data-background-color="headerBackground" v-bind:images="imagenes" v-bind:preUploadedImages="preUploadedImages" v-bind:isUpdating="isUpdating"></image-loader>
-            </div> -->
-            <!-- <div class="md-layout-item md-medium-size-100 md-size-33">
-                <vehicle-save v-bind:data-background-color="headerBackground" v-bind:vehiculo="vehiculo" @add="addProperty" @update="updateProperty" v-bind:isUpdating="isUpdating"></vehicle-save>
-            </div> -->
+            </div>
+            <div class="md-layout-item md-medium-size-100 md-size-33">
+                <vehicle-save v-bind:data-background-color="headerBackground" v-bind:vehiculo="vehiculo" @add="addVehicle" @update="updateVehicle" v-bind:isUpdating="isUpdating"></vehicle-save>
+            </div>
+            <!-- <pre>{{vehiculo}}</pre> -->
         </div>
+    
     </div>
 </template>
 
@@ -23,6 +27,7 @@ import {
     VehicleDetails,
     VehicleValue,
     VehicleClient,
+    VehicleAdjudication,
     VehicleSave
 } from "../components/Layout/Vehicle";
 
@@ -41,7 +46,6 @@ export default {
             direccion: {},
             headerBackground: "blue",
             vehiculoService: new BaseApiService("vehiculo"),
-            direccionService: new BaseApiService("direccion"),
             personaService: new BaseApiService("persona"),
             imagenes_vehiculoService: new BaseApiService("imagenes_vehiculo"),
             isUpdating: false,
@@ -49,18 +53,11 @@ export default {
         };
     },
     methods: {
-        async addProperty() {
+        async addVehicle() {
             let vehiculo = Object.assign({}, this.vehiculo);
 
             if (!this.checkRequiredFiles()) {
                 this.showError("Los campos con * son requeridos");
-                return;
-            }
-
-            if (!this.checkAreas()) {
-                this.showError(
-                    "El area contruida no puede ser mayor a el area de la vehiculo"
-                );
                 return;
             }
 
@@ -83,48 +80,27 @@ export default {
                 vehiculo.cliente_id = resultClient.data.id;
             }
 
-            this.direccion.fecha_creacion = this.getDate();
-
-            // Add the property address
-            let resultDireccion = await this.direccionService.add(this.direccion);
-
-            if (resultDireccion.data.success) {
-                vehiculo.direccion_id = resultDireccion.data.id;
-            } else {
-                this.showError(
-                    "Error al agregar la direccion " + resultDireccion.data.error
-                );
-                return;
-            }
-
             // Creation date
             vehiculo.fecha_cambio_estado = this.getDate();
 
-            // Add the property
+            // Add the vehicle
             let result = await this.vehiculoService.add(vehiculo);
 
             if (result.data.success) {
-                let imagenesPropiedad = await this.addImages(result.data.id);
+                let imagenesVehiculo = await this.addImages(result.data.id);
                 this.showInfo("Propiedad agregada con éxito");
-                this.resetProperty();
+                //this.resetProperty();
             } else {
                 this.showError("Error al agregar la vehiculo " + result.data.error);
                 return;
             }
         },
 
-        async updateProperty() {
+        async updateVehicle() {
             let vehiculo = Object.assign({}, this.vehiculo);
 
             if (!this.checkRequiredFiles()) {
                 this.showError("Los campos con * son requeridos");
-                return;
-            }
-
-            if (!this.checkAreas()) {
-                this.showError(
-                    "El area contruida no puede ser mayor a el area de la vehiculo"
-                );
                 return;
             }
 
@@ -176,66 +152,67 @@ export default {
             if (result.data.success) {
                 this.showInfo("Propiedad actualizada con éxito");
             } else {
-                this.showError(
-                    "Error al actualizada la vehiculo " + result.data.error
-                );
+                this.showError("Error al actualizada la vehiculo " + result.data.error);
                 return;
             }
         },
 
         checkRequiredFiles() {
             if (
-                this.vehiculo.folio &&
-                this.vehiculo.plano &&
-                this.vehiculo.area &&
-                this.vehiculo.area_construida
+                this.vehiculo.dueno_id_interno &&
+                this.vehiculo.vehiculo_id_interno &&
+                this.vehiculo.placa &&
+                this.vehiculo.numero_chasis &&
+                this.vehiculo.numero_vin &&
+                this.vehiculo.peso &&
+                this.vehiculo.color &&
+                this.vehiculo.capacidad &&
+                this.vehiculo.valor_libros &&
+                this.vehiculo.precio_venta &&
+                this.vehiculo.numero_puertas 
             ) {
                 return true;
             } else {
                 return false;
             }
         },
-        checkAreas() {
-            return (
-                parseInt(this.vehiculo.area_construida) <=
-                parseInt(this.vehiculo.area)
-            );
-        },
-        initProperty() {
+        initVehicle() {
             this.vehiculo = {
                 sociedad_id: 0,
-                mostrar: "1",
-                vehiculo_tipo_id: 0,
-                departamento_origen_id: 0,
-                vehiculo_estado_id: 0,
-                precio_captura: 0,
-                fecha_captura: null,
-                id_interno: "",
-                folio: "",
-                plano: "",
-                unidad: "",
-                fecha_inscripcion_registro_publico: null,
-                fecha_construccion: null,
-                area: "",
-                area_construida: "",
-                comentarios: "",
-                precio_prestamo: 0,
-                fecha_prestamo: null,
-                provision_regulatoria: 0,
-                porcentaje_reserva: 0,
-                expediente_entregados_cobro: 0,
-                llaves_entregadas: 0,
-                llaves_tenemos: 0,
-                fecha_entregados_cobro: null,
-                fecha_llaves_entregadas: null,
-                fecha_recibo_expediente: null,
+                cliente_id: null,
+                dueno_id_interno: "",
+                vehiculo_id_interno: "",
+                placa: "",
+                comprador_id: null,
+                vehiculo_marca_id: 0,
+                vehiculo_estilo_id: 0,
+                serie: "",
+                numero_chasis: "",
+                numero_vin: "",
+                ano: 0,
+                peso: 0,
+                color: "",
+                capacidad: "",
                 valor_libros: 0,
-                valor_avaluo: 0,
+                precio_prestamo: 0,
+                precio_captura: 0,
                 precio_venta: 0,
-                se_financia: 0,
-                dato_adjudicacion: "",
-                anotaciones_especiales: "",
-                destacada: 0
+                fecha_prestamo: null,
+                fecha_captura: null,
+                estado_id: 0,
+                numero_cilindros: 0,
+                numero_cc: 0,
+                vehiculo_combustible_id: 0,
+                mostrar: "1",
+                numero_puertas: 0,
+                se_financia: "1",
+                llaves_tenemos: "1",
+                llaves_entregadas: "1",
+                fecha_llaves_entregadas: null,
+                detalle: "",
+                comentarios: "",
+                vehiculo_transmision_id: 0,
+                fecha_cambio_estado: null
             };
         },
         resetProperty() {
@@ -392,7 +369,7 @@ export default {
         }
     },
     async mounted() {
-        this.initProperty();
+        this.initVehicle();
         if (this.$route.params.property_id) {
             this.loadPropertyData();
         } else {
@@ -404,7 +381,8 @@ export default {
         VehicleValue,
         VehicleClient,
         VehicleSave,
-        //ImageLoader
+        VehicleAdjudication,
+        ImageLoader
     },
     mixins: [mixins]
 };

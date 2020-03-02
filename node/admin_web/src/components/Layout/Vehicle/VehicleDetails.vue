@@ -29,7 +29,7 @@
                     <div class="md-layout-item md-small-size-100 md-size-33">
                         <md-field>
                             <label for="vehiculo_tipo_id">Tipo de Vehículo</label>
-                            <md-select v-model="vehiculo.vehiculo_tipo_id" name="vehiculo_tipo_id" id="vehiculo_tipo_id" @md-selected="tiposVehiculoChanged()">
+                            <md-select v-model="vehiculo_tipo_id" name="vehiculo_tipo_id" id="vehiculo_tipo_id" @md-selected="tiposVehiculoChanged()">
                                 <md-option v-for="i in tiposVehiculo" :value="i.id" :key="i.id">{{ i.nombre }}</md-option>
                             </md-select>
                         </md-field>
@@ -71,50 +71,110 @@
                         </md-field>
                     </div>
                 </div>
+    
                 <div class="md-layout md-gutter">
-                    <div class="md-layout-item md-small-size-100 md-size-33">
+                    <div class="md-layout-item md-small-size-100 md-size-50">
                         <md-field :md-counter="false">
-                            <label># Referencia</label>
-                            <md-input v-model="vehiculo.id_interno" maxlength="99"></md-input>
+                            <label># Referencia Dueño</label>
+                            <md-input v-model="vehiculo.dueno_id_interno" required maxlength="99"></md-input>
                         </md-field>
                     </div>
-                    <div class="md-layout-item md-small-size-100 md-size-33">
+                    <div class="md-layout-item md-small-size-100 md-size-50">
                         <md-field :md-counter="false">
-                            <label>Folio</label>
-                            <md-input v-model="vehiculo.folio" required maxlength="99"></md-input>
-                        </md-field>
-                    </div>
-                    <div class="md-layout-item md-small-size-100 md-size-33">
-                        <md-field :md-counter="false">
-                            <label># Plano</label>
-                            <md-input v-model="vehiculo.plano" required maxlength="99"></md-input>
+                            <label># Referencia Vehículo</label>
+                            <md-input v-model="vehiculo.vehiculo_id_interno" required maxlength="99"></md-input>
                         </md-field>
                     </div>
                 </div>
     
                 <div class="md-layout md-gutter">
                     <div class="md-layout-item md-small-size-100 md-size-50">
-                        <md-datepicker v-model="vehiculo.fecha_inscripcion_registro_publico" md-immediately>
-                            <label>Fecha de inscripcion</label>
-                        </md-datepicker>
+                        <md-field :md-counter="false">
+                            <label>Placa</label>
+                            <md-input v-model="vehiculo.placa" required maxlength="50"></md-input>
+                        </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-50">
-                        <md-datepicker v-model="vehiculo.fecha_construccion" md-immediately>
-                            <label>Fecha de Construcción</label>
-                        </md-datepicker>
+                        <md-field :md-counter="false">
+                            <label>Serie</label>
+                            <md-input v-model="vehiculo.serie" maxlength="99"></md-input>
+                        </md-field>
                     </div>
                 </div>
                 <div class="md-layout md-gutter">
                     <div class="md-layout-item md-small-size-100 md-size-50">
-                        <md-field>
-                            <label>Metraje de la propiedad</label>
-                            <md-input v-model="vehiculo.area" required type="number"></md-input>
+                        <md-field :md-counter="false">
+                            <label>Numero de chasis</label>
+                            <md-input v-model="vehiculo.numero_chasis" required maxlength="99"></md-input>
                         </md-field>
                     </div>
+    
                     <div class="md-layout-item md-small-size-100 md-size-50">
+                        <md-field :md-counter="false">
+                            <label>Numero de VIN</label>
+                            <md-input v-model="vehiculo.numero_vin" required maxlength="99"></md-input>
+                        </md-field>
+                    </div>
+                </div>
+    
+                <div class="md-layout md-gutter">
+                    <div class="md-layout-item md-small-size-100 md-size-25">
                         <md-field>
-                            <label>Metraje de la construcción</label>
-                            <md-input v-model="vehiculo.area_construida" required type="number"></md-input>
+                            <label for="ano">Año</label>
+                            <md-select v-model="vehiculo.ano" name="ano" id="ano">
+                                <md-option v-for="i in years" :value="i" :key="i">{{i}}</md-option>
+                            </md-select>
+                        </md-field>
+                    </div>
+                    <div class="md-layout-item md-small-size-100 md-size-25">
+                        <md-field :md-counter="false">
+                            <label>Peso en kg</label>
+                            <md-input v-model="vehiculo.peso" required type="number"></md-input>
+                        </md-field>
+                    </div>
+                    <div class="md-layout-item md-small-size-100 md-size-25">
+                        <md-field :md-counter="false">
+                            <label>Color</label>
+                            <md-input v-model="vehiculo.color" required maxlength="75"></md-input>
+                        </md-field>
+                    </div>
+    
+                    <div class="md-layout-item md-small-size-100 md-size-25">
+                        <md-field :md-counter="false">
+                            <label>Capacidad</label>
+                            <md-input v-model="vehiculo.capacidad" required maxlength="99"></md-input>
+                        </md-field>
+                    </div>
+                </div>
+    
+                <div class="md-layout md-gutter">
+                    <div class="md-layout-item md-small-size-100 md-size-33">
+                        <md-field :md-counter="false">
+                            <label>Número de cilindros</label>
+                            <md-input v-model="vehiculo.numero_cilindros" type="number"></md-input>
+                        </md-field>
+                    </div>
+    
+                    <div class="md-layout-item md-small-size-100 md-size-33">
+                        <md-field :md-counter="false">
+                            <label>Centímetros Cúbicos</label>
+                            <md-input v-model="vehiculo.numero_cc" type="number"></md-input>
+                        </md-field>
+                    </div>
+    
+                    <div class="md-layout-item md-small-size-100 md-size-33">
+                        <md-field :md-counter="false">
+                            <label>Número de puertas</label>
+                            <md-input v-model="vehiculo.numero_puertas" required type="number"></md-input>
+                        </md-field>
+                    </div>
+                </div>
+
+                 <div class="md-layout md-gutter">
+                    <div class="md-layout-item md-small-size-100 md-size-100">
+                        <md-field>
+                            <label>Detalle</label>
+                            <md-textarea v-model="vehiculo.detalle" maxlength="255"></md-textarea>
                         </md-field>
                     </div>
                 </div>
@@ -123,7 +183,7 @@
                     <div class="md-layout-item md-small-size-100 md-size-100">
                         <md-field>
                             <label>Comentarios</label>
-                            <md-textarea v-model="vehiculo.comentarios" md-autogrow maxlength="1000"></md-textarea>
+                            <md-textarea v-model="vehiculo.comentarios" maxlength="255"></md-textarea>
                         </md-field>
                     </div>
                 </div>
@@ -134,6 +194,7 @@
 
 <script>
 import BaseApiService from "@/services/Base";
+import { mixins } from "../../../helpers/mixins";
 
 const { LOCALE } = require("../../../config");
 
@@ -159,6 +220,9 @@ export default {
             marcasVehiculo: null,
             combustibles: null,
             transmisiones: null,
+            vehiculo_tipo_id: String,
+            years: [],
+            cilindros: [],
             sociedadService: new BaseApiService("sociedad"),
             tiposVehiculoService: new BaseApiService("vehiculo_tipo"),
             estadosVehiculoService: new BaseApiService("estado"),
@@ -169,6 +233,7 @@ export default {
         };
     },
     async mounted() {
+        this.getYears();
         this.getSociedades();
         this.getTiposVehiculo();
         this.getEstadosPropiedad();
@@ -202,12 +267,12 @@ export default {
             let tiposVehiculo = await this.tiposVehiculoService.list(params);
             this.tiposVehiculo = tiposVehiculo.data.data;
             if (this.tiposVehiculo && !this.isUpdating) {
-                this.vehiculo.vehiculo_tipo_id = this.tiposVehiculo[0].id;
+                this.vehiculo_tipo_id = this.tiposVehiculo[0].id;
             }
         },
         async getEstilosVehiculo() {
             let params = {
-                args: "vehiculo_tipo_id:" + this.vehiculo.vehiculo_tipo_id,
+                args: "vehiculo_tipo_id:" + this.vehiculo_tipo_id,
                 pageSize: 100,
                 currentPage: 1,
                 orderBy: "id",
@@ -221,7 +286,7 @@ export default {
         },
         async getMarcasVehiculo() {
             let params = {
-                args: "vehiculo_tipo_id:" + this.vehiculo.vehiculo_tipo_id,
+                args: "vehiculo_tipo_id:" + this.vehiculo_tipo_id,
                 pageSize: 1000,
                 currentPage: 1,
                 orderBy: "id",
@@ -276,12 +341,19 @@ export default {
             }
         },
         tiposVehiculoChanged() {
-            if (this.vehiculo.vehiculo_tipo_id) {
+            if (this.vehiculo_tipo_id) {
                 this.getEstilosVehiculo();
                 this.getMarcasVehiculo();
             }
+        },
+        async getYears() {
+            this.years = await this.getYearsFromNow(59);
+            if (this.years.length > 0 && !this.isUpdating) {
+                this.vehiculo.ano = this.years[1];
+            }
         }
-    }
+    },
+    mixins: [mixins]
 };
 </script>
 

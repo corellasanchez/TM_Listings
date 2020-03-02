@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 08/12/2019 23:23:56
+ Date: 14/12/2019 19:50:07
 */
 
 SET NAMES utf8mb4;
@@ -307,14 +307,14 @@ CREATE TABLE `vehiculo` (
   `color` varchar(75) NOT NULL,
   `capacidad` varchar(100) NOT NULL,
   `valor_libros` decimal(10,0) NOT NULL,
-  `precio_prestamo` decimal(10,0) NOT NULL,
-  `precio_captura` decimal(10,0) NOT NULL,
+  `precio_prestamo` decimal(10,0) DEFAULT NULL,
+  `precio_captura` decimal(10,0) DEFAULT NULL,
   `precio_venta` decimal(10,0) NOT NULL,
-  `fecha_prestamo` date NOT NULL,
-  `fecha_captura` date NOT NULL,
+  `fecha_prestamo` date DEFAULT NULL,
+  `fecha_captura` date DEFAULT NULL,
   `estado_id` int(11) NOT NULL,
-  `numero_cilindros` int(11) NOT NULL,
-  `numero_cc` int(11) NOT NULL,
+  `numero_cilindros` int(11) DEFAULT NULL,
+  `numero_cc` int(11) DEFAULT NULL,
   `vehiculo_combustible_id` int(11) NOT NULL,
   `mostrar` tinyint(4) DEFAULT NULL,
   `numero_puertas` int(11) NOT NULL,
@@ -326,6 +326,7 @@ CREATE TABLE `vehiculo` (
   `comentarios` varchar(255) DEFAULT NULL,
   `vehiculo_transmision_id` int(11) NOT NULL,
   `fecha_cambio_estado` date DEFAULT NULL,
+  `destacado` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_carro_sociedad_idx` (`sociedad_id`),
   KEY `fk_vehiculo_vehiculo_marca1_idx` (`vehiculo_marca_id`),

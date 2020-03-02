@@ -1,11 +1,11 @@
 <template>
   <form>
-    <md-card>
+    <md-card class="vehicleClient">
       <md-card-header :data-background-color="dataBackgroundColor">
         <h4 class="title">Datos del Cliente</h4>
       </md-card-header>
       <md-card-content>
-        <label>Datos del cliente al que pertenecia la propiedad</label>
+        <label>Datos del cliente al que pertenecia el vehículo</label>
         <md-field :md-counter="false">
           <label>Cédula</label>
           <md-input v-model="cliente.cedula" maxlength="50"></md-input>
@@ -54,4 +54,8 @@ export default {
   components: {}
 };
 </script>
-<style></style>
+<style lang="scss">
+.vehicleClient {
+    min-height: 632px !important;
+}
+</style>

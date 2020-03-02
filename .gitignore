@@ -1,2 +1,3 @@
 config/admin_api/.env
 node/admin_api/uploads/
+.DS_Store

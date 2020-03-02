@@ -51,6 +51,16 @@ export const mixins = {
     getDate() {
       return this.$moment().format("YYYY-MM-DD");
     },
+    async getYearsFromNow(numberOfYears) {
+      if (numberOfYears > 0) {
+        var currentYear = this.$moment().year();
+        var years = [];
+        for (var i = currentYear + 1; i >= currentYear - numberOfYears; i--) {
+          years.push(i);
+        }
+        return years;
+      }
+    },
     validateEmail(email) {
       var re = /\S+@\S+\.\S+/;
       return re.test(email);
