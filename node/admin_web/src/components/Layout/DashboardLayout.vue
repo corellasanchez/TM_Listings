@@ -6,7 +6,11 @@
         <md-icon>dashboard</md-icon>
         <p>Dashboard</p>
       </sidebar-link>
-      <sidebar-link to="companias">
+      <sidebar-link to="/users">
+        <md-icon>person</md-icon>
+        <p>Usuarios</p>
+      </sidebar-link>
+      <sidebar-link to="/companias">
         <md-icon>apartment</md-icon>
         <p>Compañias</p>
       </sidebar-link>
@@ -18,7 +22,7 @@
         <md-icon>directions_car</md-icon>
         <p>Vehiculos</p>
       </sidebar-link>
-      <sidebar-link to="reports">
+      <sidebar-link to="/reports">
         <md-icon>library_books</md-icon>
         <p>Reportes</p>
       </sidebar-link>

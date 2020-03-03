@@ -132,7 +132,7 @@ export default {
 </script>
 <style lang="scss">
 .custom-paginator-style {
-  width: 60%;
+  width: 70%;
   margin: auto;
   .md-layout {
     margin: auto;

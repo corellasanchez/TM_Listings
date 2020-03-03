@@ -9,6 +9,8 @@
     :fields="tableHeaders"
     :pars="pars"
     :paginator="filtering"
+    :editable="true"
+    :edit_route="'edit-property'"
     @updateResult="loadData"
     @resetFiltering="resetFilters"
   >

@@ -47,18 +47,18 @@
             </md-tab>
           </md-tabs>
         </div>
-        <md-card-content>
-          <md-table
-            v-model="data.data"
-            md-fixed-header
-            :table-header-color="theme_color"
-            style="max-height: 450px !important;"
-          >
+        <md-card-content v-if="data.data">
+          <md-table v-model="data.data" md-fixed-header :table-header-color="theme_color">
             <md-table-row slot="md-table-row" slot-scope="{ item }">
-              <md-table-cell
-                v-for="field in fields"
-                :md-label="field.label"
-              >{{field.first}} {{item[field.column]}} {{field.last}}</md-table-cell>
+              <md-table-cell v-for="field in fields" :md-label="field.label">
+                <div v-if="field.column === 'id' && editable === true ">
+                  <a
+                    href="javascript:void(0)"
+                    @click="$router.push(edit_route+'/'+item[field.column])"
+                  >{{item[field.column]}}</a>
+                </div>
+                <div v-else>{{field.first}} {{item[field.column]}} {{field.last}}</div>
+              </md-table-cell>
             </md-table-row>
             <md-table-empty-state
               :md-label="messages.noResTitle"
@@ -133,9 +133,17 @@ export default {
         return null;
       }
     },
-    add_route:{
+    add_route: {
       type: String,
-      default: ''
+      default: ""
+    },
+    editable: {
+      type: Boolean,
+      default: false
+    },
+    edit_route: {
+      type: String,
+      default: ""
     }
   },
   methods: {
